@@ -6,7 +6,7 @@ public class BackGroundShaking : MonoBehaviour
 {
     /*Time*/
     private float timer = 0f;
-    private float streamingSpeed = 2f;
+    private float streamingSpeed = 0.25f;
 
     // Start is called before the first frame update
     void Start()

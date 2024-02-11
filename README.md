@@ -17,3 +17,9 @@ Once we have alphaBet, we can develop a tilemap - based way to present words;
 #2024/02/11/04
 
 New backGround has launched.
+
+#2024/02/12/01
+
+Seperate backGround and backGroundBox.
+
+Slow down the speed of BackGroundShake.
