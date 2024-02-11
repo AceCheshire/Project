@@ -24,7 +24,9 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false)
+        if (collision.name == "mouse" && animeStatus == false 
+            && GameObject.Find("WelcomeSceneSortingOrderConfig").
+                GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             animator.SetBool("isHovering", true);
             animeStatus = true;
@@ -35,7 +37,9 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // <Exit>
-        if (collision.name == "mouse" && animeStatus == true)
+        if (collision.name == "mouse" && animeStatus == true 
+            && GameObject.Find("WelcomeSceneSortingOrderConfig").
+                GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -50,7 +54,9 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true)
+        if (collision.name == "mouse" && animeStatus == true 
+            && GameObject.Find("WelcomeSceneSortingOrderConfig").
+                GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             animator.SetBool("isHovering", false);
             animeStatus = false;
