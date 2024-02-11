@@ -39,6 +39,8 @@ public class MouseEventExitButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                animator.SetBool("isHovering", false);
+                animeStatus = false;
                 Application.Quit();
             }
         }
