@@ -23,3 +23,13 @@ New backGround has launched.
 Seperate backGround and backGroundBox.
 
 Slow down the speed of BackGroundShake.
+
+#2024/02/12/02
+
+Add achievementButton;
+
+Add StageOne scene;
+
+prefab tilemaps;
+
+Add several tiles;

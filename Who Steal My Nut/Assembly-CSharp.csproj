@@ -64,6 +64,7 @@
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\Mouse\MouseHiding.cs" />
+    <Compile Include="Assets\WelcomeScene\Script\achievementButton\MouseEventAchievementButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGround\BackGroundShake.cs" />
     <Compile Include="Assets\Shared\Script\wordBoardExitButton\MouseEventWordBoardExitButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\exitButton\MouseEventExitButton.cs" />
