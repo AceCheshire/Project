@@ -40,4 +40,8 @@ Add title in the WelcomeScene;
 
 Add SplashImage;
 
-Change some object sprites so as to fit the overall bloom;
+Change some object sprites so as to fit the overall bloom.
+
+#2024/02/13/01
+
+Change Game to windowed.
