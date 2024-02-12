@@ -33,3 +33,11 @@ Add StageOne scene;
 prefab tilemaps;
 
 Add several tiles;
+
+#2024/02/12/03
+
+Add title in the WelcomeScene;
+
+Add SplashImage;
+
+Change some object sprites so as to fit the overall bloom;
