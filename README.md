@@ -45,3 +45,7 @@ Change some object sprites so as to fit the overall bloom.
 #2024/02/13/01
 
 Change Game to windowed.
+
+#2024/02/13/01
+
+Add a new scene and the button to change scene
