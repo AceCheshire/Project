@@ -59,3 +59,5 @@ Change scene names.
 Modify some scripts. ( Attention )
 
 Change the speed of WordTitleShake.
+
+The backGround story has not been finished yet. 
