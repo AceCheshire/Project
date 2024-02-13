@@ -28,20 +28,20 @@ public class WordTiltleShake : MonoBehaviour
     {
         if(Mathf.Floor (timer)%2==1)
         {
-            gameObject.transform.position += new Vector3(Time.deltaTime * 0.02f, 0, 0);
+            gameObject.transform.position += new Vector3(Time.deltaTime * 0.03f, 0, 0);
         }
         if(Mathf.Floor(timer) % 2 == 0)
         {
-            gameObject.transform.position += new Vector3(-Time.deltaTime * 0.02f, 0, 0);
+            gameObject.transform.position += new Vector3(-Time.deltaTime * 0.03f, 0, 0);
         }
         // Horizontal Move
         if (Mathf.Floor(timer) % 3 == 0)
         {
-            gameObject.transform.position += new Vector3(0, Time.deltaTime * 0.01f, 0);
+            gameObject.transform.position += new Vector3(0, Time.deltaTime * 0.015f, 0);
         }
         if (Mathf.Floor(timer) % 3 == 1)
         {
-            gameObject.transform.position += new Vector3(0, -Time.deltaTime * 0.01f, 0);
+            gameObject.transform.position += new Vector3(0, -Time.deltaTime * 0.015f, 0);
         }
         if (Mathf.Floor(timer) % 3 == 2)
         {

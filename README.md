@@ -46,6 +46,16 @@ Change some object sprites so as to fit the overall bloom.
 
 Change Game to windowed.
 
-#2024/02/13/01
+*2024/02/13/01
 
-Add a new scene and the button to change scene
+Add a new scene and the button to change scene.
+
+#2024/02/14/01
+
+Add a new scene and two modeButtons.
+
+Change scene names.
+
+Modify some scripts. ( Attention )
+
+Change the speed of WordTitleShake.
