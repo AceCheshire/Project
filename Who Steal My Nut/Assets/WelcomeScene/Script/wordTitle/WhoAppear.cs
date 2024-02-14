@@ -11,7 +11,7 @@ public class WhoAppear : MonoBehaviour
     /*Static Parameter*/
     private Vector3 endPos;
     private Vector3 startPos;
-    private float appearTime = 1.2f;// Duration
+    private float appearTime = 1f;// Duration
     private float startTime = 0.1f;// Start point
 
     // Start is called before the first frame update
@@ -29,7 +29,7 @@ public class WhoAppear : MonoBehaviour
         appearRate = (timer - startTime) / appearTime;// Count these parameters per frame
         if (timer >= startTime)
         {
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;// Appear
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;// Appear
         }
         if (timer >= startTime && timer <= startTime + appearTime)
         {

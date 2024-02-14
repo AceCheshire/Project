@@ -3,64 +3,153 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class MouseEventSelectButton : MonoBehaviour
 {
-    /*Animator*/
-    private bool animeStatus = false;
-    private Animator animator;
+    /*Static*/
+    private float shakeRate = 3f;
+    private float appearTime = 2.2f;
+    private float rValue;// Color.r
+    private float gValue;// Color.g
+    private float bValue;// Color.b
+
+    /*Auto*/
+    private float timer = 0f;
+    private bool isTriggering = false;// If mouse is triggering
+    private bool isAlert = false;// reference of SortWelcomeSceneObject.isAlert
+    private bool isCollided = false;// If nut has collided
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        isAlert = GameObject.Find("WelcomeSceneSortingOrderConfig").
+                    GetComponent<SortWelcomeSceneObject>().isAlert;// Avoid error when LoadScene
         Debug.Log("selectButton Start!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        ;
+        timer += Time.deltaTime;
+        Appear();// Appear Effect
+        isAlert = GameObject.Find("WelcomeSceneSortingOrderConfig").
+                    GetComponent<SortWelcomeSceneObject>().isAlert;// Avoid error when LoadScene
+        if(timer>1.5f)
+        {
+            if (isTriggering) ViolentShake();// Mouse Event
+            else SlightShake();
+        }
+        // Set 1.5f sec because it is the time backGroundBox family fully appear
+        if (gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0) && isCollided)
+            SceneManager.LoadScene("StageChoose");
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.name == "backGroundBox") isCollided = true;// trigger isCollided
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false
-            && GameObject.Find("WelcomeSceneSortingOrderConfig").
-                    GetComponent<SortWelcomeSceneObject>().isAlert == false)
+        // <ShakeIntensity Slight->Violent>
+        if (collision.name == "mouse" && isAlert == false)
         {
-            animator.SetBool("isHovering", true);
-            animeStatus = true;
+            isTriggering = true;
         }
-        // </Animator Off->Hover>
+        // </ShakeIntensity Slight->Violent>
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // <Open Stagechoose Scene>
-        if (collision.name == "mouse" && animeStatus == true
-            && GameObject.Find("WelcomeSceneSortingOrderConfig").
-                    GetComponent<SortWelcomeSceneObject>().isAlert == false)
+        // <Prepare To Open Stagechoose Scene>
+        if (collision.name == "mouse" && isAlert == false)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                SceneManager.LoadScene("StageChoose");
-                animator.SetBool("isHovering", false);
-                animeStatus = false;
+                gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
         }
-        // </Open Stagechoose Scene>
+        // </Prepare To Open Stagechoose Scene>
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true
-            && GameObject.Find("WelcomeSceneSortingOrderConfig").
-                    GetComponent<SortWelcomeSceneObject>().isAlert == false)
+        if (collision.name == "mouse" && isAlert == false)
         {
-            animator.SetBool("isHovering", false);
-            animeStatus = false;
+            isTriggering = false;
         }
         // </Animator Hover->Off>
+    }
+
+    private void SlightShake()
+    {
+        if (Mathf.Floor(timer) % 2 == 0)// Attention
+        {
+            // <1/4 sec && 3/4 sec>
+            if (timer - Mathf.Floor(timer) < 0.25f ||
+                (timer - Mathf.Floor(timer) > 0.5f && timer - Mathf.Floor(timer) < 0.75f))
+            {
+                gameObject.transform.rotation = new Quaternion
+                (gameObject.transform.rotation.x, gameObject.transform.rotation.y,
+                 gameObject.transform.rotation.z - Time.deltaTime * 0.05f, gameObject.transform.rotation.w);
+            }
+            // </1/4 sec && 3/4 sec>
+            // <2/4 sec && 4/4 sec>
+            if (timer - Mathf.Floor(timer) > 0.75f ||
+                (timer - Mathf.Floor(timer) > 0.25f && timer - Mathf.Floor(timer) < 0.5f))
+            {
+                gameObject.transform.rotation = new Quaternion
+                (gameObject.transform.rotation.x, gameObject.transform.rotation.y,
+                 gameObject.transform.rotation.z + Time.deltaTime * 0.05f, gameObject.transform.rotation.w);
+            }
+            // </2/4 sec && 4/4 sec>
+        }
+    }
+
+    private  void ViolentShake()// The only difference from SlightShake() is shakeRate
+    {
+        if (Mathf.Floor(timer) % 2 == 0)// Attention
+        {
+            // <1/4 sec && 3/4 sec>
+            if (timer - Mathf.Floor(timer) < 0.25f ||
+                (timer - Mathf.Floor(timer) > 0.5f && timer - Mathf.Floor(timer) < 0.75f))
+            {
+                gameObject.transform.rotation = new Quaternion
+                (gameObject.transform.rotation.x, 
+                 gameObject.transform.rotation.y,
+                 gameObject.transform.rotation.z - Time.deltaTime * 0.05f * shakeRate, 
+                 gameObject.transform.rotation.w);
+            }
+            // </1/4 sec && 3/4 sec>
+            // <2/4 sec && 4/4 sec>
+            if (timer - Mathf.Floor(timer) > 0.75f ||
+                (timer - Mathf.Floor(timer) > 0.25f && timer - Mathf.Floor(timer) < 0.5f))
+            {
+                gameObject.transform.rotation = new Quaternion
+                (gameObject.transform.rotation.x,
+                 gameObject.transform.rotation.y,
+                 gameObject.transform.rotation.z + Time.deltaTime * 0.05f * shakeRate,
+                 gameObject.transform.rotation.w);
+            }
+            // </2/4 sec && 4/4 sec>
+        }
+    }
+
+    private void Appear()
+    {
+        rValue = gameObject.GetComponent<SpriteRenderer>().material.color.r;
+        gValue = gameObject.GetComponent<SpriteRenderer>().material.color.g;
+        bValue = gameObject.GetComponent<SpriteRenderer>().material.color.b;
+        if (timer > 1f && timer < appearTime)
+        {
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+                (rValue, gValue, bValue, Mathf.PingPong(timer / appearTime, 1));// Appear
+        }
+        if (timer < 1f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+               (rValue, gValue, bValue, 0);// Keep Alpha = 0
+        }
     }
 }

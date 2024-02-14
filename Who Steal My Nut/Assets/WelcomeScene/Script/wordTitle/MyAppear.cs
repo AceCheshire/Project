@@ -12,7 +12,7 @@ public class MyAppear : MonoBehaviour
     private Vector3 endPos;
     private Vector3 startPos;
     private float appearTime = 0.8f;// Duration
-    private float startTime = 0.9f;// Start point
+    private float startTime = 0.8f;// Start point
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class MyAppear : MonoBehaviour
         appearRate = (timer - startTime) / appearTime;// Count these parameters per frame
         if (timer >= startTime)
         {
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;// Appear
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 4;// Appear
         }
         if (timer >= startTime && timer <= startTime + appearTime)
         {

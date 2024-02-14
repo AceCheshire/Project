@@ -1,9 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class MouseEventAchievementButton : MonoBehaviour
 {
+    /*Static*/
+    private float rValue;// Color.r
+    private float gValue;// Color.g
+    private float bValue;// Color.b
+    private float appearTime = 1.5f;
+
+    /*Auto*/
+    private float timer = 0f;
+
     /*Animator*/
     private bool animeStatus = false;
     private Animator animator;
@@ -18,7 +28,8 @@ public class MouseEventAchievementButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ;
+        timer += Time.deltaTime;
+        Appear();// Appear Effect
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,5 +74,22 @@ public class MouseEventAchievementButton : MonoBehaviour
             animeStatus = false;
         }
         // </Animator Hover->Off>
+    }
+
+    private void Appear()
+    {
+        rValue = gameObject.GetComponent<SpriteRenderer>().material.color.r;
+        gValue = gameObject.GetComponent<SpriteRenderer>().material.color.g;
+        bValue = gameObject.GetComponent<SpriteRenderer>().material.color.b;
+        if (timer > 1f && timer < appearTime)
+        {
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+            (rValue, gValue, bValue, Mathf.PingPong(timer / appearTime, 1));// Appear
+        }
+        if (timer < 1f)
+        {
+            gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+               (rValue, gValue, bValue, 0);// Keep Alpha = 0
+        }
     }
 }

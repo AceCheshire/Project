@@ -12,7 +12,7 @@ public class NutAppear : MonoBehaviour
     private Vector3 endPos;
     private Vector3 startPos;
     private float appearTime = 0.9f;// Duration
-    private float startTime = 1.2f;// Start point
+    private float startTime = 1.1f;// Start point
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class NutAppear : MonoBehaviour
         appearRate = (timer - startTime) / appearTime;// Count these parameters per frame
         if (timer >= startTime )
         {
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 4;// Appear
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;// Appear
         }
         if (timer >= startTime && timer <= startTime + appearTime)
         {

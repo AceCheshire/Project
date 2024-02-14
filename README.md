@@ -63,3 +63,21 @@ Modify some scripts. ( Attention )
 Change the speed of WordTitleShake.
 
 The backGround story has not been finished yet. 
+
+#2024/02/14/02
+
+Add backGroundBox family.
+
+Change the type of selectButton.
+
+Postpone BackGroundShake anime.
+
+Add appear effects for all objects in Menu scene.
+
+Add a homeButton.
+
+Modify sortingOrders.
+
+Now only when nut ( selectButton ) collides the bottom will scene change.
+
+Modify the interyals of the three buttons.

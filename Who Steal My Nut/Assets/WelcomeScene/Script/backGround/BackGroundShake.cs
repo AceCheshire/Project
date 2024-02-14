@@ -6,7 +6,7 @@ public class BackGroundShaking : MonoBehaviour
 {
     /*Time*/
     private float timer = 0f;
-    private float streamingSpeed = 0.25f;
+    private float streamingSpeed = 0.125f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,8 @@ public class BackGroundShaking : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * streamingSpeed;
-        Shake();
+        if (timer > 0.25f) Shake();        
+        // Set 0.25f sec because it is the time backGroundBox family almost appear ( streamingSpeed )
     }
 
     private void Shake()
