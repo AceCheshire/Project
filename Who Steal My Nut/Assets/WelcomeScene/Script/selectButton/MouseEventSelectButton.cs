@@ -18,6 +18,7 @@ public class MouseEventSelectButton : MonoBehaviour
     private bool isTriggering = false;// If mouse is triggering
     private bool isAlert = false;// reference of SortWelcomeSceneObject.isAlert
     private bool isCollided = false;// If nut has collided
+    private bool isCollidedTwice = false;// If nut has collided twice
 
     // Start is called before the first frame update
     void Start()
@@ -40,12 +41,14 @@ public class MouseEventSelectButton : MonoBehaviour
             else SlightShake();
         }
         // Set 1.5f sec because it is the time backGroundBox family fully appear
-        if (gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0) && isCollided)
+        if (gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0) && isCollidedTwice)
             SceneManager.LoadScene("StageChoose");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.name == "backGroundBox" && isCollided) isCollidedTwice = true;
+        // trigger isCollidedTwice
         if (collision.collider.name == "backGroundBox") isCollided = true;// trigger isCollided
     }
 

@@ -81,3 +81,9 @@ Modify sortingOrders.
 Now only when nut ( selectButton ) collides the bottom will scene change.
 
 Modify the interyals of the three buttons.
+
+#2024/02/14/03
+
+Change SplashImage.
+
+Now need to collide twice to change scene.
