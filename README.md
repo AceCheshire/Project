@@ -119,3 +119,5 @@ Rend every cell per frame with different tiles, which are diffrent frames of the
 Add WordTranslate system.
 
 However, it hasn't been finished yet. 
+
+Wow, my push also failed.
