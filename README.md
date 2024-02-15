@@ -1,6 +1,6 @@
 # Development Log
 
-***
+### 2024/02/11
 
 #2024/02/11/02
 
@@ -19,6 +19,8 @@ Once we have alphaBet, we can develop a tilemap - based way to present words;
 #2024/02/11/04
 
 New backGround has launched.
+
+### 2024/02/12
 
 #2024/02/12/01
 
@@ -44,6 +46,8 @@ Add SplashImage;
 
 Change some object sprites so as to fit the overall bloom.
 
+### 2024/02/13
+
 #2024/02/13/01
 
 Change Game to windowed.
@@ -51,6 +55,8 @@ Change Game to windowed.
 *2024/02/13/01
 
 Add a new scene and the button to change scene.
+
+### 2024/02/14
 
 #2024/02/14/01
 
@@ -87,3 +93,33 @@ Modify the interyals of the three buttons.
 Change SplashImage.
 
 Now need to collide twice to change scene.
+
+### 2024/02/15
+
+#2024/02/15/01
+
+Tile Update: 
+
+Add enchanted tiles: Sync, Xyz and Link.
+
+Usage: 
+
+       Sync can accumulate nut.
+
+       Xyz can split nut into two the same nuts.
+
+       Link can change velocity direction of nut.
+
+Add floating of tiles in the following way:
+
+Rend every cell per frame with different tiles, which are diffrent frames of the same kind of tile.
+
+### 2024/02/16
+
+#2024/02/16/01
+
+Add WordTranslate system.
+
+However, it hasn't been finished yet. 
+
+Wow, my push also failed.
