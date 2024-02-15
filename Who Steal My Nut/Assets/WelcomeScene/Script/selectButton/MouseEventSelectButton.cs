@@ -38,7 +38,7 @@ public class MouseEventSelectButton : MonoBehaviour
         if(timer>1.5f)
         {
             if (isTriggering) ViolentShake();// Mouse Event
-            else SlightShake();
+            //else SlightShake();
         }
         // Set 1.5f sec because it is the time backGroundBox family fully appear
         if (gameObject.GetComponent<Rigidbody2D>().velocity == new Vector2(0, 0) && isCollidedTwice)

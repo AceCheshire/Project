@@ -111,3 +111,11 @@ Usage: Sync can accumulate nut.
 Add floating of tiles in the following way:
 
 Rend every cell per frame with different tiles, which are diffrent frames of the same kind of tile.
+
+### 2024/02/16
+
+#2024/02/16/01
+
+Add WordTranslate system.
+
+However, it hasn't been finished yet. 

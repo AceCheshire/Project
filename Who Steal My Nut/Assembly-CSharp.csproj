@@ -63,6 +63,7 @@
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\StealAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
+    <Compile Include="Assets\Shared\Script\wordBuffer\WordTranslate.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGoundBox\BackGroundBoxAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\achievementButton\MouseEventAchievementButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseHiding.cs" />

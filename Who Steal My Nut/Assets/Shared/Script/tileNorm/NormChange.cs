@@ -51,10 +51,6 @@ public class NormChange : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * streamingSpeed;
-        //mousePos = Input.mousePosition;
-        //worldPos = Camera.main.ScreenToWorldPoint(new Vector3
-        //    (mousePos.x, mousePos.y, Mathf.Abs(Camera.main.transform.position.z)));
-        //cellPos = grid.WorldToCell(worldPos);
         if (Mathf.Floor(timer) % 3 != 0)
         {
             isTimeAllowPlay = true;
