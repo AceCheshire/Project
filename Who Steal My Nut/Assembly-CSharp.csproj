@@ -68,6 +68,7 @@
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseHiding.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WordTiltleShake.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGround\BackGroundShake.cs" />
+    <Compile Include="Assets\Shared\Script\tileNorm\NormChange.cs" />
     <Compile Include="Assets\WelcomeScene\Script\selectButton\MouseEventSelectButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\MyAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseSync.cs" />

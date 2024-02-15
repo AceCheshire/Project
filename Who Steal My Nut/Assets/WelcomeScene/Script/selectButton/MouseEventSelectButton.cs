@@ -8,7 +8,7 @@ public class MouseEventSelectButton : MonoBehaviour
 {
     /*Static*/
     private float shakeRate = 3f;
-    private float appearTime = 2.2f;
+    private float appearTime = 1.2f;
     private float rValue;// Color.r
     private float gValue;// Color.g
     private float bValue;// Color.b
@@ -95,7 +95,7 @@ public class MouseEventSelectButton : MonoBehaviour
             {
                 gameObject.transform.rotation = new Quaternion
                 (gameObject.transform.rotation.x, gameObject.transform.rotation.y,
-                 gameObject.transform.rotation.z - Time.deltaTime * 0.05f, gameObject.transform.rotation.w);
+                 gameObject.transform.rotation.z - Time.deltaTime * 0.02f, gameObject.transform.rotation.w);
             }
             // </1/4 sec && 3/4 sec>
             // <2/4 sec && 4/4 sec>
@@ -104,7 +104,7 @@ public class MouseEventSelectButton : MonoBehaviour
             {
                 gameObject.transform.rotation = new Quaternion
                 (gameObject.transform.rotation.x, gameObject.transform.rotation.y,
-                 gameObject.transform.rotation.z + Time.deltaTime * 0.05f, gameObject.transform.rotation.w);
+                 gameObject.transform.rotation.z + Time.deltaTime * 0.02f, gameObject.transform.rotation.w);
             }
             // </2/4 sec && 4/4 sec>
         }
@@ -121,7 +121,7 @@ public class MouseEventSelectButton : MonoBehaviour
                 gameObject.transform.rotation = new Quaternion
                 (gameObject.transform.rotation.x, 
                  gameObject.transform.rotation.y,
-                 gameObject.transform.rotation.z - Time.deltaTime * 0.05f * shakeRate, 
+                 gameObject.transform.rotation.z - Time.deltaTime * 0.02f * shakeRate, 
                  gameObject.transform.rotation.w);
             }
             // </1/4 sec && 3/4 sec>
@@ -132,7 +132,7 @@ public class MouseEventSelectButton : MonoBehaviour
                 gameObject.transform.rotation = new Quaternion
                 (gameObject.transform.rotation.x,
                  gameObject.transform.rotation.y,
-                 gameObject.transform.rotation.z + Time.deltaTime * 0.05f * shakeRate,
+                 gameObject.transform.rotation.z + Time.deltaTime * 0.02f * shakeRate,
                  gameObject.transform.rotation.w);
             }
             // </2/4 sec && 4/4 sec>
@@ -144,12 +144,12 @@ public class MouseEventSelectButton : MonoBehaviour
         rValue = gameObject.GetComponent<SpriteRenderer>().material.color.r;
         gValue = gameObject.GetComponent<SpriteRenderer>().material.color.g;
         bValue = gameObject.GetComponent<SpriteRenderer>().material.color.b;
-        if (timer > 1f && timer < appearTime)
+        if (timer > 0.5f && timer < appearTime)
         {
             gameObject.GetComponent<SpriteRenderer>().material.color = new Color
                 (rValue, gValue, bValue, Mathf.PingPong(timer / appearTime, 1));// Appear
         }
-        if (timer < 1f)
+        if (timer < 0.5f)
         {
             gameObject.GetComponent<SpriteRenderer>().material.color = new Color
                (rValue, gValue, bValue, 0);// Keep Alpha = 0
