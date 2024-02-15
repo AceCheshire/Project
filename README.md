@@ -102,7 +102,8 @@ Tile Update:
 
 Add enchanted tiles: Sync, Xyz and Link.
 
-Usage: Sync can accumulate nut.
+Usage: 
+       Sync can accumulate nut.
 
        Xyz can split nut into two the same nuts.
 
