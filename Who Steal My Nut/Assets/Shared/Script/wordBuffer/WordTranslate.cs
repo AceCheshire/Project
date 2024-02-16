@@ -23,7 +23,7 @@ public class WordTranslate : MonoBehaviour
         +"{\n"
         +"    printf(\"Hello World!\");\n"
         +"    return 0;\n"
-        +"}";
+        +"}\n";
     private char[] inputCharArray;
 
     /*Grid*/
