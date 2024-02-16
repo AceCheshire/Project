@@ -38,8 +38,8 @@ public class SortWelcomeSceneObject : MonoBehaviour
             "and she feels that she may exert all her powers of pleasing without suspicion.\n"
             + "To see a young couple loving each other is no wonder:\n" +
             "but to see an old couple loving each other is the best sight of all.\n" +
-            "Some minds seem almost to create themselves, " +
-            "springing up under every disadvantage and working their solitary but irresistible way through a thousand obstacles.";
+            "Some minds seem almost to create themselves, "
+            +"springing up under every disadvantage and working their solitary but irresistible way through a thousand obstacles.";
         GameObject.Find("wordBoard").GetComponent<SpriteRenderer>().sortingOrder = wordBoardOn;
         GameObject.Find("wordBoardExitButton").
             GetComponent<SpriteRenderer>().sortingOrder = wordBoardExitButtonOn;
