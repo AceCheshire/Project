@@ -140,9 +140,7 @@ Take WelcomeScene as an example, There are three main tilemaps: wordAlphabet, wo
 
 When we press down one button ( e.g. readmeButton ) , the working flow is: 
 
-Scripts attached to the readmeButton invoke a public void of WelcomeSceneLayerConfig, 
-
-which is called " WelcomeReadmeAlertOn() " to open the readmeAlert;
+Scripts attached to the readmeButton invoke a public void of WelcomeSceneLayerConfig, which is called " WelcomeReadmeAlertOn() " to open the readmeAlert;
 
 the readmeAlert includes three parts: wordBoard, wordRenderer and wordBoardExitButton.
 
@@ -156,21 +154,15 @@ WelcomeReadmeAlertOn() finish three tasks in a row:
 
 wordBuffer and wordRenderer both are waiting messages every frame.
 
-After WelcomeReadmeAlertOn() finish its three tasks, the next frame, 
-
-wordBuffer detect the message, so it runs a rending task all happening on the tilemap " wordBuffer ".
+After WelcomeReadmeAlertOn() finish its three tasks, the next frame, wordBuffer detect the message, so it runs a rending task all happening on the tilemap " wordBuffer ".
 
 But how does it do the reandering task?
 
 Well, remember we have mentioned the inner string of wordBuffer's script?  WordTranslate.cs divides it into char array to operate one by one.
 
-To put every char from text information to tile set on the tilemap " wordBuffer ", 
+To put every char from text information to tile set on the tilemap " wordBuffer ", WordTranslate.cs gets where the next char's position on the tilemap should be by detect blank rows.
 
-WordTranslate.cs gets where the next char's position on the tilemap should be by detect blank rows.
-
-Then it copied every char on the tilemap " wordAlphabet " and set tiles that form a char on the 
-
-tilemap " wordBuffer " according to that next char's position ( by calculation ) and that char's 
+Then it copied every char on the tilemap " wordAlphabet " and set tiles that form a char on the tilemap " wordBuffer " according to that next char's position ( by calculation ) and that char's 
 
 position on tilemap " wordAlphabet ".
 
@@ -178,25 +170,15 @@ After above work, we get a tilemap with chars arranged on it.
 
 Now we need to solve the problem that the wordBoard is limited, so it can't present all chars in one board. 
 
-Let the tilemap " wordbuffer " and " wordAlphabet " be visibly false, 
+Let the tilemap " wordbuffer " and " wordAlphabet " be visibly false, we now discuss the tilemap we directly see on the screen, " wordRenderer ".
 
-we now discuss the tilemap we directly see on the screen, " wordRenderer ".
+wordRenderer will receive a message from WordTranslate.cs, which is named " isWaitingFrontRend ", and when received, wordRenderer will make a " FrontRend ".
 
-wordRenderer will receive a message from WordTranslate.cs, which is named " isWaitingFrontRend ", 
+wordRenderer defines a Vector3Int to tell itself where to start copy, and FrontRend will copy a part of tilemap " wordBuffer " to the tilemap " wordRenderer ".
 
-and when received, wordRenderer will make a " FrontRend ".
+Where that part will be copied is apperently the area of wordBoard, so that copied part is exactly as big as the area of wordBoard.
 
-wordRenderer defines a Vector3Int to tell itself where to start copy, 
-
-and FrontRend will copy a part of tilemap " wordBuffer " to the tilemap " wordRenderer ".
-
-Where that part will be copied is apperently the area of wordBoard, 
-
-so that copied part is exactly as big as the area of wordBoard.
-
-To add FlipPage function, we just clean what we have FrontRend-ed, 
-
-move our Vector3Int ( we know, it is a teller to tell wordRenderer where to start copy) 
+To add FlipPage function, we just clean what we have FrontRend-ed, move our Vector3Int ( we know, it is a teller to tell wordRenderer where to start copy) 
 
 and simply FrontRend again with the new Vector3Int. What I have finished is flip pages with UpArrow and DownArrow on the keyboard.
 
@@ -206,18 +188,14 @@ To make similar WordTranslate function in different scene, we need to have the f
 
 1) Directly copy object " wordAlphabet "," wordBuffer ", " wordBoard ", " wordBoardExitButton " and " wordRenderer ";
 
-2) Build a script like Script " SortingWelcomeSceneObject " of WelcomeSceneLayerConfig. 
-
-Its usage is to manage alert changes in one script.
+2) Build a script like Script " SortingWelcomeSceneObject " of WelcomeSceneLayerConfig. Its usage is to manage alert changes in one script.
 
 3) Set a button that will push alerts;
 
-4) Link the button to the alert-change-managing script ( e.g.SortingWelcomeSceneObject ),
+4) Link the button to the alert-change-managing script ( e.g.SortingWelcomeSceneObject ), link the alert-change-managing script to wordBuffer, 
 
-link the alert-change-managing script to wordBuffer, 
+and make sure wordBuffer still links to wordRenderer.
 
- and make sure wordBuffer still links to wordRenderer.
+5) Now basic links have been formed, you can change texts in your alert-change-managing script, or even other parameters. ( e.g. add chars to wordAlphabet )
 
-5) Now basic links have been formed, you can change texts in your alert-change-managing script, 
-
-or even other parameters. ( e.g. add chars to wordAlphabet )
+Besides, now we need to click the glass bin to select scene.
