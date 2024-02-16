@@ -12,7 +12,8 @@ public class NormChange : MonoBehaviour
 
     /*Time*/
     private float timer = 0f;
-    private float streamingSpeed = 1f;
+    private float streamingSpeed = 0.5f;
+    private float timerRecord = 0f;
 
     /*Grid*/
     private Grid grid;
@@ -51,6 +52,7 @@ public class NormChange : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * streamingSpeed;
+        if (timerRecord < timer) timerRecord = Mathf.Floor(timer * 10) / 10;
         if (Mathf.Floor(timer) % 3 != 0)
         {
             isTimeAllowPlay = true;
@@ -64,7 +66,7 @@ public class NormChange : MonoBehaviour
 
     private void FrameByTime()
     {
-        if (Mathf.Floor(timer * 10) % 10 == 0 && isForward && isTimeAllowPlay && isNotPlay && !isFinishRow)
+        if (timerRecord < timer && isForward && isTimeAllowPlay && isNotPlay && !isFinishRow)
         {
             for (i = -10; i <= 10; i++)
             {
@@ -74,8 +76,9 @@ public class NormChange : MonoBehaviour
                 }
             }
             isNotPlay = false;
+            timerRecord += 0.1f;
         }
-        if (Mathf.Floor(timer * 10) % 10 == 0 && !isForward && isTimeAllowPlay && isNotPlay && !isFinishRow)
+        if (timerRecord < timer && !isForward && isTimeAllowPlay && isNotPlay && !isFinishRow)
         {
             for (i = -10; i <= 10; i++)
             {
@@ -85,6 +88,7 @@ public class NormChange : MonoBehaviour
                 }
             }
             isNotPlay = false;
+            timerRecord += 0.1f;
         }
     }
 
