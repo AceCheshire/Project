@@ -123,3 +123,7 @@ Add WordTranslate system.
 However, it hasn't been finished yet. 
 
 Wow, my push also failed.
+
+#2024/02/16/02
+
+Fix the bug of objects' up-and-down movement to make them fluent.
