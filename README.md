@@ -102,7 +102,9 @@ Tile Update:
 
 Add enchanted tiles: Sync, Xyz and Link.
 
-Usage: Sync can accumulate nut.
+Usage: 
+
+       Sync can accumulate nut.
 
        Xyz can split nut into two the same nuts.
 
@@ -111,3 +113,13 @@ Usage: Sync can accumulate nut.
 Add floating of tiles in the following way:
 
 Rend every cell per frame with different tiles, which are diffrent frames of the same kind of tile.
+
+### 2024/02/16
+
+#2024/02/16/01
+
+Add WordTranslate system.
+
+However, it hasn't been finished yet. 
+
+Wow, my push also failed.
