@@ -197,3 +197,5 @@ To make similar WordTranslate function in different scene, we need to have the f
 and make sure wordBuffer still links to wordRenderer.
 
 5) Now basic links have been formed, you can change texts in your alert-change-managing script, or even other parameters. ( e.g. add chars to wordAlphabet )
+
+Besides，Now we need to click the glass bin to select scene.
