@@ -44,7 +44,7 @@ public class MouseEventWordBoardExitButton : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 GameObject.Find("WelcomeSceneSortingOrderConfig").
-                    GetComponent<SortWelcomeSceneObject>().WelcomeReadmeAlertOff();
+                    GetComponent<SortWelcomeSceneObject>().WelcomeAlertOff();
                 animator.SetBool("isHovering", false);
                 animeStatus = false;
             }

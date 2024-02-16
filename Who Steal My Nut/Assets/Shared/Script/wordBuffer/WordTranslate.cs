@@ -17,10 +17,13 @@ public class WordTranslate : MonoBehaviour
     private Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
     private Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
     private Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
-    private string inputStr = 
-        "As you can see, this technology fully explains people's spirit of exploration. " 
-        +"Because this is an advancing technology and its convenience will eventually benefit ourselves."
-        +"_include_iostream_                         printf_HelloWorld._;";
+    public string inputStr =
+        "#include<stdio.h>\n"
+        +"int main()\n"
+        +"{\n"
+        +"    printf(\"Hello World!\");\n"
+        +"    return 0;\n"
+        +"}";
     private char[] inputCharArray;
 
     /*Grid*/
@@ -34,7 +37,8 @@ public class WordTranslate : MonoBehaviour
     private int interyalHorizontal = 0;
 
     /*Auto*/
-    private bool isWaitingRend = true;
+    public bool isWaitingFrontRend = false;
+    public bool isWaitingRend = true;
     private bool isTheFirst = true;
 
     // Start is called before the first frame update
@@ -50,15 +54,24 @@ public class WordTranslate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mousePos = Input.mousePosition;
-        //worldPos = Camera.main.ScreenToWorldPoint(new Vector3
-        //    (mousePos.x, mousePos.y, Mathf.Abs(Camera.main.transform.position.z)));
-        //cellPos = grid.WorldToCell(worldPos);
-        //Debug.Log(cellPos);
         if(isWaitingRend)
         {
+            Flush();
+            inputCharArray = inputStr.ToCharArray();
+            isTheFirst = true;
             Rend();
-            isWaitingRend =false;
+            isWaitingRend = false;
+            isWaitingFrontRend = true;
+        }
+    }
+    private void Flush()
+    {
+        for (int i = windowLeftTop.x - 1; i <= windowRightTop.x + 8; i++)
+        {
+            for (int j = windowLeftBottom.y - 5; j <= windowLeftTop.y + 1000; j++)
+            {
+                tilemap.SetTile(new Vector3Int(i, j, 0), null);
+            }
         }
     }
 
@@ -88,6 +101,7 @@ public class WordTranslate : MonoBehaviour
         int blankRate = 0;
         bool isModify = false;
         Vector3Int space = new Vector3Int(0, 0, 0);
+        if (letter == '\n') return new Vector3Int(windowLeftTop.x, lastRendPos.y - 9, lastRendPos.z);
         if (letter == ' ') space = new Vector3Int(2, 0, 0);
         if (isTheFirst)
         {
@@ -122,6 +136,12 @@ public class WordTranslate : MonoBehaviour
 
     private Vector3Int CharToCellPos(char letter)
     {
+        if (letter >= '1' && letter <= '9')
+        {
+            interyalHorizontal = 5;
+            interyalVertical = letter - '1';
+            return bigALeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+        }
         if (letter >= 'A' && letter <= 'K')
         {
             interyalHorizontal = 0;
@@ -146,6 +166,8 @@ public class WordTranslate : MonoBehaviour
             interyalVertical = letter - 'l';
             return bigLLeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
         }
+        else if (letter == '0')
+            return bigALeftBottom + new Vector3Int(5 * 7, -72, 0);
         else if (letter == 'L')
             return bigLLeftBottom + new Vector3Int(16, 0, 0);
         else if (letter == 'l')
@@ -156,10 +178,54 @@ public class WordTranslate : MonoBehaviour
             return bigALeftBottom + new Vector3Int(2 * 7, -8, 0);
         else if (letter == ';')
             return bigALeftBottom + new Vector3Int(2 * 7, -16, 0);
-        else if (letter == ' ')
-            return bigALeftBottom + new Vector3Int(3 * 7, -16, 0);
+        else if (letter == ' ' || letter == '\n')
+            return bigALeftBottom + new Vector3Int(7 * 7, -16, 0);
         else if (letter == '_')
             return bigALeftBottom + new Vector3Int(2 * 7, -24, 0);
-        else return bigALeftBottom;
+        else if (letter == '#')
+            return bigALeftBottom + new Vector3Int(2 * 7, -32, 0);
+        else if (letter == '~')
+            return bigALeftBottom + new Vector3Int(2 * 7, -40, 0);
+        else if (letter == '<')
+            return bigALeftBottom + new Vector3Int(2 * 7, -48, 0);
+        else if (letter == '>')
+            return bigALeftBottom + new Vector3Int(2 * 7, -56, 0);
+        else if (letter == '(')
+            return bigALeftBottom + new Vector3Int(2 * 7, -64, 0);
+        else if (letter == ')')
+            return bigALeftBottom + new Vector3Int(2 * 7, -72, 0);
+        else if (letter == '+')
+            return bigALeftBottom + new Vector3Int(3 * 7, 0, 0);
+        else if (letter == '-')
+            return bigALeftBottom + new Vector3Int(3 * 7, -8, 0);
+        else if (letter == '*')
+            return bigALeftBottom + new Vector3Int(3 * 7, -16, 0);
+        else if (letter == '/')
+            return bigALeftBottom + new Vector3Int(3 * 7, -24, 0);
+        else if (letter == '=')
+            return bigALeftBottom + new Vector3Int(3 * 7, -32, 0);
+        else if (letter == '!')
+            return bigALeftBottom + new Vector3Int(3 * 7, -40, 0);
+        else if (letter == '?')
+            return bigALeftBottom + new Vector3Int(3 * 7, -48, 0);
+        else if (letter == '\"')
+            return bigALeftBottom + new Vector3Int(3 * 7, -56, 0);
+        else if (letter == '\'')
+            return bigALeftBottom + new Vector3Int(3 * 7, -64, 0);
+        else if (letter == '%')
+            return bigALeftBottom + new Vector3Int(3 * 7, -72, 0);
+        else if (letter == '@')
+            return bigALeftBottom + new Vector3Int(4 * 7, 0, 0);
+        else if (letter == '^')
+            return bigALeftBottom + new Vector3Int(4 * 7, -8, 0);
+        else if (letter == '[')
+            return bigALeftBottom + new Vector3Int(4 * 7, -16, 0);
+        else if (letter == ']')
+            return bigALeftBottom + new Vector3Int(4 * 7, -24, 0);
+        else if (letter == '{')
+            return bigALeftBottom + new Vector3Int(4 * 7, -32, 0);
+        else if (letter == '}')
+            return bigALeftBottom + new Vector3Int(4 * 7, -40, 0);
+        else return bigALeftBottom + new Vector3Int(4 * 7, -48, 0);
     }
 }

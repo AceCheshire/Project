@@ -55,7 +55,7 @@ public class MouseEventAchievementButton : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 GameObject.Find("WelcomeSceneSortingOrderConfig").
-                    GetComponent<SortWelcomeSceneObject>().WelcomeReadmeAlertOn();
+                    GetComponent<SortWelcomeSceneObject>().WelcomeAchievementAlertOn();
                 animator.SetBool("isHovering", false);
                 animeStatus = false;
             }
