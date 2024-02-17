@@ -204,7 +204,9 @@ and simply FrontRend again with the new Vector3Int.
 
 What I have finished is flip pages with UpArrow and DownArrow on the keyboard.
 
-Besides, I add function to detect a passage's beginning and end so that our FlipPage will not allow you to flip unlimited.
+Besides, I add function to detect a passage's beginning and end so that our FlipPage will not allow you to flip 
+
+unlimited.
 
 To make similar WordTranslate function in different scene, we need to have the following preparation:
 
