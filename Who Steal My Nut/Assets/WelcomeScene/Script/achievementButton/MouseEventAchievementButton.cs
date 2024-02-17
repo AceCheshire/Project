@@ -6,6 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class MouseEventAchievementButton : MonoBehaviour
 {
     /*Static*/
+    private AudioSource Audiodata;
     private float rValue;// Color.r
     private float gValue;// Color.g
     private float bValue;// Color.b
@@ -21,6 +22,7 @@ public class MouseEventAchievementButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         Debug.Log("achievementButton Start!");
     }
@@ -39,6 +41,7 @@ public class MouseEventAchievementButton : MonoBehaviour
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                     GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
+            Audiodata.Play();
             animator.SetBool("isHovering", true);
             animeStatus = true;
         }
