@@ -8,13 +8,13 @@ public class FrontRend : MonoBehaviour
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
     private Vector3Int bigLLeftBottom = new Vector3Int(-56, -62, 0);
-    private Vector3Int windowLeftTop = new Vector3Int(-111, 55, 0);
-    private Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
-    private Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
-    private Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
-    private Vector3Int rendLeftTop= new Vector3Int(-111, 61, 0);
-    private Vector3Int rendRightBottom = new Vector3Int(113, -72, 0);
-    private Vector3Int fixTheError = new Vector3Int(2, 0, 0);
+    public Vector3Int windowLeftTop = new Vector3Int(-111, 55, 0);
+    public Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
+    public Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
+    public Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
+    public Vector3Int rendLeftTop= new Vector3Int(-111, 61, 0);
+    public Vector3Int rendRightBottom = new Vector3Int(113, -72, 0);
+    public Vector3Int fixTheError = new Vector3Int(2, 0, 0);// Bias
 
     /*Grid*/
     private Tilemap wordRenderer;
@@ -26,14 +26,14 @@ public class FrontRend : MonoBehaviour
     private bool isCanPageDown = false;
     private bool isUpRequest = false;
     private bool isDownRequest = false;
-    private Vector3Int rendererStartPointer = new Vector3Int(0, 0, 0);
+    private Vector3Int rendererStartPointer = new Vector3Int(0, 0, 0);//Renderer Pointer
 
     // Start is called before the first frame update
     void Start()
     {
         wordRenderer = gameObject.GetComponent<Tilemap>();
         wordBuffer = GameObject.Find("wordBuffer").GetComponent<Tilemap>();
-        Debug.Log("wordRenderer Finish The First Rend!");
+        Debug.Log("wordRenderer Try The First Rend!");
     }
 
     // Update is called once per frame
@@ -42,23 +42,24 @@ public class FrontRend : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 1f && isFirstRequest)
         {
+            Flush();
             Rend();
             isFirstRequest = false;
-        }
+        }// Rend at the beginning ( without request )
         if(GameObject.Find("wordBuffer").GetComponent<WordTranslate >().isWaitingFrontRend == true)
         {
             Flush();
             rendererStartPointer = new Vector3Int(0, 0, 0);
             Rend();
             GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingFrontRend = false;
-        }
-        if(GameObject.Find("WelcomeSceneSortingOrderConfig").
+        }// Rend ( with request )
+        if (GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == true)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) && !isDownRequest)
             {
                 isDownRequest = true;
-                isCanPageDown = !CheckBottom();
+                isCanPageDown = !CheckBottom();// Check passage's end
                 Flush();
                 if (isCanPageDown)
                     rendererStartPointer -= new Vector3Int(0, 10, 0);
@@ -68,7 +69,7 @@ public class FrontRend : MonoBehaviour
             {
                 isUpRequest = true;
                 Flush();
-                if (rendererStartPointer != new Vector3Int(0, 0, 0))
+                if (rendererStartPointer != new Vector3Int(0, 0, 0))// Check passage's beginning
                     rendererStartPointer += new Vector3Int(0, 10, 0);
                 Rend();
             }
@@ -77,18 +78,18 @@ public class FrontRend : MonoBehaviour
         }
     }
 
-    private void Flush()
+    private void Flush()// Clean Screen
     {
-        for(int i = windowLeftTop.x-1; i <= windowRightTop.x+8; i++)
+        for (int i = windowLeftTop.x - 1; i <= windowRightTop.x + 8; i++)
         {
-            for(int j = windowLeftBottom.y-5; j <= windowLeftTop.y+10; j++)
+            for (int j = windowLeftBottom.y - 1000; j <= windowLeftTop.y + 1000; j++)
             {
                 wordRenderer.SetTile(new Vector3Int(i, j, 0), null);
             }
         }
     }
 
-    private void Rend()
+    private void Rend()// Copy and Paste Buffer
     {
         for (int i = 0; i <= rendRightBottom.x - rendLeftTop.x; i++)
         {
@@ -100,7 +101,7 @@ public class FrontRend : MonoBehaviour
         }
     }
 
-    private bool CheckBottom()
+    private bool CheckBottom()// If blankRate is high, identify it as end
     {
         int blankRate = 0;
         for (int i = 0; i <= 9; i++)

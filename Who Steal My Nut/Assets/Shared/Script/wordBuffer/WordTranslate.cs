@@ -5,26 +5,21 @@ using UnityEngine.Tilemaps;
 
 public class WordTranslate : MonoBehaviour
 {
-    /*Position*/
-    private Vector3 mousePos;
-    private Vector3 worldPos;
-    private Vector3Int cellPos;
-
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
     private Vector3Int bigLLeftBottom = new Vector3Int(-56, -62, 0);
-    private Vector3Int windowLeftTop = new Vector3Int(-111, 55, 0);
-    private Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
-    private Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
-    private Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
+    public Vector3Int windowLeftTop = new Vector3Int(-111, 55, 0);
+    public Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
+    public Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
+    public Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
     public string inputStr =
         "#include<stdio.h>\n"
         +"int main()\n"
         +"{\n"
         +"    printf(\"Hello World!\");\n"
         +"    return 0;\n"
-        +"}";
-    private char[] inputCharArray;
+        +"}";// Content ( Continuous ) to be rended
+    private char[] inputCharArray;// Content ( Discrete ) to be rended
 
     /*Grid*/
     private Grid grid;
@@ -33,13 +28,13 @@ public class WordTranslate : MonoBehaviour
     private Tilemap tilemap;
 
     /*Temp*/
-    private int interyalVertical = 0;
-    private int interyalHorizontal = 0;
+    private int interyalVertical = 0;// Relative vertical distance in Grid
+    private int interyalHorizontal = 0;// Relative horizontal distance in Grid
 
     /*Auto*/
-    public bool isWaitingFrontRend = false;
-    public bool isWaitingRend = true;
-    private bool isTheFirst = true;
+    public bool isWaitingFrontRend = false;//Message Buffer -> Renderer
+    public bool isWaitingRend = true;//Message Config -> Buffer
+    private bool isTheFirst = true;// Special situation: the first char
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +43,7 @@ public class WordTranslate : MonoBehaviour
         tilemapSource = GameObject.Find("wordAlphabet").GetComponentInParent<Tilemap>();
         tilemapGoal = GameObject.Find("wordRenderer").GetComponentInParent<Tilemap>();
         tilemap = gameObject.GetComponentInParent<Tilemap>();
-        inputCharArray = inputStr.ToCharArray();
+        inputCharArray = inputStr.ToCharArray();// inputStr(string) -> inputCharArray(char[])
     }
 
     // Update is called once per frame
@@ -56,20 +51,22 @@ public class WordTranslate : MonoBehaviour
     {
         if(isWaitingRend)
         {
-            Flush();
-            inputCharArray = inputStr.ToCharArray();
+            Flush();// Clean Buffer
+            inputCharArray = inputStr.ToCharArray();// inputStr(string) -> inputCharArray(char[])
             isTheFirst = true;
-            Rend();
+            Rend();// re-Rend Buffer
             isWaitingRend = false;
-            isWaitingFrontRend = true;
+            isWaitingFrontRend = true;// Two messages
         }
     }
     private void Flush()
     {
+        // <Matrix>
         for (int i = windowLeftTop.x - 1; i <= windowRightTop.x + 8; i++)
         {
-            for (int j = windowLeftBottom.y - 5; j <= windowLeftTop.y + 1000; j++)
+            for (int j = windowLeftBottom.y - 1000; j <= windowLeftTop.y + 1000; j++)
             {
+                // </Matrix>
                 tilemap.SetTile(new Vector3Int(i, j, 0), null);
             }
         }
@@ -79,7 +76,7 @@ public class WordTranslate : MonoBehaviour
     {
         Vector3Int nextRendPos = new Vector3Int(0, 0, 0);
         Vector3Int sourceLeftBottom;
-        foreach (var letter in inputCharArray)
+        foreach (var letter in inputCharArray)// Rend one char per time
         {
             nextRendPos = RendPointer(nextRendPos, letter);
             sourceLeftBottom = CharToCellPos(letter);
@@ -102,12 +99,15 @@ public class WordTranslate : MonoBehaviour
         bool isModify = false;
         Vector3Int space = new Vector3Int(0, 0, 0);
         if (letter == '\n') return new Vector3Int(windowLeftTop.x, lastRendPos.y - 9, lastRendPos.z);
+        // Special situation: \n
         if (letter == ' ') space = new Vector3Int(2, 0, 0);
+        // Special situation: ' '
         if (isTheFirst)
         {
             isTheFirst = false;
             return windowLeftTop;
         }
+        // Special situation: the first char
         else
         {
             for (int i = 0; i <= 7; i++)
@@ -115,15 +115,15 @@ public class WordTranslate : MonoBehaviour
                 for (int j = -2; j <= 5; j++)
                 {
                     if (tilemap.GetTile(lastRendPos + new Vector3Int(i, j, 0)) == null) blankRate++;
-                }
+                }// Find the next rend-able position
                 if (blankRate == 8 && !isModify)
                 {
                     appliableXValue = lastRendPos.x + i + 1;
-                    if (appliableXValue > 105)
+                    if (appliableXValue > 105)//Change Line
                     {
                         appliableXValue = windowLeftTop.x;
                         appliableYValue = lastRendPos.y - 9;
-                        space = new Vector3Int(0, 0, 0);
+                        space = new Vector3Int(0, 0, 0);//Chage Line so that Clear Space Record
                     }
                     else appliableYValue = lastRendPos.y;
                     isModify = true;
@@ -136,6 +136,7 @@ public class WordTranslate : MonoBehaviour
 
     private Vector3Int CharToCellPos(char letter)
     {
+        // <Checkout the position of each char in the Alphabet>
         if (letter >= '1' && letter <= '9')
         {
             interyalHorizontal = 5;
@@ -228,4 +229,5 @@ public class WordTranslate : MonoBehaviour
             return bigALeftBottom + new Vector3Int(4 * 7, -40, 0);
         else return bigALeftBottom + new Vector3Int(4 * 7, -48, 0);
     }
+    // </Checkout the position of each char in the Alphabet>
 }

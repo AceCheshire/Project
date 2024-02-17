@@ -199,3 +199,15 @@ and make sure wordBuffer still links to wordRenderer.
 5) Now basic links have been formed, you can change texts in your alert-change-managing script, or even other parameters. ( e.g. add chars to wordAlphabet )
 
 Besides, now we need to click the glass bin to select scene.
+
+###2024/02/17
+
+#2024/02/17/01
+
+Add basic attributes for StageOne.
+
+Add annotations for WordTranslate Scripts.
+
+Add annotations for NormChange.cs.
+
+Add some words to readmeAlert and achievementAlert

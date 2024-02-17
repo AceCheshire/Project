@@ -78,6 +78,7 @@
     <Compile Include="Assets\WelcomeScene\Script\selectButton\MouseEventSelectButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\MyAppear.cs" />
     <Compile Include="Assets\Shared\Script\wordBoardExitButton\MouseEventWordBoardExitButton.cs" />
+    <Compile Include="Assets\StageOne\Script\gameStatusConfig\StageOneStatus.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\NutAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WhoAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\exitButton\MouseEventExitButton.cs" />
