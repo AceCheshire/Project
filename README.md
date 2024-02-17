@@ -208,19 +208,21 @@ Besides, I add function to detect a passage's beginning and end so that our Flip
 
 To make similar WordTranslate function in different scene, we need to have the following preparation:
 
-1) Directly copy object " wordAlphabet "," wordBuffer ", " wordBoard ", " wordBoardExitButton " and " wordRenderer ";
+1) Directly copy object " wordAlphabet "," wordBuffer ",
+   
+   " wordBoard ", " wordBoardExitButton " and " wordRenderer ";
 
-2) Build a script like Script " SortingWelcomeSceneObject " of WelcomeSceneLayerConfig.
+3) Build a script like Script " SortingWelcomeSceneObject " of WelcomeSceneLayerConfig.
 
    Its usage is to manage alert changes in one script.
 
-3) Set a button that will push alerts;
+4) Set a button that will push alerts;
 
-4) Link the button to the alert-change-managing script ( e.g.SortingWelcomeSceneObject ),
+5) Link the button to the alert-change-managing script ( e.g.SortingWelcomeSceneObject ),
 
    link the alert-change-managing script to wordBuffer, and make sure wordBuffer still links to wordRenderer.
 
-5) Now basic links have been formed, you can change texts in your alert-change-managing script,
+6) Now basic links have been formed, you can change texts in your alert-change-managing script,
 
    or even other parameters. ( e.g. add chars to wordAlphabet )
 
