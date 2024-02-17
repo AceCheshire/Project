@@ -218,9 +218,7 @@ To make similar WordTranslate function in different scene, we need to have the f
 
 4) Link the button to the alert-change-managing script ( e.g.SortingWelcomeSceneObject ),
 
-  link the alert-change-managing script to wordBuffer, 
-
-  and make sure wordBuffer still links to wordRenderer.
+   link the alert-change-managing script to wordBuffer, and make sure wordBuffer still links to wordRenderer.
 
 5) Now basic links have been formed, you can change texts in your alert-change-managing script,
 
