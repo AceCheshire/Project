@@ -104,11 +104,11 @@ Add enchanted tiles: Sync, Xyz and Link.
 
 Usage: 
 
-       Sync can accumulate nut.
+ Sync can accumulate nut.
 
-       Xyz can split nut into two the same nuts.
+ Xyz can split nut into two the same nuts.
 
-       Link can change velocity direction of nut.
+ Link can change velocity direction of nut.
 
 Add floating of tiles in the following way:
 
