@@ -1,4 +1,4 @@
-# Development Log
+## Development Log
 
 ### 2024/02/11
 
@@ -228,7 +228,7 @@ To make similar WordTranslate function in different scene, we need to have the f
 
 Besides, now we need to click the glass bin to select scene.
 
-###2024/02/17
+### 2024/02/17
 
 #2024/02/17/01
 
