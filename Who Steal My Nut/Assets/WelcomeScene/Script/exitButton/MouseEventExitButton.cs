@@ -6,6 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class MouseEventExitButton : MonoBehaviour
 {
     /*Static*/
+    private AudioSource Audiodata;
     private float rValue;// Color.r
     private float gValue;// Color.g
     private float bValue;// Color.b
@@ -21,6 +22,7 @@ public class MouseEventExitButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         Debug.Log("exitButton Start!");
     }
@@ -35,10 +37,11 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false 
+        if (collision.name == "mouse" && animeStatus == false
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
+            Audiodata.Play();
             animator.SetBool("isHovering", true);
             animeStatus = true;
         }
@@ -48,7 +51,7 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // <Exit>
-        if (collision.name == "mouse" && animeStatus == true 
+        if (collision.name == "mouse" && animeStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
@@ -65,7 +68,7 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true 
+        if (collision.name == "mouse" && animeStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {

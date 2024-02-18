@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class EventofHomeButton : MonoBehaviour
 {
+    private AudioSource Audiodata;
     private bool animeStatus = false;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         Debug.Log("HomeButton Start!");
     }
@@ -24,6 +26,7 @@ public class EventofHomeButton : MonoBehaviour
         // <Animator Off->Hover>
         if (collision.name == "mouse" && animeStatus == false)
         {
+            Audiodata.Play();
             animator.SetBool("isHovering", true);
             animeStatus = true;
         }

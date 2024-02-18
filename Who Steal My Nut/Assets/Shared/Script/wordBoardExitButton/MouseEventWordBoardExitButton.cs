@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MouseEventWordBoardExitButton : MonoBehaviour
 {
+    private AudioSource Audiodata;
     /*Animator*/
     private bool animeStatus = false;
     private Animator animator;
@@ -11,6 +12,7 @@ public class MouseEventWordBoardExitButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         Debug.Log("wordBoard Start!");
     }
@@ -28,6 +30,7 @@ public class MouseEventWordBoardExitButton : MonoBehaviour
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == true)
         {
+            Audiodata.Play();
             animator.SetBool("isHovering", true);
             animeStatus = true;
         }
