@@ -19,18 +19,13 @@ public class NormChange : MonoBehaviour
     private Grid grid;
     private Tilemap tilemap;
 
-    /*Position*/
-    private Vector3 mousePos;
-    private Vector3Int cellPos;
-    private Vector3 worldPos;
-
     /*FrameList*/
     private Vector3Int frameOne = new Vector3Int(-8, -1, 0);
     private Vector3Int frameTwo = new Vector3Int(-7, -2, 0);
     private Vector3Int frameThree = new Vector3Int(-6, -3, 0);
     private Vector3Int frameFour = new Vector3Int(-5, -4, 0);
     private Vector3Int frameFive = new Vector3Int(-4, -5, 0);
-    private Vector3Int[] frameList; // Carry Vector3Ints above
+    public Vector3Int[] frameList; // Carry Vector3Ints above
     private int frameCount; // Count frameList 
     private Vector3Int frameDes; // The next frame that will be presented
     private bool isForward = true;
@@ -52,16 +47,15 @@ public class NormChange : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime * streamingSpeed;
-        if (timerRecord < timer) timerRecord = Mathf.Floor(timer * 10) / 10;
+        if (timerRecord < timer) timerRecord = Mathf.Floor(timer * 10) / 10;// Allow 0.1 'sec' per frame
         if (Mathf.Floor(timer) % 3 != 0)
         {
-            isTimeAllowPlay = true;
-            if (Mathf.Floor(timer * 100) % 100 == 0) isFinishRow = false;
+            isTimeAllowPlay = true;// Allow 3.0 'sec' per  two rows ( forward - back - stay )
+            if (Mathf.Floor(timer * 100) % 100 == 0) isFinishRow = false;// 1.0 sec forward 2.0 sec back
         }
         else isTimeAllowPlay = false;
-        isNotPlay = true;
+        isNotPlay = true;// Control that only forward or back instead of ( forward + back ) = stay
         FrameByTime();
-        Debug.Log(frameDes);
     }
 
     private void FrameByTime()
@@ -72,7 +66,7 @@ public class NormChange : MonoBehaviour
             {
                 for (j = -10; j <= 10; j++)
                 {
-                    if (i + j != -9) TilePlayForward(new Vector3Int(i, j, 0));
+                    if (i + j != -9) TilePlayForward(new Vector3Int(i, j, 0));// Marix Operation
                 }
             }
             isNotPlay = false;
@@ -84,7 +78,7 @@ public class NormChange : MonoBehaviour
             {
                 for (j = -10; j <= 10; j++)
                 {
-                    if (i + j != -9) TilePlayBack(new Vector3Int(i, j, 0));
+                    if (i + j != -9) TilePlayBack(new Vector3Int(i, j, 0));// Matrix Operation
                 }
             }
             isNotPlay = false;
@@ -94,7 +88,7 @@ public class NormChange : MonoBehaviour
 
     private void TilePlayForward(Vector3Int pos)
     {
-        for (frameCount = 0; frameCount < frameList.Length; frameCount++)
+        for (frameCount = 0; frameCount < frameList.Length; frameCount++)// Find next frame
         {
             if (tilemap.GetTile(pos) == tilemap.GetTile(frameList[frameCount]) && !isMatch)
             {
@@ -102,7 +96,7 @@ public class NormChange : MonoBehaviour
                 {
                     frameDes = frameList[frameList.Length - 1];
                     isFinishRow = true;
-                    isForward = false;
+                    isForward = false;// Change direction
                 }
                 else frameDes = frameList[frameCount + 1];
                 isMatch = true;
@@ -114,7 +108,7 @@ public class NormChange : MonoBehaviour
 
     private void TilePlayBack(Vector3Int pos)
     {
-        for (frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)
+        for (frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)// Find next frame
         {
             if (tilemap.GetTile(pos) == tilemap.GetTile(frameList[frameCount]) && !isMatch)
             {
@@ -122,7 +116,7 @@ public class NormChange : MonoBehaviour
                 {
                     frameDes = frameList[0];
                     isFinishRow = true;
-                    isForward = true;
+                    isForward = true;// Change direction
                 }
                 else frameDes = frameList[frameCount - 1];
                 isMatch = true;

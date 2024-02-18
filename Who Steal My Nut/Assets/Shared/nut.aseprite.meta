@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: nut
     originalName: 
-    pivot: {x: 0.4900662, y: 0}
+    pivot: {x: 0.5205479, y: -0.012987013}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 151
-      height: 156
+      width: 146
+      height: 154
     spriteID: 994a94c6b81bbfc478f3df1528ff6368
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: nut
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 0
-        width: 151
-        height: 156
+        x: 2
+        y: 2
+        width: 146
+        height: 154
       spriteId: 994a94c6b81bbfc478f3df1528ff6368
     linkedCells: []
     parentIndex: -1
