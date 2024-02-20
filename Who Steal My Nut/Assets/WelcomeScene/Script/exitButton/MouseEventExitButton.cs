@@ -16,7 +16,7 @@ public class MouseEventExitButton : MonoBehaviour
     private float timer = 0f;
 
     /*Animator*/
-    private bool animeStatus = false;
+    private bool animationStatus = false;
     private Animator animator;
 
     // Start is called before the first frame update
@@ -24,7 +24,6 @@ public class MouseEventExitButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("exitButton Start!");
     }
 
     // Update is called once per frame
@@ -37,13 +36,13 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false
+        if (collision.name == "mouse" && animationStatus == false
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             Audiodata.Play();
             animator.SetBool("isHovering", true);
-            animeStatus = true;
+            animationStatus = true;
         }
         // </Animator Off->Hover>
     }
@@ -51,14 +50,14 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // <Exit>
-        if (collision.name == "mouse" && animeStatus == true
+        if (collision.name == "mouse" && animationStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 animator.SetBool("isHovering", false);
-                animeStatus = false;
+                animationStatus = false;
                 Application.Quit();
             }
         }
@@ -68,12 +67,12 @@ public class MouseEventExitButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true
+        if (collision.name == "mouse" && animationStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             animator.SetBool("isHovering", false);
-            animeStatus = false;
+            animationStatus = false;
         }
         // </Animator Hover->Off>
     }

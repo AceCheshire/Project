@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: enchantCreateModeButton_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -141,7 +141,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: enchantCreateModeButton_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -201,7 +201,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 796}
   - name: enchantCreateModeButton_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -221,7 +221,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 1060}
   - name: enchantCreateModeButton_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -241,7 +241,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 1324}
   - name: enchantCreateModeButton_Frame_6
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -261,7 +261,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 1588}
   - name: enchantCreateModeButton_Frame_7
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -281,7 +281,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 4}
   - name: enchantCreateModeButton_Frame_8
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -301,7 +301,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 268}
   - name: enchantCreateModeButton_Frame_9
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -321,7 +321,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 532}
   - name: enchantCreateModeButton_Frame_10
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -341,7 +341,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 796}
   - name: enchantCreateModeButton_Frame_11
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -361,7 +361,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 1060}
   - name: enchantCreateModeButton_Frame_12
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -381,7 +381,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 1324}
   - name: enchantCreateModeButton_Frame_13
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -401,7 +401,7 @@ ScriptedImporter:
     uvTransform: {x: 268, y: 1588}
   - name: enchantCreateModeButton_Frame_14
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -421,7 +421,7 @@ ScriptedImporter:
     uvTransform: {x: 532, y: 4}
   - name: enchantCreateModeButton_Frame_15
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.0859375}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -439,6 +439,86 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 532, y: 268}
+  - name: enchantCreateModeButton_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: -0.0859375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 532
+      y: 532
+      width: 256
+      height: 256
+    spriteID: f7f052e56d27ce74881d69d12bb34af5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 532, y: 532}
+  - name: enchantCreateModeButton_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: -0.0859375}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 532
+      y: 796
+      width: 256
+      height: 256
+    spriteID: 9c2dde756821dea46a4a003219a87436
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 532, y: 796}
+  - name: enchantCreateModeButton_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 532
+      y: 1060
+      width: 256
+      height: 256
+    spriteID: 45e1f3435453e154599e61990c1ad527
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 532, y: 1060}
+  - name: enchantCreateModeButton_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 532
+      y: 1324
+      width: 256
+      height: 256
+    spriteID: 9bd43aa5037fd2d499c516675e0661a3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 532, y: 1324}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -451,23 +531,23 @@ ScriptedImporter:
     - name: enchantCreateModeButton_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 59ebac5e542d54f4cb918af0e8c457fc
     - name: enchantCreateModeButton_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 84f19b179cb5360488f982bf0458452d
     - name: enchantCreateModeButton_Frame_2
       frameIndex: 2
       cellRect:
-        x: 0
+        x: 22
         y: 0
         width: 256
         height: 256
@@ -475,7 +555,7 @@ ScriptedImporter:
     - name: enchantCreateModeButton_Frame_3
       frameIndex: 3
       cellRect:
-        x: 0
+        x: 22
         y: 0
         width: 256
         height: 256
@@ -483,99 +563,131 @@ ScriptedImporter:
     - name: enchantCreateModeButton_Frame_4
       frameIndex: 4
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 66b46844e87e6e14f992b10b5881d4e4
     - name: enchantCreateModeButton_Frame_5
       frameIndex: 5
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 80ceefd190fda3b44909dbae93c1fdc2
     - name: enchantCreateModeButton_Frame_6
       frameIndex: 6
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: a5b059428aab47c4fb3d796ae738efad
     - name: enchantCreateModeButton_Frame_7
       frameIndex: 7
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: ebc3452b5b159e942a22a7d5b6768845
     - name: enchantCreateModeButton_Frame_8
       frameIndex: 8
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 65a78119f9ba55b4dbc9e5afb9bce7e9
     - name: enchantCreateModeButton_Frame_9
       frameIndex: 9
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: f6761a13557ccf844a45fa2bfa554afe
     - name: enchantCreateModeButton_Frame_10
       frameIndex: 10
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 5c57fd8e49f1aac40aeabb28f4947fa3
     - name: enchantCreateModeButton_Frame_11
       frameIndex: 11
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 50351dfa346a5074c89b808cf0ee8ede
     - name: enchantCreateModeButton_Frame_12
       frameIndex: 12
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 9304dbae907912442843c0855fa83ae5
     - name: enchantCreateModeButton_Frame_13
       frameIndex: 13
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 8aac9e235e9a529458b2a9784c16a7b5
     - name: enchantCreateModeButton_Frame_14
       frameIndex: 14
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 9812147ecb914e94b837904c4b69c3ad
     - name: enchantCreateModeButton_Frame_15
       frameIndex: 15
       cellRect:
-        x: 0
-        y: 0
+        x: 22
+        y: 22
         width: 256
         height: 256
       spriteId: 4bc68409702b11a4b9abf1ca828503e8
+    - name: enchantCreateModeButton_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 22
+        y: 22
+        width: 256
+        height: 256
+      spriteId: f7f052e56d27ce74881d69d12bb34af5
+    - name: enchantCreateModeButton_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 22
+        y: 22
+        width: 256
+        height: 256
+      spriteId: 9c2dde756821dea46a4a003219a87436
+    - name: enchantCreateModeButton_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 22
+        y: 0
+        width: 256
+        height: 256
+      spriteId: 45e1f3435453e154599e61990c1ad527
+    - name: enchantCreateModeButton_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 22
+        y: 0
+        width: 256
+        height: 256
+      spriteId: 9bd43aa5037fd2d499c516675e0661a3
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -629,4 +741,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 256, y: 256}
+  canvasSize: {x: 300, y: 300}

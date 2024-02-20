@@ -6,6 +6,10 @@ using UnityEngine;
 using static UnityEditor.PlayerSettings;
 using UnityEngine.Tilemaps;
 
+/*### 这东西完全运行不了嘛 ###*/
+/*### 另外，为啥 play 之后 nut 的坐标变成 (0,0,0) 了 ###*/
+/*### vocal ，play 之后那些没放上去的 tile 为撒又出来了 ###*/
+/*### 允许重写所有方法 ###*/
 public class StageOneStatus : MonoBehaviour
 {
     /*Lock & Unlock*/
@@ -23,7 +27,7 @@ public class StageOneStatus : MonoBehaviour
     public Vector3Int stageOneCellRelativeOrigin = new Vector3Int(0, 0, 0);
     public Vector3Int stageOneCellRelativeEnd = new Vector3Int(5, 0, 0);
     public Vector3 stageOneWorldOriginPoint = new Vector3(-6.5f, 3.6f, 0);
-    public Vector2Int stageOneEarthArea = new Vector2Int(6, 6);
+    public Vector2Int stageOneEarthArea = new Vector2Int(0, 0);
     public Vector3 birthHeight = new Vector3(0, 3f, 0);
     public float bounceAngle = 60;
     private float heightDistanceRate;
@@ -84,17 +88,17 @@ public class StageOneStatus : MonoBehaviour
 
     private int DesMatch(Vector3Int desPos, Tilemap tilemap)
     {
-        bool isMatch = false;
+        Tilemap sourcemap;
+        sourcemap = GameObject.Find("tileFloatGround").GetComponent<Tilemap>();
         Vector3Int[] frameList = tilemap.GetComponent<NormChange>().frameList;
-        for (int frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)// Find next frame
+        for (int frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)
+            // Find next frame
         {
-            if (tilemap.GetTile(desPos) == tilemap.GetTile(frameList[frameCount]) && !isMatch)
+            if (tilemap.GetTile(desPos) == tilemap.GetTile(frameList[frameCount]))
             {
                 return frameCount;
-                isMatch = true;
             }
         }
-        isMatch = false;
         return -1;
     }// Check destination's Anime Status
 
@@ -106,7 +110,8 @@ public class StageOneStatus : MonoBehaviour
         tilemap = GameObject.Find("tileNormGround").GetComponent<Tilemap>();
         curCellPos = grid.WorldToCell(curPos);
         desCellPos = grid.WorldToCell(desPos);
-        if (curCellPos == desCellPos && curPos.y <= desPos.y - DesMatch(desCellPos, tilemap) * allowBias)
+        if (curCellPos == desCellPos 
+            && curPos.y <= desPos.y - DesMatch(desCellPos, tilemap) * allowBias)
             return true;
         else return false;
     }// Check if there is collision
@@ -115,8 +120,11 @@ public class StageOneStatus : MonoBehaviour
     // Down is already - gone height, up is left - to - go height
     {
         float verticalCurVelocity = Mathf.Sqrt(2 * Mathf.Abs(height) * gravity);
-        if (height > 0) return verticalCurVelocity * deltaTime + gravity * deltaTime * deltaTime / 2f;// Down
-        else return verticalCurVelocity * deltaTime - gravity * deltaTime * deltaTime / 2f;// Up
+        if (height > 0) 
+            return verticalCurVelocity * deltaTime + gravity * deltaTime * deltaTime / 2f;
+        // Down
+        else return verticalCurVelocity * deltaTime - gravity * deltaTime * deltaTime / 2f;
+        // Up
     }// Get vertical move distance of next action
 
     private void FirstDown()

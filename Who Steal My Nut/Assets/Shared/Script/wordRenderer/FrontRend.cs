@@ -46,12 +46,14 @@ public class FrontRend : MonoBehaviour
             Rend();
             isFirstRequest = false;
         }// Rend at the beginning ( without request )
-        if(GameObject.Find("wordBuffer").GetComponent<WordTranslate >().isWaitingFrontRend == true)
+        if(GameObject.Find("wordBuffer").
+            GetComponent<WordTranslate >().isWaitingFrontRend == true)
         {
             Flush();
             rendererStartPointer = new Vector3Int(0, 0, 0);
             Rend();
-            GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingFrontRend = false;
+            GameObject.Find("wordBuffer").
+                GetComponent<WordTranslate>().isWaitingFrontRend = false;
         }// Rend ( with request )
         if (GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == true)
@@ -69,7 +71,8 @@ public class FrontRend : MonoBehaviour
             {
                 isUpRequest = true;
                 Flush();
-                if (rendererStartPointer != new Vector3Int(0, 0, 0))// Check passage's beginning
+                if (rendererStartPointer != new Vector3Int(0, 0, 0))
+                    // Check passage's beginning
                     rendererStartPointer += new Vector3Int(0, 10, 0);
                 Rend();
             }
@@ -96,7 +99,8 @@ public class FrontRend : MonoBehaviour
             for (int j = 0; j <= rendLeftTop.y - rendRightBottom.y; j++)
             {
                 wordRenderer.SetTile(rendLeftTop + new Vector3Int(i, -j, 0) + fixTheError,
-                    wordBuffer.GetTile(rendLeftTop + new Vector3Int(i, -j, 0) + rendererStartPointer));
+                    wordBuffer.GetTile
+                    (rendLeftTop + new Vector3Int(i, -j, 0) + rendererStartPointer));
             }
         }
     }

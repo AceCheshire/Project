@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/*### 也许这个脚本在图层高的 tilemap 里自动放了 tile ###*/
+/*### 不允许重写所有方法 ###*/
+/*### 更新：允许删除此脚本 ###*/
 public class NormChange : MonoBehaviour
 {
     /*Matrix*/
@@ -18,6 +21,7 @@ public class NormChange : MonoBehaviour
     /*Grid*/
     private Grid grid;
     private Tilemap tilemap;
+    private Tilemap sourcemap;
 
     /*FrameList*/
     private Vector3Int frameOne = new Vector3Int(-8, -1, 0);
@@ -39,6 +43,7 @@ public class NormChange : MonoBehaviour
     {
         grid = gameObject.transform.parent.GetComponent<Grid>();
         tilemap = gameObject.GetComponent<Tilemap>();
+        sourcemap = GameObject.Find("tileFloatGround").GetComponent<Tilemap>();
         frameList = new Vector3Int[] { frameOne, frameTwo, frameThree, frameFour, frameFive };
         Debug.Log("NormChange Start!");
     }
@@ -90,7 +95,7 @@ public class NormChange : MonoBehaviour
     {
         for (frameCount = 0; frameCount < frameList.Length; frameCount++)// Find next frame
         {
-            if (tilemap.GetTile(pos) == tilemap.GetTile(frameList[frameCount]) && !isMatch)
+            if (tilemap.GetTile(pos) == sourcemap.GetTile(frameList[frameCount]) && !isMatch)
             {
                 if (frameCount == frameList.Length - 1)
                 {
@@ -102,7 +107,7 @@ public class NormChange : MonoBehaviour
                 isMatch = true;
             }
         }
-        if (tilemap.GetTile(pos) != null) tilemap.SetTile(pos, tilemap.GetTile(frameDes));
+        if (tilemap.GetTile(pos) != null) tilemap.SetTile(pos, sourcemap.GetTile(frameDes));
         isMatch = false;
     }
 
@@ -110,7 +115,7 @@ public class NormChange : MonoBehaviour
     {
         for (frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)// Find next frame
         {
-            if (tilemap.GetTile(pos) == tilemap.GetTile(frameList[frameCount]) && !isMatch)
+            if (tilemap.GetTile(pos) == sourcemap.GetTile(frameList[frameCount]) && !isMatch)
             {
                 if (frameCount == 0)
                 {
@@ -122,7 +127,7 @@ public class NormChange : MonoBehaviour
                 isMatch = true;
             }
         }
-        if (tilemap.GetTile(pos) != null) tilemap.SetTile(pos, tilemap.GetTile(frameDes));
+        if (tilemap.GetTile(pos) != null) tilemap.SetTile(pos, sourcemap.GetTile(frameDes));
         isMatch = false;
     }
 }

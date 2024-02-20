@@ -16,7 +16,7 @@ public class MouseEventAchievementButton : MonoBehaviour
     private float timer = 0f;
 
     /*Animator*/
-    private bool animeStatus = false;
+    private bool animatorStatus = false;
     private Animator animator;
 
     // Start is called before the first frame update
@@ -24,7 +24,6 @@ public class MouseEventAchievementButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("achievementButton Start!");
     }
 
     // Update is called once per frame
@@ -37,13 +36,13 @@ public class MouseEventAchievementButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false
+        if (collision.name == "mouse" && animatorStatus == false
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                     GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             Audiodata.Play();
             animator.SetBool("isHovering", true);
-            animeStatus = true;
+            animatorStatus = true;
         }
         // </Animator Off->Hover>
     }
@@ -51,7 +50,7 @@ public class MouseEventAchievementButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // <Open Alert>
-        if (collision.name == "mouse" && animeStatus == true
+        if (collision.name == "mouse" && animatorStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                     GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
@@ -60,7 +59,7 @@ public class MouseEventAchievementButton : MonoBehaviour
                 GameObject.Find("WelcomeSceneSortingOrderConfig").
                     GetComponent<SortWelcomeSceneObject>().WelcomeAchievementAlertOn();
                 animator.SetBool("isHovering", false);
-                animeStatus = false;
+                animatorStatus = false;
             }
         }
         // </Open Alert>
@@ -69,12 +68,12 @@ public class MouseEventAchievementButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true
+        if (collision.name == "mouse" && animatorStatus == true
             && GameObject.Find("WelcomeSceneSortingOrderConfig").
                     GetComponent<SortWelcomeSceneObject>().isAlert == false)
         {
             animator.SetBool("isHovering", false);
-            animeStatus = false;
+            animatorStatus = false;
         }
         // </Animator Hover->Off>
     }

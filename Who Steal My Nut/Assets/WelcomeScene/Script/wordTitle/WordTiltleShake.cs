@@ -14,7 +14,6 @@ public class WordTiltleShake : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = defaultPos;
-        Debug.Log("wordTitle Start!");
     }
 
     // Update is called once per frame

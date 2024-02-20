@@ -16,7 +16,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("layerController Start!");
+        Debug.Log("LayerController Start!");
     }
 
     // Update is called once per frame

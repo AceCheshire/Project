@@ -14,7 +14,6 @@ public class MouseSync : MonoBehaviour
     void Start()
     {
         MousePos();
-        Debug.Log("mouse Start!");
     }
 
     // Update is called once per frame

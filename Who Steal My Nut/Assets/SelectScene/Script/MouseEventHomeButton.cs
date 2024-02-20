@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class EventofHomeButton : MonoBehaviour
+
+public class MouseEventHomeButton : MonoBehaviour
 {
+    /*Audio*/
     private AudioSource Audiodata;
-    private bool animeStatus = false;
+
+    /*Animator*/
+    private bool animationStatus = false;
     private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +24,17 @@ public class EventofHomeButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animeStatus == false)
+        if (collision.name == "mouse" && animationStatus == false)
         {
             Audiodata.Play();
             animator.SetBool("isHovering", true);
-            animeStatus = true;
+            animationStatus = true;
         }
         // </Animator Off->Hover>
     }
@@ -36,13 +42,13 @@ public class EventofHomeButton : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // <Open Alert>
-        if (collision.name == "mouse" && animeStatus == true)
+        if (collision.name == "mouse" && animationStatus == true)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 SceneManager.LoadScene("Menu(WelcomeScene)");
                 animator.SetBool("isHovering", false);
-                animeStatus = false;
+                animationStatus = false;
             }
         }
         // </Open Alert>
@@ -51,10 +57,10 @@ public class EventofHomeButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animeStatus == true)
+        if (collision.name == "mouse" && animationStatus == true)
         {
             animator.SetBool("isHovering", false);
-            animeStatus = false;
+            animationStatus = false;
         }
         // </Animator Hover->Off>
     }

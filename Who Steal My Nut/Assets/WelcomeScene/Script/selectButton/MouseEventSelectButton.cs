@@ -20,7 +20,6 @@ public class MouseEventSelectButton : MonoBehaviour
     void Start()
     {
         boxSet = GameObject.Find("backGroundBox");
-        Debug.Log("selectButton Start!");
     }
 
     // Update is called once per frame

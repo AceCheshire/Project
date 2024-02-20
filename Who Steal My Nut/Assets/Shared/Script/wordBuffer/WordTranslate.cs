@@ -28,8 +28,8 @@ public class WordTranslate : MonoBehaviour
     private Tilemap tilemap;
 
     /*Temp*/
-    private int interyalVertical = 0;// Relative vertical distance in Grid
-    private int interyalHorizontal = 0;// Relative horizontal distance in Grid
+    private int intervalVertical = 0;// Relative vertical distance in Grid
+    private int intervalHorizontal = 0;// Relative horizontal distance in Grid
 
     /*Auto*/
     public bool isWaitingFrontRend = false;//Message Buffer -> Renderer
@@ -52,7 +52,8 @@ public class WordTranslate : MonoBehaviour
         if(isWaitingRend)
         {
             Flush();// Clean Buffer
-            inputCharArray = inputStr.ToCharArray();// inputStr(string) -> inputCharArray(char[])
+            inputCharArray = inputStr.ToCharArray();
+            // inputStr(string) -> inputCharArray(char[])
             isTheFirst = true;
             Rend();// re-Rend Buffer
             isWaitingRend = false;
@@ -98,7 +99,8 @@ public class WordTranslate : MonoBehaviour
         int blankRate = 0;
         bool isModify = false;
         Vector3Int space = new Vector3Int(0, 0, 0);
-        if (letter == '\n') return new Vector3Int(windowLeftTop.x, lastRendPos.y - 9, lastRendPos.z);
+        if (letter == '\n') 
+            return new Vector3Int(windowLeftTop.x, lastRendPos.y - 9, lastRendPos.z);
         // Special situation: \n
         if (letter == ' ') space = new Vector3Int(2, 0, 0);
         // Special situation: ' '
@@ -139,33 +141,33 @@ public class WordTranslate : MonoBehaviour
         // <Checkout the position of each char in the Alphabet>
         if (letter >= '1' && letter <= '9')
         {
-            interyalHorizontal = 5;
-            interyalVertical = letter - '1';
-            return bigALeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+            intervalHorizontal = 5;
+            intervalVertical = letter - '1';
+            return bigALeftBottom + new Vector3Int(intervalHorizontal * 7, -intervalVertical * 8, 0);
         }
         if (letter >= 'A' && letter <= 'K')
         {
-            interyalHorizontal = 0;
-            interyalVertical = letter - 'A';
-            return bigALeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+            intervalHorizontal = 0;
+            intervalVertical = letter - 'A';
+            return bigALeftBottom + new Vector3Int(intervalHorizontal * 7, -intervalVertical * 8, 0);
         }
         else if (letter > 'L' && letter <= 'Z')
         {
-            interyalHorizontal = 0;
-            interyalVertical = letter - 'L';
-            return bigLLeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+            intervalHorizontal = 0;
+            intervalVertical = letter - 'L';
+            return bigLLeftBottom + new Vector3Int(intervalHorizontal * 7, -intervalVertical * 8, 0);
         }
         else if (letter >= 'a' && letter <= 'k')
         {
-            interyalHorizontal = 1;
-            interyalVertical = letter - 'a';
-            return bigALeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+            intervalHorizontal = 1;
+            intervalVertical = letter - 'a';
+            return bigALeftBottom + new Vector3Int(intervalHorizontal * 7, -intervalVertical * 8, 0);
         }
         else if (letter > 'l' && letter <= 'z')
         {
-            interyalHorizontal = 1;
-            interyalVertical = letter - 'l';
-            return bigLLeftBottom + new Vector3Int(interyalHorizontal * 7, -interyalVertical * 8, 0);
+            intervalHorizontal = 1;
+            intervalVertical = letter - 'l';
+            return bigLLeftBottom + new Vector3Int(intervalHorizontal * 7, -intervalVertical * 8, 0);
         }
         else if (letter == '0')
             return bigALeftBottom + new Vector3Int(5 * 7, -72, 0);

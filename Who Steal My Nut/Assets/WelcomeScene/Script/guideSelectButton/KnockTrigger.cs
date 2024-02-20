@@ -11,7 +11,6 @@ public class KnockTrigger : MonoBehaviour
     void Start()
     {
         selectButton = GameObject.Find("selectButton");
-        Debug.Log("guideSelectButton Start!");
     }
 
     // Update is called once per frame

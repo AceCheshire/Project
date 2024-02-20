@@ -34,7 +34,7 @@ Add achievementButton;
 
 Add StageOne scene;
 
-prefab tilemaps;
+Prefab tilemaps;
 
 Add several tiles;
 
@@ -50,7 +50,7 @@ Change some object sprites so as to fit the overall bloom.
 
 #2024/02/13/01
 
-Change Game to windowed.
+Change ProjectSetting from full screen to windowed.
 
 *2024/02/13/01
 
@@ -86,13 +86,13 @@ Modify sortingOrders.
 
 Now only when nut ( selectButton ) collides the bottom will scene change.
 
-Modify the interyals of the three buttons.
+Modify the intervals of the three buttons.
 
 #2024/02/14/03
 
 Change SplashImage.
 
-Now need to collide twice to change scene.
+Now nut need to collide twice to change scene.
 
 ### 2024/02/15
 
@@ -230,6 +230,10 @@ To make similar WordTranslate function in different scene, we need to have the f
 
 Besides, now we need to click the glass bin to select scene.
 
+*2024/02/16/01
+
+Add stageOneButton in SelectScene.
+
 ### 2024/02/17
 
 #2024/02/17/01
@@ -241,3 +245,21 @@ Add annotations for WordTranslate Scripts.
 Add annotations for NormChange.cs.
 
 Add some words to readmeAlert and achievementAlert
+
+*2024/02/17/01
+
+Add AudioData for buttons.
+
+### 2024/02/20
+
+#2024/02/20/01
+
+Write ( not Add ) two buttons to switch to EnchantMode and RunningMode.
+
+Write a solution to set temporary tiles so that player can see tile position before formal setting tiles.
+
+Add Chinese annotations for StageOne scripts.
+
+Rename some parameters.
+
+Now we need to solve all the bugs to let game run. 
