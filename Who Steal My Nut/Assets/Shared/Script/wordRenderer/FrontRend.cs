@@ -58,7 +58,7 @@ public class FrontRend : MonoBehaviour
         if (GameObject.Find("WelcomeSceneSortingOrderConfig").
                 GetComponent<SortWelcomeSceneObject>().isAlert == true)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow) && !isDownRequest)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isDownRequest)
             {
                 isDownRequest = true;
                 isCanPageDown = !CheckBottom();// Check passage's end
@@ -67,7 +67,7 @@ public class FrontRend : MonoBehaviour
                     rendererStartPointer -= new Vector3Int(0, 10, 0);
                 Rend();
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !isUpRequest)
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && !isUpRequest)
             {
                 isUpRequest = true;
                 Flush();

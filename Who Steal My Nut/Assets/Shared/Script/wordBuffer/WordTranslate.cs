@@ -121,7 +121,7 @@ public class WordTranslate : MonoBehaviour
                 if (blankRate == 8 && !isModify)
                 {
                     appliableXValue = lastRendPos.x + i + 1;
-                    if (appliableXValue > 105)//Change Line
+                    if (appliableXValue > 103)//Change Line
                     {
                         appliableXValue = windowLeftTop.x;
                         appliableYValue = lastRendPos.y - 9;

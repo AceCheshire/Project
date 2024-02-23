@@ -263,3 +263,13 @@ Add Chinese annotations for StageOne scripts.
 Rename some parameters.
 
 Now we need to solve all the bugs to let game run. 
+
+### 2024/02/23
+
+#2024/02/23/01
+
+Add backGroundStageOne, but it is only a temporary background;
+
+Delete all buttons' transition time;
+
+Change words in alerts to be able to be paged up or down by mouse scrollwheel;
