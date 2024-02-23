@@ -24,6 +24,7 @@ public class EventStageOneButton : MonoBehaviour
     {
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>

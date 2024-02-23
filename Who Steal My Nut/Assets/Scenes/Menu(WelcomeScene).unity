@@ -351,6 +351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caae804766857254381d5e56b5bd688a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowLeftTop: {x: -111, y: 55, z: 0}
+  windowRightTop: {x: 105, y: 55, z: 0}
+  windowLeftBottom: {x: -111, y: -70, z: 0}
+  windowRightBottom: {x: 105, y: -70, z: 0}
+  rendLeftTop: {x: -111, y: 61, z: 0}
+  rendRightBottom: {x: 113, y: -72, z: 0}
+  fixTheError: {x: 2, y: 0, z: 0}
 --- !u!1 &230911534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: 6aa911718854b934796fd5731735c2fc, type: 3}
@@ -1807,7 +1814,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.96614456
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -2389,6 +2396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada6f7ccd19048849bcb2df236a67f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowLeftTop: {x: -111, y: 55, z: 0}
+  windowRightTop: {x: 105, y: 55, z: 0}
+  windowLeftBottom: {x: -111, y: -70, z: 0}
+  windowRightBottom: {x: 105, y: -70, z: 0}
   inputStr: "#include<stdio.h>\nint main()\n{\n    printf(\"Hello World!\");\n   
     return 0;\n}"
   isWaitingFrontRend: 0

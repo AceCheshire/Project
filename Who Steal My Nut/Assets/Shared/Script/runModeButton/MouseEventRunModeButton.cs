@@ -75,6 +75,8 @@ public class MouseEventRunModeButton : MonoBehaviour
                     GetComponent<StageOneStatus>().isRunningMode = false;
                 animator.SetBool("isModeOn", false);
                 animator.SetBool("isCanHover", false);
+                GameObject.Find("earthCreateModeButton").GetComponent<Animator>().
+                    SetBool("isModeOn", false);
                 isOver = true;
                 isModeOn = false;
                 Debug.Log("CloseEarthMode");
