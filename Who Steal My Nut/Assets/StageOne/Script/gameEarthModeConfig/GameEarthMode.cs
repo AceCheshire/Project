@@ -21,8 +21,9 @@ public class GameEarthMode : MonoBehaviour
 
     /*Vectors Of Mouse Position*/
     private Vector3 mousePos;
+    private Vector3 worldPos;
     private Vector3Int currentCellPos;
-    private Vector3Int lastCellPos;
+    private Vector3Int lastCellPos=new Vector3Int();
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,10 @@ public class GameEarthMode : MonoBehaviour
         sourcemap = GameObject.Find("tileFloatGround");
         canSetMap = GameObject.Find("tileCanSetGround");
         isSetMap = GameObject.Find("tileIsSetGround");
-        tile = sourcemap.GetComponent<Tilemap>().GetTile(new Vector3Int(-3, -6, 0));// Reference
+        if (sourcemap.GetComponent<Tilemap>().GetTile(new Vector3Int(-8, -1, 0)) == null)
+            Debug.Log("NULL!");
+        else Debug.Log("TRUE!");
+        tile = sourcemap.GetComponent<Tilemap>().GetTile(new Vector3Int(-8, -1, 0));// Reference
     }
 
     // Update is called once per frame
@@ -49,7 +53,10 @@ public class GameEarthMode : MonoBehaviour
     {
         // <GetPosition>
         mousePos = Input.mousePosition;// Mouse position
-        currentCellPos = isSetMap.GetComponent<Tilemap>().WorldToCell(mousePos);
+        worldPos = Camera.main.ScreenToWorldPoint(
+            new(mousePos.x, mousePos.y, Camera.main.transform.position.z));
+        currentCellPos = new(isSetMap.GetComponent<Tilemap>().WorldToCell(worldPos).x - 1,
+                             isSetMap.GetComponent<Tilemap>().WorldToCell(worldPos).y - 1, 0);
         // </GetPosition>
         if (!isTriggered)
         {
@@ -59,9 +66,18 @@ public class GameEarthMode : MonoBehaviour
         }
         if (currentCellPos != lastCellPos)
         {
+            Debug.Log(currentCellPos);
+            for (int i = -10; i <= 10; i++)
+            {
+                for (int j = -10; j <= 10; j++)
+                {
+                    isSetMap.GetComponent<Tilemap>().SetTile(new(i, j, 0), null);
+                }
+            }
             if (canSetMap.GetComponent<Tilemap>().GetTile(currentCellPos) != null)
+            {
                 isSetMap.GetComponent<Tilemap>().SetTile(currentCellPos, tile);
-            isSetMap.GetComponent<Tilemap>().SetTile(lastCellPos, null);
+            }
         }
         // Refresh tiles
         lastCellPos = currentCellPos;// Refresh position
@@ -72,7 +88,14 @@ public class GameEarthMode : MonoBehaviour
         if (isSetMap.GetComponent<Tilemap>().GetTile(currentCellPos) != null 
             && Input.GetKey(KeyCode.Mouse0))
         {
-            GameObject.Find("tileNormGround").GetComponent<Tilemap>().SetTile(currentCellPos, tile);
+            GameObject.Find("tileNormGround").
+                GetComponent<Tilemap>().SetTile(currentCellPos, tile);
+        }
+        if (isSetMap.GetComponent<Tilemap>().GetTile(currentCellPos) != null
+            && Input.GetKey(KeyCode.Mouse1))
+        {
+            GameObject.Find("tileNormGround").
+                GetComponent<Tilemap>().SetTile(currentCellPos, null);
         }
     }
 }

@@ -89,15 +89,15 @@ public class StageOneStatus : MonoBehaviour
     {
         Tilemap sourcemap;
         sourcemap = GameObject.Find("tileFloatGround").GetComponent<Tilemap>();
-        Vector3Int[] frameList = tilemap.GetComponent<NormChange>().frameList;
-        for (int frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)
-            // Find next frame
-        {
-            if (tilemap.GetTile(desPos) == tilemap.GetTile(frameList[frameCount]))
-            {
-                return frameCount;
-            }
-        }
+        //Vector3Int[] frameList = tilemap.GetComponent<NormChange>().frameList;
+        //for (int frameCount = frameList.Length - 1; frameCount >= 0; frameCount--)
+        //    // Find next frame
+        //{
+        //    if (tilemap.GetTile(desPos) == tilemap.GetTile(frameList[frameCount]))
+        //    {
+        //        return frameCount;
+        //    }
+        //}
         return -1;
     }// Check destination's Anime Status
 

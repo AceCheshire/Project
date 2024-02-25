@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 4
       width: 96
       height: 100
-    spriteID: a3c1ec58770e44a49af959492624f306
+    spriteID: ef86ded5ff04e924da6d1357f89c1d43
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -230,7 +230,7 @@ ScriptedImporter:
       y: 112
       width: 96
       height: 100
-    spriteID: 4b301a894ddd3ef479192e6e9a4c3b5d
+    spriteID: 483d6d8599e3c0f49a4581a1d709b72c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -239,6 +239,46 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 108, y: 112}
+  - name: stageOneButton_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.12}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 108
+      y: 220
+      width: 96
+      height: 100
+    spriteID: c7c80d3130a863f49a5e21fb8c946f97
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 108, y: 220}
+  - name: stageOneButton_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.12}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 108
+      y: 328
+      width: 96
+      height: 100
+    spriteID: 5a9b960ac71b49d40aeb16cc50073e46
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 108, y: 328}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -287,7 +327,7 @@ ScriptedImporter:
         y: 12
         width: 96
         height: 100
-      spriteId: a3c1ec58770e44a49af959492624f306
+      spriteId: ef86ded5ff04e924da6d1357f89c1d43
     - name: stageOneButton_Frame_5
       frameIndex: 5
       cellRect:
@@ -295,7 +335,23 @@ ScriptedImporter:
         y: 12
         width: 96
         height: 100
-      spriteId: 4b301a894ddd3ef479192e6e9a4c3b5d
+      spriteId: 483d6d8599e3c0f49a4581a1d709b72c
+    - name: stageOneButton_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 16
+        y: 12
+        width: 96
+        height: 100
+      spriteId: c7c80d3130a863f49a5e21fb8c946f97
+    - name: stageOneButton_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 16
+        y: 12
+        width: 96
+        height: 100
+      spriteId: 5a9b960ac71b49d40aeb16cc50073e46
     linkedCells: []
     parentIndex: -1
   platformSettings: []
