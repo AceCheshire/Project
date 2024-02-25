@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 using UnityEngine.Tilemaps;
 
 /*### 这东西完全运行不了嘛 ###*/
