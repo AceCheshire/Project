@@ -273,3 +273,9 @@ Add backGroundStageOne, but it is only a temporary background;
 Delete all buttons' transition time;
 
 Change words in alerts to be able to be paged up or down by mouse scrollwheel;
+
+### 2024/02/25
+
+#2024/02/25/01
+
+Fix bug that tiles cannot be correctly set.
