@@ -84,6 +84,8 @@
     <Compile Include="Assets\StageOne\Script\gameStatusConfig\StageOneStatus.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\NutAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WhoAppear.cs" />
+    <Compile Include="Assets\Shared\Script\repeatButton\MouseEventRepeatButton.cs" />
+    <Compile Include="Assets\Shared\Script\selectStageButton\MouseEventSelectStageButton.cs" />
     <Compile Include="Assets\SelectScene\Script\MouseEventHomeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\exitButton\MouseEventExitButton.cs" />
   </ItemGroup>

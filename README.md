@@ -279,3 +279,13 @@ Change words in alerts to be able to be paged up or down by mouse scrollwheel;
 #2024/02/25/01
 
 Fix bug that tiles cannot be correctly set.
+
+### 2024/02/26
+
+#2024/02/26/01
+
+Add repeatButton and selectStageButton.
+
+Modify some objects' sorting orders.
+
+Add wordTranslate system to StageOne and prepare to add alerts.
