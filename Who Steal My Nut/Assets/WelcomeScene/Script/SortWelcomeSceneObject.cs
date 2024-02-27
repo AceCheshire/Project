@@ -45,6 +45,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     "This deforestation is the central point of the elephant\'s difficult situation, " +
     "for it has effectively put the animals out of work. " +
     "This century, as the road network grew, so the elephant\'s role as a beast of burden declined.";
+
     // Start is called before the first frame update
     void Start()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MouseEventRepeatButton : MonoBehaviour
+public class MouseEventHomeButtonAlert : MonoBehaviour
 {
     /*Audio*/
     private AudioSource Audiodata;
@@ -17,7 +17,7 @@ public class MouseEventRepeatButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("RepeatButton Start!");
+        Debug.Log("HomeButton Start!");
     }
 
     // Update is called once per frame
@@ -45,9 +45,8 @@ public class MouseEventRepeatButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-
                 GameObject.Find("StageOneSortingOrderConfig").
-                    GetComponent<SortStageOneObject>().OneRepeatAlertOn();
+                    GetComponent<SortStageOneObject>().OneHomeAlertOn();
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

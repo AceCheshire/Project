@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MouseEventRepeatButton : MonoBehaviour
+public class MouseEventRightButton : MonoBehaviour
 {
     /*Audio*/
     private AudioSource Audiodata;
@@ -17,7 +16,6 @@ public class MouseEventRepeatButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("RepeatButton Start!");
     }
 
     // Update is called once per frame
@@ -29,7 +27,9 @@ public class MouseEventRepeatButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator Off->Hover>
-        if (collision.name == "mouse" && animationStatus == false)
+        if (collision.name == "mouse" && animationStatus == false
+            && GameObject.Find("StageOneSortingOrderConfig").
+                GetComponent<SortStageOneObject>().isAlert == true)
         {
             Audiodata.Play();
             animator.SetBool("isHovering", true);
@@ -40,25 +40,28 @@ public class MouseEventRepeatButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // <Open Alert>
-        if (collision.name == "mouse" && animationStatus == true)
+        // <Close Alert>
+        if (collision.name == "mouse" && animationStatus == true
+            && GameObject.Find("StageOneSortingOrderConfig").
+                GetComponent<SortStageOneObject>().isAlert == true)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-
                 GameObject.Find("StageOneSortingOrderConfig").
-                    GetComponent<SortStageOneObject>().OneRepeatAlertOn();
+                    GetComponent<SortStageOneObject>().OneAlertOff();
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }
         }
-        // </Open Alert>
+        // </Close Alert>
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         // <Animator Hover->Off>
-        if (collision.name == "mouse" && animationStatus == true)
+        if (collision.name == "mouse" && animationStatus == true
+            && GameObject.Find("StageOneSortingOrderConfig").
+                GetComponent<SortStageOneObject>().isAlert == true)
         {
             animator.SetBool("isHovering", false);
             animationStatus = false;

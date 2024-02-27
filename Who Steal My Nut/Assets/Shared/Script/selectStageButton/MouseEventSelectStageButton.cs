@@ -45,7 +45,8 @@ public class MouseEventSelectStageButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                SceneManager.LoadScene("SelectScene");
+                GameObject.Find("StageOneSortingOrderConfig").
+                    GetComponent<SortStageOneObject>().OneSelectAlertOn();
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

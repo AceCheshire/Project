@@ -289,3 +289,9 @@ Add repeatButton and selectStageButton.
 Modify some objects' sorting orders.
 
 Add wordTranslate system to StageOne and prepare to add alerts.
+
+### 2024/02/27
+
+#2024/02/27/01
+
+Add alerts.

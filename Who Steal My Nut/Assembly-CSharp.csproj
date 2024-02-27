@@ -62,20 +62,25 @@
   <ItemGroup>
     <Compile Include="Assets\Shared\Script\earthCreateModeButton\MouseEventEarthCreateModeButton.cs" />
     <Compile Include="Assets\Shared\Script\wordRenderer\FrontRend.cs" />
+    <Compile Include="Assets\Shared\Script\smallWordBoardRightButton\MouseEventRightButton.cs" />
+    <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOne.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\StealAppear.cs" />
     <Compile Include="Assets\StageOne\Script\gameEarthModeConfig\GameEarthMode.cs" />
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
+    <Compile Include="Assets\Shared\Script\smallWordBoardLeftButton\MouseEventLeftButton.cs" />
     <Compile Include="Assets\SelectScene\Script\EventStageOneButton.cs" />
     <Compile Include="Assets\Shared\Script\wordBuffer\WordTranslate.cs" />
     <Compile Include="Assets\Shared\Script\enchantCreateModeButton\MouseEventEnchantCreateModeButton.cs" />
     <Compile Include="Assets\Shared\Script\runModeButton\MouseEventRunModeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGoundBox\BackGroundBoxAppear.cs" />
+    <Compile Include="Assets\StageOne\Script\SortStageOneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\achievementButton\MouseEventAchievementButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\guideSelectButton\KnockTrigger.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseHiding.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WordTiltleShake.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGround\BackGroundShake.cs" />
+    <Compile Include="Assets\Shared\Script\homeButton\MouseEventHomeButtonAlert.cs" />
     <Compile Include="Assets\Shared\Script\tileNorm\NormChange.cs" />
     <Compile Include="Assets\WelcomeScene\Script\selectButton\MouseEventSelectButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\MyAppear.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WhoAppear.cs" />
     <Compile Include="Assets\Shared\Script\repeatButton\MouseEventRepeatButton.cs" />
     <Compile Include="Assets\Shared\Script\selectStageButton\MouseEventSelectStageButton.cs" />
+    <Compile Include="Assets\StageOne\Script\wordRenderer\FrontRendOne.cs" />
     <Compile Include="Assets\SelectScene\Script\MouseEventHomeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\exitButton\MouseEventExitButton.cs" />
   </ItemGroup>
