@@ -295,3 +295,13 @@ Add wordTranslate system to StageOne and prepare to add alerts.
 #2024/02/27/01
 
 Add alerts.
+
+### 2024/02/29
+
+#2024/02/29/01
+
+Add new scene "Plot";
+
+Add guide words for Plot;
+
+Add example plots for Plot.

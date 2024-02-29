@@ -62,10 +62,12 @@
   <ItemGroup>
     <Compile Include="Assets\Shared\Script\earthCreateModeButton\MouseEventEarthCreateModeButton.cs" />
     <Compile Include="Assets\Shared\Script\wordRenderer\FrontRend.cs" />
+    <Compile Include="Assets\Plot\Script\wordRenderer\FrontRendPlot.cs" />
     <Compile Include="Assets\Shared\Script\smallWordBoardRightButton\MouseEventRightButton.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOne.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\StealAppear.cs" />
     <Compile Include="Assets\StageOne\Script\gameEarthModeConfig\GameEarthMode.cs" />
+    <Compile Include="Assets\Plot\Script\wordStay\WordStayTwinkle.cs" />
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
     <Compile Include="Assets\Shared\Script\smallWordBoardLeftButton\MouseEventLeftButton.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Shared\Script\enchantCreateModeButton\MouseEventEnchantCreateModeButton.cs" />
     <Compile Include="Assets\Shared\Script\runModeButton\MouseEventRunModeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGoundBox\BackGroundBoxAppear.cs" />
+    <Compile Include="Assets\Plot\Script\PlotPush.cs" />
     <Compile Include="Assets\StageOne\Script\SortStageOneObject.cs" />
     <Compile Include="Assets\WelcomeScene\Script\achievementButton\MouseEventAchievementButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\guideSelectButton\KnockTrigger.cs" />
