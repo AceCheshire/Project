@@ -14,7 +14,7 @@ public class MouseHiding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ;
+        if (Cursor.visible == true) HideCursor();
     }
 
     void HideCursor()
