@@ -45,9 +45,7 @@ public class MouseEventRepeatButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-
-                GameObject.Find("StageOneSortingOrderConfig").
-                    GetComponent<SortStageOneObject>().OneRepeatAlertOn();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

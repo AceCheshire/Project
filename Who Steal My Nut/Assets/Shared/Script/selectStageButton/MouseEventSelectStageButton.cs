@@ -44,9 +44,9 @@ public class MouseEventSelectStageButton : MonoBehaviour
         if (collision.name == "mouse" && animationStatus == true)
         {
             if (Input.GetKey(KeyCode.Mouse0))
+
             {
-                GameObject.Find("StageOneSortingOrderConfig").
-                    GetComponent<SortStageOneObject>().OneSelectAlertOn();
+                SceneManager.LoadScene("SelectScene");
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

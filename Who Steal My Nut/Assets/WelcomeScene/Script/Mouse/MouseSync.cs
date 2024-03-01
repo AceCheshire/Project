@@ -7,14 +7,8 @@ using UnityEngine;
 public class MouseSync : MonoBehaviour
 {
     /*Transform*/
-    private Vector3 mousePos = new Vector3(0, 0, 0);
-    private Vector3 worldPos = new Vector3(0, 0, 0);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        MousePos();
-    }
+    private Vector3 mousePos;
+    private Vector3 worldPos;
 
     // Update is called once per frame
     void Update()
@@ -22,7 +16,7 @@ public class MouseSync : MonoBehaviour
         MousePos();
     }
 
-    private void MousePos()
+    public void MousePos()
     {
         mousePos = Input.mousePosition;
         worldPos = Camera.main.ScreenToWorldPoint(new Vector3

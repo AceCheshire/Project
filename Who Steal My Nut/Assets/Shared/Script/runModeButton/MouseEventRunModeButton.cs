@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseEventRunModeButton : MonoBehaviour
@@ -9,6 +7,8 @@ public class MouseEventRunModeButton : MonoBehaviour
     private bool isModeOn = false;
     private bool isOver = false;// Avoid Continuous Judgement
     private Animator animator;
+    public Animator earthCreateModeButton;
+    public StageOneStatus gameStatusConfig;
 
     // Start is called before the first frame update
     void Start()
@@ -16,13 +16,7 @@ public class MouseEventRunModeButton : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Log("runModeButton Start!");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ;
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator OffHover>
@@ -48,12 +42,9 @@ public class MouseEventRunModeButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && !isOver)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEarthCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isRunningMode = true;
+                gameStatusConfig.isEnchantCreateMode = false;
+                gameStatusConfig.isEarthCreateMode = false;
+                gameStatusConfig.isRunningMode = true;
                 animator.SetBool("isModeOn", true);
                 animator.SetBool("isCanHover", false);
                 isOver = true;
@@ -67,16 +58,12 @@ public class MouseEventRunModeButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEarthCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isRunningMode = false;
+                gameStatusConfig.isEnchantCreateMode = false;
+                gameStatusConfig.isEarthCreateMode = false;
+                gameStatusConfig.isRunningMode = false;
                 animator.SetBool("isModeOn", false);
                 animator.SetBool("isCanHover", false);
-                GameObject.Find("earthCreateModeButton").GetComponent<Animator>().
-                    SetBool("isModeOn", false);
+                earthCreateModeButton.SetBool("isModeOn", false);
                 isOver = true;
                 isModeOn = false;
                 Debug.Log("CloseEarthMode");
