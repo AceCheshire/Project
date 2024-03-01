@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MouseEventSelectStageButton : MonoBehaviour
+public class MouseEventHomeButtonAlert : MonoBehaviour
 {
     /*Audio*/
     private AudioSource Audiodata;
@@ -17,7 +17,7 @@ public class MouseEventSelectStageButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("SelectStageButton Start!");
+        Debug.Log("HomeButton Start!");
     }
 
     // Update is called once per frame
@@ -44,9 +44,9 @@ public class MouseEventSelectStageButton : MonoBehaviour
         if (collision.name == "mouse" && animationStatus == true)
         {
             if (Input.GetKey(KeyCode.Mouse0))
-
             {
-                SceneManager.LoadScene("SelectScene");
+                GameObject.Find("StageOneSortingOrderConfig").
+                    GetComponent<SortStageOneObject>().OneHomeAlertOn();
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

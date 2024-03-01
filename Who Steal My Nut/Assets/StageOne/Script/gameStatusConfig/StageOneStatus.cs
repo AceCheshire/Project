@@ -2,10 +2,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
-/*### �ⶫ����ȫ���в����� ###*/
-/*### ���⣬Ϊɶ play ֮�� nut �������� (0,0,0) �� ###*/
-/*### vocal ��play ֮����Щû����ȥ�� tile Ϊ���ֳ����� ###*/
-/*### ������д���з��� ###*/
 public class StageOneStatus : MonoBehaviour
 {
     /*Lock & Unlock*/
@@ -13,8 +9,6 @@ public class StageOneStatus : MonoBehaviour
     public bool isEnchantCreateMode = false;
     public bool isRunningMode = false;
     
-    
-
     /*Timer*/
     private float timer = 0f;
     private float delayer = 0f;
@@ -25,7 +19,7 @@ public class StageOneStatus : MonoBehaviour
     public SpriteRenderer NutRenderer;
     public Tilemap tileNormGround;
     public List<Vector3Int> posList;
-    
+   
     // Update is called once per frame
     void Update()
     {
@@ -35,7 +29,4 @@ public class StageOneStatus : MonoBehaviour
             delayer += Time.deltaTime;
         }
     }
-
-    
-
 }

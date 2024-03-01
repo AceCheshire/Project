@@ -45,7 +45,6 @@ public class MouseEventRepeatButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 animator.SetBool("isHovering", false);
                 animationStatus = false;

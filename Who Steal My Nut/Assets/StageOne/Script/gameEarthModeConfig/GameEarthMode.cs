@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-/*### �ⶫ����ȫ�ز����� ###*/
-/*### ������д���з��� ###*/
 public class GameEarthMode : MonoBehaviour
 {
     
@@ -44,7 +42,6 @@ public class GameEarthMode : MonoBehaviour
         mousePos = Input.mousePosition;// Mouse position
         worldPos = Camera.main.ScreenToWorldPoint(
             new(mousePos.x, mousePos.y, Camera.main.transform.position.z));
-
         currentCellPos = new(isSetMap.WorldToCell(worldPos).x - 1,
                              isSetMap.WorldToCell(worldPos).y - 1, 0);
         // </GetPosition>

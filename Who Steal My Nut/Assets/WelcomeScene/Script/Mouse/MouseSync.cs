@@ -9,6 +9,7 @@ public class MouseSync : MonoBehaviour
     /*Transform*/
     private Vector3 mousePos;
     private Vector3 worldPos;
+
     // Update is called once per frame
     void Update()
     {

@@ -9,13 +9,14 @@ public class MouseEventRunModeButton : MonoBehaviour
     private Animator animator;
     public Animator earthCreateModeButton;
     public StageOneStatus gameStatusConfig;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         Debug.Log("runModeButton Start!");
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // <Animator OffHover>
@@ -24,7 +25,8 @@ public class MouseEventRunModeButton : MonoBehaviour
             animator.SetBool("isHovering", true);
             isHovering = true;
         }
-        
+        // </Animator OffHover>
+        // <Animator OnHover>
         if (collision.name == "mouse" && isModeOn == true && !isOver)
         {
             animator.SetBool("isHovering", true);

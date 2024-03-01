@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FrontRend : MonoBehaviour
+public class FrontRendPlot : MonoBehaviour
 {
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
@@ -23,9 +23,6 @@ public class FrontRend : MonoBehaviour
     /*Auto*/
     private float timer = 0f;
     private bool isFirstRequest = true;
-    private bool isCanPageDown = false;
-    private bool isUpRequest = false;
-    private bool isDownRequest = false;
     private Vector3Int rendererStartPointer = new Vector3Int(0, 0, 0);//Renderer Pointer
 
     // Start is called before the first frame update
@@ -33,6 +30,7 @@ public class FrontRend : MonoBehaviour
     {
         wordRenderer = gameObject.GetComponent<Tilemap>();
         wordBuffer = GameObject.Find("wordBuffer").GetComponent<Tilemap>();
+        Debug.Log("wordRenderer Try The First Rend!");
     }
 
     // Update is called once per frame
@@ -54,30 +52,6 @@ public class FrontRend : MonoBehaviour
             GameObject.Find("wordBuffer").
                 GetComponent<WordTranslate>().isWaitingFrontRend = false;
         }// Rend ( with request )
-        if (GameObject.Find("WelcomeSceneSortingOrderConfig").
-                GetComponent<SortWelcomeSceneObject>().isAlert == true)
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isDownRequest)
-            {
-                isDownRequest = true;
-                isCanPageDown = !CheckBottom();// Check passage's end
-                Flush();
-                if (isCanPageDown)
-                    rendererStartPointer -= new Vector3Int(0, 10, 0);
-                Rend();
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") > 0 && !isUpRequest)
-            {
-                isUpRequest = true;
-                Flush();
-                if (rendererStartPointer != new Vector3Int(0, 0, 0))
-                    // Check passage's beginning
-                    rendererStartPointer += new Vector3Int(0, 10, 0);
-                Rend();
-            }
-            isDownRequest = false;
-            isUpRequest =false;
-        }
     }
 
     private void Flush()// Clean Screen

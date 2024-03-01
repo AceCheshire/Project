@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FrontRend : MonoBehaviour
+public class FrontRendOne : MonoBehaviour
 {
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
@@ -33,6 +33,7 @@ public class FrontRend : MonoBehaviour
     {
         wordRenderer = gameObject.GetComponent<Tilemap>();
         wordBuffer = GameObject.Find("wordBuffer").GetComponent<Tilemap>();
+        Debug.Log("wordRenderer Try The First Rend!");
     }
 
     // Update is called once per frame
@@ -46,16 +47,16 @@ public class FrontRend : MonoBehaviour
             isFirstRequest = false;
         }// Rend at the beginning ( without request )
         if(GameObject.Find("wordBuffer").
-            GetComponent<WordTranslate >().isWaitingFrontRend == true)
+            GetComponent<WordTranslateOne>().isWaitingFrontRend == true)
         {
             Flush();
             rendererStartPointer = new Vector3Int(0, 0, 0);
             Rend();
             GameObject.Find("wordBuffer").
-                GetComponent<WordTranslate>().isWaitingFrontRend = false;
+                GetComponent<WordTranslateOne>().isWaitingFrontRend = false;
         }// Rend ( with request )
-        if (GameObject.Find("WelcomeSceneSortingOrderConfig").
-                GetComponent<SortWelcomeSceneObject>().isAlert == true)
+        if (GameObject.Find("StageOneSortingOrderConfig").
+                GetComponent<SortStageOneObject>().isAlert == true)
         {
             if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isDownRequest)
             {
