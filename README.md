@@ -313,3 +313,9 @@ Add example plots for Plot.
 Try to add nut's falling.
 
 Try to add nut's bouncing.
+
+### 2024/03/02
+
+#2024/03/02/01
+
+Fix some bugs after merge.

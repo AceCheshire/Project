@@ -29,6 +29,8 @@ public class Falling : MonoBehaviour
     {
         Debug.Log("Counting=" + Counting);
         Debug.Log("tileNumber=" + tileNumber);
+        Debug.Log(firstStage.isRunningMode);
+        Debug.Log("isWating:" + isWaitingBirth);
         if (firstStage.isRunningMode == true)
         {
             /*for(int i=0;i< firstStage.posList.Count; i++)
@@ -40,7 +42,7 @@ public class Falling : MonoBehaviour
         }
         if (isWaitingBirth == false)
         {
-            
+
             for (int i = 0; i <= tileNumber; i++)
             {
                 if (tileNormGround.WorldToCell((NutObject.transform.position - WorldOffset)) == firstStage.posList[i]
