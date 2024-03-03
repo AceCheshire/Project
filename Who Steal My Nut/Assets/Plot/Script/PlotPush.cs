@@ -52,7 +52,7 @@ public class PlotPush : MonoBehaviour
             if (canSend) SendRendMessage();
             Appear();// Appear & Disappear Effect
         }
-        if (canDisappear && isClick) Disappear();  
+        if (canDisappear) Disappear();  
     }
 
     private void SendRendMessage()

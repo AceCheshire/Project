@@ -20,7 +20,7 @@ public class GameEarthMode : MonoBehaviour
     private Vector3Int lastCellPos=new Vector3Int();
     public StageOneStatus gameStatusConfig;
 
-
+    // Start is called before the first frame update
     void Start()
     {
         tile = sourcemap.GetTile(new Vector3Int(-8, -1, 0));// Reference
@@ -72,19 +72,20 @@ public class GameEarthMode : MonoBehaviour
 
     public void SetTile()
     {
-        if (isSetMap.GetTile(currentCellPos) != null 
-            && Input.GetKey(KeyCode.Mouse0)&& !gameStatusConfig.posList.Contains(currentCellPos))
+        if (isSetMap.GetTile(currentCellPos) != null
+            && Input.GetKey(KeyCode.Mouse0) && !gameStatusConfig.posList.Contains(currentCellPos)
+            && !gameStatusConfig.obstacleList.Contains(currentCellPos))
         {
             tileNormGround.SetTile(currentCellPos, tile);
             gameStatusConfig.posList.Add(currentCellPos);
-            Debug.Log("A tile has been set at "+currentCellPos);
+            //Debug.Log("A tile has been set at " + currentCellPos);
         }
         if (isSetMap.GetTile(currentCellPos) != null
             && Input.GetKey(KeyCode.Mouse1))
         {
             tileNormGround.SetTile(currentCellPos, null);
             gameStatusConfig.posList.Remove(currentCellPos);
-            Debug.Log("A tile has been removed at " + currentCellPos);
+            //Debug.Log("A tile has been removed at " + currentCellPos);
         }
     }
 }

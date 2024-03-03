@@ -82,6 +82,7 @@
     <Compile Include="Assets\WelcomeScene\Script\guideSelectButton\KnockTrigger.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseHiding.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WordTiltleShake.cs" />
+    <Compile Include="Assets\StageOne\Script\gameLoseConfig\LoseJudge.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGround\BackGroundShake.cs" />
     <Compile Include="Assets\Shared\Script\homeButton\MouseEventHomeButtonAlert.cs" />
     <Compile Include="Assets\Shared\Script\tileNorm\NormChange.cs" />

@@ -319,3 +319,11 @@ Try to add nut's bouncing.
 #2024/03/02/01
 
 Fix some bugs after merge.
+
+### 2024/03/03
+
+#2024/03/03/01
+
+Add LoseJudege;
+
+Add obstacles;
