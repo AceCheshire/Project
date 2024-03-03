@@ -13,7 +13,7 @@ public class Falling : MonoBehaviour
     public Camera cam;
 
     private Vector3 nutDestination;
-    private Vector3 worldOffset = new(0.15f, 1.2f, 0);
+    private Vector3 worldOffset = new(0f, 1.2f, 0);
     private Vector3 localOffset;
     private Vector3Int birthOffset = new Vector3Int(6, 6, 0);
     private Vector3 deltaVelocity = new(0, 2.4f, 0);
@@ -50,7 +50,8 @@ public class Falling : MonoBehaviour
             for (int i = 0; i <= tileNumber; i++)
             {
                 if (tileNormGround.WorldToCell((nutObject.transform.position - worldOffset)) == firstStage.posList[i]
-                    && i == Counting)
+                    && i == Counting
+                    && nutRigidbody.velocity.y <= 0)
                 {
                     isSameLineObstacle = false;
                     if (tileNumber == Counting)
@@ -133,10 +134,15 @@ public class Falling : MonoBehaviour
     }
     public void Bounce(Vector3 Destination)
     {
-        float x = Mathf.Min(Destination.x, 2.6f);
-        float y = Mathf.Min(Destination.y, 1.3f);
+        float x = Destination.x;
+        if (Destination.x >= 0) x = Mathf.Min(Destination.x, 2.6f);
+        else if (Destination.x <= 0) x = Mathf.Max(Destination.x, -2.6f);
+        float y = Destination.y;
+        if (Destination.y >= 0) y = Mathf.Min(Destination.y, 1.3f);
+        else if (Destination.y <= 0) y = Mathf.Max(Destination.y, -1.3f);
         float z = Destination.z;
         float length=Mathf.Sqrt(x*x+y*y+z*z);
+        Debug.Log("x:" + x + "y:" + y + "z" + z);
         nutRigidbody.velocity = 2f * new Vector3(x / length, y / length, z / length) + length * deltaVelocity;
         //nutRigidbody.angularVelocity = -120 * Destination.y / length;
         //localOffset = new Vector3(0.85f * x / length, 0.85f * y / length, 0.85f * z / length);
