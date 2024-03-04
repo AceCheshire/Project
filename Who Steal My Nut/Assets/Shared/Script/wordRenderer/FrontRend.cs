@@ -107,15 +107,15 @@ public class FrontRend : MonoBehaviour
     private bool CheckBottom()// If blankRate is high, identify it as end
     {
         int blankRate = 0;
-        for (int i = 0; i <= 9; i++)
+        for (int i = 0; i <= 15; i++)
         {
-            for (int j = 0; j <= 9; j++)
+            for (int j = 0; j <= 15; j++)
             {
                 if (wordRenderer.GetTile(windowLeftBottom + new Vector3Int(i, j, 0)) == null)
                     blankRate++;
             }
         }
-        if (blankRate == 100)
+        if (blankRate >= 256)
         {
             return true;
         }

@@ -88,7 +88,6 @@ public class SortStageOneObject : MonoBehaviour
         GameObject.Find("smallWordBoardLeftButton").
             GetComponent<Collider2D>().enabled = false;
         GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = -1;
-        GameObject.Find("wordRenderer").transform.position = new(3f, -2.35f, 0);
         isAlert = false;
         isPreDisplay = false;
     }

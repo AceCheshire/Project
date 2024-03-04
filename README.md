@@ -327,3 +327,9 @@ Fix some bugs after merge.
 Add LoseJudege;
 
 Add obstacles;
+
+###2024/03/04
+
+#2024/03/04/01
+
+Add Plot;

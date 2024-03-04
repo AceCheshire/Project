@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
-using UnityEngine.WSA;
 
 public class StageOneStatus : MonoBehaviour
 {

@@ -100,7 +100,7 @@ public class WordTranslate : MonoBehaviour
         bool isModify = false;
         Vector3Int space = new Vector3Int(0, 0, 0);
         if (letter == '\n') 
-            return new Vector3Int(windowLeftTop.x, lastRendPos.y - 9, lastRendPos.z);
+            return new Vector3Int(windowLeftTop.x, lastRendPos.y - 15, lastRendPos.z);
         // Special situation: \n
         if (letter == ' ') space = new Vector3Int(2, 0, 0);
         // Special situation: ' '
@@ -124,7 +124,7 @@ public class WordTranslate : MonoBehaviour
                     if (appliableXValue > 103)//Change Line
                     {
                         appliableXValue = windowLeftTop.x;
-                        appliableYValue = lastRendPos.y - 9;
+                        appliableYValue = lastRendPos.y - 15;
                         space = new Vector3Int(0, 0, 0);//Chage Line so that Clear Space Record
                     }
                     else appliableYValue = lastRendPos.y;
