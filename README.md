@@ -328,8 +328,28 @@ Add LoseJudege;
 
 Add obstacles;
 
-###2024/03/04
+### 2024/03/04
 
 #2024/03/04/01
 
 Add Plot;
+
+### 2024/03/05
+
+#2024/03/05/01
+
+Fix bug of EarthCreateModeButton.
+
+Add startPoint and endPoint.
+
+Modify the format of all words.
+
+Add more obstacles;
+
+Add mana calculation system.
+
+Add Bloom effects;
+
+Now isSetGround is half - visible.
+
+You can only set the first tile on the startPoint.

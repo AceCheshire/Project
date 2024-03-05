@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FrontRend : MonoBehaviour
+public class FrontRendOneNumTwo : MonoBehaviour
 {
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
@@ -32,7 +32,8 @@ public class FrontRend : MonoBehaviour
     void Start()
     {
         wordRenderer = gameObject.GetComponent<Tilemap>();
-        wordBuffer = GameObject.Find("wordBuffer").GetComponent<Tilemap>();
+        wordBuffer = GameObject.Find("wordBufferMana").GetComponent<Tilemap>();
+        //Debug.Log("wordRenderer Try The First Rend!");
     }
 
     // Update is called once per frame
@@ -45,17 +46,15 @@ public class FrontRend : MonoBehaviour
             Rend();
             isFirstRequest = false;
         }// Rend at the beginning ( without request )
-        if(GameObject.Find("wordBuffer").
-            GetComponent<WordTranslate >().isWaitingFrontRend == true)
+        if(wordBuffer.GetComponent<WordTranslateOneNumTwo>().isWaitingFrontRend == true)
         {
             Flush();
             rendererStartPointer = new Vector3Int(0, 0, 0);
             Rend();
-            GameObject.Find("wordBuffer").
-                GetComponent<WordTranslate>().isWaitingFrontRend = false;
+            wordBuffer.GetComponent<WordTranslateOneNumTwo>().isWaitingFrontRend = false;
         }// Rend ( with request )
-        if (GameObject.Find("WelcomeSceneSortingOrderConfig").
-                GetComponent<SortWelcomeSceneObject>().isAlert == true)
+        if (GameObject.Find("StageOneSortingOrderConfig").
+                GetComponent<SortStageOneObject>().isAlert == true)
         {
             if (Input.GetAxis("Mouse ScrollWheel") < 0 && !isDownRequest)
             {
@@ -84,7 +83,7 @@ public class FrontRend : MonoBehaviour
     {
         for (int i = windowLeftTop.x - 1; i <= windowRightTop.x + 8; i++)
         {
-            for (int j = windowLeftBottom.y - 1000; j <= windowLeftTop.y + 1000; j++)
+            for (int j = windowLeftBottom.y - 100; j <= windowLeftTop.y + 100; j++)
             {
                 wordRenderer.SetTile(new Vector3Int(i, j, 0), null);
             }
@@ -107,15 +106,15 @@ public class FrontRend : MonoBehaviour
     private bool CheckBottom()// If blankRate is high, identify it as end
     {
         int blankRate = 0;
-        for (int i = 0; i <= 29; i++)
+        for (int i = 0; i <= 9; i++)
         {
-            for (int j = 0; j <= 29; j++)
+            for (int j = 0; j <= 9; j++)
             {
                 if (wordRenderer.GetTile(windowLeftBottom + new Vector3Int(i, j, 0)) == null)
                     blankRate++;
             }
         }
-        if (blankRate >= 900)
+        if (blankRate == 100)
         {
             return true;
         }

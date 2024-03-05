@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WordTranslateOne : MonoBehaviour
+public class WordTranslateOneNumTwo : MonoBehaviour
 {
     /*Important Static*/
     private Vector3Int bigALeftBottom = new Vector3Int(-56, 25, 0);
@@ -12,14 +12,8 @@ public class WordTranslateOne : MonoBehaviour
     public Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
     public Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
     public Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
-    public string inputStr =
-        "#include<stdio.h>\n"
-        +"int main()\n"
-        +"{\n"
-        +"    printf(\"Hello World!\");\n"
-        +"    return 0;\n"
-        +"}";// Content ( Continuous ) to be rended
-    private char[] inputCharArray;// Content ( Discrete ) to be rended
+    public string inputStr = "0 + 100";// Content ( Continuous ) to be rended
+    private char[] inputCharArray = { '\0' };// Content ( Discrete ) to be rended
 
     /*Grid*/
     private Grid grid;
@@ -33,7 +27,7 @@ public class WordTranslateOne : MonoBehaviour
 
     /*Auto*/
     public bool isWaitingFrontRend = false;//Message Buffer -> Renderer
-    public bool isWaitingRend = true;//Message Config -> Buffer
+    public bool isWaitingRend = false;//Message Config -> Buffer
     private bool isTheFirst = true;// Special situation: the first char
 
     // Start is called before the first frame update
@@ -41,7 +35,7 @@ public class WordTranslateOne : MonoBehaviour
     {
         grid = gameObject.GetComponentInParent<Grid>();
         tilemapSource = GameObject.Find("wordAlphabet").GetComponent<Tilemap>();
-        tilemapGoal = GameObject.Find("wordRenderer").GetComponent<Tilemap>();
+        tilemapGoal = GameObject.Find("wordRendererMana").GetComponent<Tilemap>();
         tilemap = gameObject.GetComponent<Tilemap>();
         inputCharArray = inputStr.ToCharArray();// inputStr(string) -> inputCharArray(char[])
     }
@@ -52,7 +46,7 @@ public class WordTranslateOne : MonoBehaviour
         if(isWaitingRend)
         {
             Flush();// Clean Buffer
-            inputCharArray = inputStr.ToCharArray();
+            if (inputStr != null) inputCharArray = inputStr.ToCharArray();
             // inputStr(string) -> inputCharArray(char[])
             isTheFirst = true;
             Rend();// re-Rend Buffer
@@ -65,7 +59,7 @@ public class WordTranslateOne : MonoBehaviour
         // <Matrix>
         for (int i = windowLeftTop.x - 1; i <= windowRightTop.x + 8; i++)
         {
-            for (int j = windowLeftBottom.y - 1000; j <= windowLeftTop.y + 1000; j++)
+            for (int j = windowLeftBottom.y - 100; j <= windowLeftTop.y + 100; j++)
             {
                 // </Matrix>
                 tilemap.SetTile(new Vector3Int(i, j, 0), null);

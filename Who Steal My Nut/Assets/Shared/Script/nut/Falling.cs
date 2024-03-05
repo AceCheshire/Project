@@ -142,12 +142,16 @@ public class Falling : MonoBehaviour
         else if (Destination.y <= 0) y = Mathf.Max(Destination.y, -1.3f);
         float z = Destination.z;
         float length=Mathf.Sqrt(x*x+y*y+z*z);
-        Debug.Log("x:" + x + "y:" + y + "z" + z);
+        //Debug.Log("x:" + x + "y:" + y + "z:" + z);
         nutRigidbody.velocity = 2f * new Vector3(x / length, y / length, z / length) + length * deltaVelocity;
         //nutRigidbody.angularVelocity = -120 * Destination.y / length;
         //localOffset = new Vector3(0.85f * x / length, 0.85f * y / length, 0.85f * z / length);
         //Debug.Log(nutRigidbody.velocity);
-        cam.GetComponent<Rigidbody2D>().velocity = 2f * new Vector3(x / length, y / length, 0);
+        cam.GetComponent<Rigidbody2D>().velocity = 2f * new Vector2(x / length, y / length);
+        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(firstStage.endPos).x)
+            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(x / length, 0);
+        if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
+            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(0, y / length);
     }
 }
 

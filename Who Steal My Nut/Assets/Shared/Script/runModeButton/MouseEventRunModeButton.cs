@@ -9,12 +9,13 @@ public class MouseEventRunModeButton : MonoBehaviour
     private Animator animator;
     public Animator earthCreateModeButton;
     public StageOneStatus gameStatusConfig;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        Debug.Log("runModeButton Start!");
+        //Debug.Log("runModeButton Start!");
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,6 +43,7 @@ public class MouseEventRunModeButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && !isOver)
             {
+                cam.transform.position = new Vector3(0, 0, -10);
                 gameStatusConfig.isEnchantCreateMode = false;
                 gameStatusConfig.isEarthCreateMode = false;
                 gameStatusConfig.isRunningMode = true;
@@ -49,7 +51,7 @@ public class MouseEventRunModeButton : MonoBehaviour
                 animator.SetBool("isCanHover", false);
                 isOver = true;
                 isModeOn = true;
-                Debug.Log("OpenEarthMode");
+                //Debug.Log("OpenRunMode");
             }
         }
         // </Open Mode Switch>
@@ -66,7 +68,7 @@ public class MouseEventRunModeButton : MonoBehaviour
                 earthCreateModeButton.SetBool("isModeOn", false);
                 isOver = true;
                 isModeOn = false;
-                Debug.Log("CloseEarthMode");
+                //Debug.Log("CloseRunMode");
             }
         }
         // </Close Mode Switch>

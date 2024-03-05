@@ -3,14 +3,18 @@ using UnityEngine.Tilemaps;
 
 public class GameEarthMode : MonoBehaviour
 {
-    
+
 
     /*Others*/
+    public MouseEventEarthCreateModeButton button;
+    public MoveCamera camMove;
+    public Tilemap startmap;
     public Tilemap sourcemap;
     public Tilemap canSetMap;
     public Tilemap isSetMap;
     public Tilemap tileNormGround;
     public bool isTriggered = false;// Detect the first tile 
+    public bool isFirstSet = true;
 
     private TileBase tile;
 
@@ -34,6 +38,8 @@ public class GameEarthMode : MonoBehaviour
             ResetTile();
             SetTile();
         }
+        if (gameStatusConfig.posList.Count == 0) isFirstSet = true;
+        else { isFirstSet = false; }
     }
 
     public void ResetTile()
@@ -45,7 +51,7 @@ public class GameEarthMode : MonoBehaviour
         currentCellPos = new(isSetMap.WorldToCell(worldPos).x - 1,
                              isSetMap.WorldToCell(worldPos).y - 1, 0);
         // </GetPosition>
-        if (!isTriggered)
+        if (!isTriggered && !camMove.isMoving)
         {
             if (canSetMap.GetTile(currentCellPos) != null)
                 isSetMap.SetTile(currentCellPos, tile);
@@ -54,14 +60,14 @@ public class GameEarthMode : MonoBehaviour
         if (currentCellPos != lastCellPos)
         {
             //Debug.Log(currentCellPos);
-            for (int i = -10; i <= 10; i++)
+            for (int i = -20; i <= 20; i++)
             {
-                for (int j = -10; j <= 10; j++)
+                for (int j = -20; j <= 20; j++)
                 {
                     isSetMap.SetTile(new(i, j, 0), null);
                 }
             }
-            if (canSetMap.GetTile(currentCellPos) != null)
+            if (canSetMap.GetTile(currentCellPos) != null && !camMove.isMoving)
             {
                 isSetMap.SetTile(currentCellPos, tile);
             }
@@ -74,7 +80,8 @@ public class GameEarthMode : MonoBehaviour
     {
         if (isSetMap.GetTile(currentCellPos) != null
             && Input.GetKey(KeyCode.Mouse0) && !gameStatusConfig.posList.Contains(currentCellPos)
-            && !gameStatusConfig.obstacleList.Contains(currentCellPos))
+            && !gameStatusConfig.obstacleList.Contains(currentCellPos)
+            && !button.isPressed && (!isFirstSet || (isFirstSet && startmap.GetTile(currentCellPos) != null)))
         {
             tileNormGround.SetTile(currentCellPos, tile);
             gameStatusConfig.posList.Add(currentCellPos);

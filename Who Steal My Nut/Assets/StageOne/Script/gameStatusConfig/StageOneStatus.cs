@@ -21,7 +21,9 @@ public class StageOneStatus : MonoBehaviour
     public Tilemap tileObastacleGround;
     public List<Vector3Int> posList;
     public List<Vector3Int> obstacleList;
+    public List<Vector3Int> enchantList;
     public Vector3Int endPos;
+    public Vector3Int startPos;
     public SortStageOneObject layerController;
 
     // Start is called before the first frame update

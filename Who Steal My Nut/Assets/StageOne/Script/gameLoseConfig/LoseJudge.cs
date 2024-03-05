@@ -45,7 +45,7 @@ public class LoseJudge : MonoBehaviour
                 layController.OneWinAlertOn();
                 isJudged = true;
             }
-            if (nut.transform.position.y <= -10)
+            if (nut.transform.position.y <= -30)
             {
                 MoveRenderer();
                 nutRigidbody.velocity = new Vector3(0, 0, 0);

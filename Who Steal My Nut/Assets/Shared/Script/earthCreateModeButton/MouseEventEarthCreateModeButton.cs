@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*### 这东西开了 RunningMode 之后就不能再打开了嘛 ###*/
-/*### 更新：这东西关不掉了，寄 ###*/
-/*### 允许重写所有方法 ###*/
 public class MouseEventEarthCreateModeButton : MonoBehaviour
 {
     /*Animator*/
@@ -13,12 +10,13 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
     private bool isModeOn = false;
     private bool isOver = false;// Avoid Continuous Judgement
     private Animator animator;
+    public bool isPressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        Debug.Log("enchantCreateModeButton Start!");
+        //Debug.Log("enchantCreateModeButton Start!");
     }
 
     // Update is called once per frame
@@ -30,7 +28,6 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
         else
         {
             animator.SetBool("isRunModeOn", false);
-            isModeOn = false;
         }
     }
 
@@ -39,6 +36,7 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
         // <Animator OffHover>
         if (collision.name == "mouse" && isModeOn == false && !isOver && !isRunning)
         {
+            isPressed = true;
             animator.SetBool("isHovering", true);
             isHovering = true;
         }
@@ -46,6 +44,7 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
         // <Animator OnHover>
         if (collision.name == "mouse" && isModeOn == true && !isOver && !isRunning)
         {
+            isPressed = true;
             animator.SetBool("isHovering", true);
             isHovering = true;
         }
@@ -99,6 +98,7 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
             animator.SetBool("isCanHover", true);
             isHovering = false;
             isOver = false;
+            isPressed = false;
         }
         // </Animator OffHover>
         // <Animator OnHover>
@@ -108,6 +108,7 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
             animator.SetBool("isCanHover", true);
             isHovering = false;
             isOver = false;
+            isPressed = false;
         }
         // </Animator OnHover>
     }
