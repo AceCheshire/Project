@@ -11,6 +11,7 @@ public class StageOneStatus : MonoBehaviour
     
     /*Timer*/
     public float timer = 0f;
+    public float runTimer = 0f;
     private float delayer = 0f;
 
     /*Unital Grid*/
@@ -48,6 +49,10 @@ public class StageOneStatus : MonoBehaviour
         if (timer > delayer)
         {
             delayer += Time.deltaTime;
+        }
+        if(layerController.isAlert == false && isRunningMode == true)
+        {
+            runTimer += Time.deltaTime;
         }
     }
 }

@@ -353,3 +353,9 @@ Add Bloom effects;
 Now isSetGround is half - visible.
 
 You can only set the first tile on the startPoint.
+
+### 2024/03/06
+
+#2024/03/06/01
+
+Add GradeJudge system.
