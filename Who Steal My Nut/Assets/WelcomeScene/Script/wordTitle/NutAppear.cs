@@ -13,6 +13,7 @@ public class NutAppear : MonoBehaviour
     private Vector3 startPos;
     private float appearTime = 0.9f;// Duration
     private float startTime = 1.1f;// Start point
+    private bool isPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,11 @@ public class NutAppear : MonoBehaviour
         if (timer >= startTime )
         {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;// Appear
+            if (!isPlayed)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+                isPlayed = true;
+            }
         }
         if (timer >= startTime && timer <= startTime + appearTime)
         {
