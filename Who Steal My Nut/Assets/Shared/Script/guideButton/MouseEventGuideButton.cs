@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MouseEventHomeButtonAlert : MonoBehaviour
+public class MouseEventGuideButton : MonoBehaviour
 {
     /*Audio*/
     private AudioSource Audiodata;
@@ -17,7 +16,7 @@ public class MouseEventHomeButtonAlert : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        //Debug.Log("HomeButton Start!");
+        //Debug.Log("GuideButton Start!");
     }
 
     // Update is called once per frame
@@ -44,9 +43,10 @@ public class MouseEventHomeButtonAlert : MonoBehaviour
         if (collision.name == "mouse" && animationStatus == true)
         {
             if (Input.GetKey(KeyCode.Mouse0))
+
             {
                 GameObject.Find("StageOneSortingOrderConfig").
-                    GetComponent<SortStageOneObject>().OneHomeAlertOn();
+                    GetComponent<SortStageOneObject>().OneGuideAlertOn();
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

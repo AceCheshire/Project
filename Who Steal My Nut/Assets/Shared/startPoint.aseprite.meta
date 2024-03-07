@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: startPoint
     originalName: 
-    pivot: {x: 0.4700855, y: -1.3199999}
+    pivot: {x: 0.4700855, y: -0.78}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -152,7 +152,7 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 73
-        y: 66
+        y: 39
         width: 117
         height: 50
       spriteId: 9398dd5d101a3a74ea9507a0a7766adc

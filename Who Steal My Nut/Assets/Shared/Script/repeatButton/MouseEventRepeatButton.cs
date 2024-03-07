@@ -17,7 +17,7 @@ public class MouseEventRepeatButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("RepeatButton Start!");
+        //Debug.Log("RepeatButton Start!");
     }
 
     // Update is called once per frame

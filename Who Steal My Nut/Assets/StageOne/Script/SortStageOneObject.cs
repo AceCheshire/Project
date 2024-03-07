@@ -30,6 +30,7 @@ public class SortStageOneObject : MonoBehaviour
     private string loseFallAlertPassage = "Nut fall into the abyss...\nYou have used ";
     private string loseStopAlertPassage = "This is not the end...\nYou have used ";
     private string[] winAlertPassage = new string[32];
+    private string guideAlertPassage = "This is guide";
 
 
     // Start is called before the first frame update
@@ -148,6 +149,15 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<WordTranslateOne>().inputStr = selectAlertPassage;
         isAlert = true;
         goalScene = -1;
+        GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
+    }
+
+    /*For Public Reference*/
+    public void OneGuideAlertOn()
+    {
+        GameObject.Find("wordBuffer").
+            GetComponent<WordTranslateOne>().inputStr = guideAlertPassage;
+        isAlert = true;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
     }
 

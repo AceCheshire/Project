@@ -34,7 +34,8 @@ public class LoseJudge : MonoBehaviour
                 layController.OneLoseObstacleAlertOn();
                 isJudged = true;
             }
-            if (stageStatus.endPos == tileNormGround.WorldToCell(nut.transform.position))
+            if (stageStatus.endPos == tileNormGround.WorldToCell(nut.transform.position)
+                && stageStatus.posList.Contains(stageStatus.endPos - new Vector3Int(1, 1, 0)))
             {
                 MoveRenderer();
                 nutRigidbody.velocity = new Vector3(0, 0, 0);

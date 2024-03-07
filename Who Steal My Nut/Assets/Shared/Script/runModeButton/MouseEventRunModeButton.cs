@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MouseEventRunModeButton : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MouseEventRunModeButton : MonoBehaviour
     public Animator earthCreateModeButton;
     public StageOneStatus gameStatusConfig;
     public Camera cam;
+    public Tilemap isSetMap;
+    public bool isPressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class MouseEventRunModeButton : MonoBehaviour
         {
             animator.SetBool("isHovering", true);
             isHovering = true;
+            isPressed = true;
         }
         // </Animator OffHover>
         // <Animator OnHover>
@@ -32,6 +36,7 @@ public class MouseEventRunModeButton : MonoBehaviour
         {
             animator.SetBool("isHovering", true);
             isHovering = true;
+            isPressed = true;
         }
         // </Animator OnHover>
     }
@@ -49,8 +54,16 @@ public class MouseEventRunModeButton : MonoBehaviour
                 gameStatusConfig.isRunningMode = true;
                 animator.SetBool("isModeOn", true);
                 animator.SetBool("isCanHover", false);
+                earthCreateModeButton.SetBool("isModeOn", false);
                 isOver = true;
                 isModeOn = true;
+                for (int i = -20; i <= 20; i++)
+                {
+                    for (int j = -20; j <= 20; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
                 //Debug.Log("OpenRunMode");
             }
         }
@@ -68,6 +81,13 @@ public class MouseEventRunModeButton : MonoBehaviour
                 earthCreateModeButton.SetBool("isModeOn", false);
                 isOver = true;
                 isModeOn = false;
+                for (int i = -20; i <= 20; i++)
+                {
+                    for (int j = -20; j <= 20; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
                 //Debug.Log("CloseRunMode");
             }
         }
@@ -83,6 +103,7 @@ public class MouseEventRunModeButton : MonoBehaviour
             animator.SetBool("isCanHover", true);
             isHovering = false;
             isOver = false;
+            isPressed = false;
         }
         // </Animator OffHover>
         // <Animator OnHover>
@@ -92,6 +113,7 @@ public class MouseEventRunModeButton : MonoBehaviour
             animator.SetBool("isCanHover", true);
             isHovering = false;
             isOver = false;
+            isPressed = false;
         }
         // </Animator OnHover>
     }

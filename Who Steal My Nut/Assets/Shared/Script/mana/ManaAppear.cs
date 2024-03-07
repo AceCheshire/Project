@@ -23,7 +23,7 @@ public class ManaAppear : MonoBehaviour
     {
         timer += Time.deltaTime;
         totalMana = status.enchantList.Count * 300 + status.posList.Count * 100;
-        if (status.isEarthCreateMode == true || status.isRunningMode == true)
+        if (status.isEarthCreateMode == true || status.isEnchantCreateMode == true)
         {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 30;
             wordRenderer.GetComponent<TilemapRenderer>().sortingOrder = 30;

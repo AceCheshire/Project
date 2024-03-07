@@ -21,17 +21,17 @@ public class MoveCamera : MonoBehaviour
     {
         if (status.isEarthCreateMode || status.isEnchantCreateMode)
         {
-            if (Input.GetKey(KeyCode.UpArrow)
-                && cam.transform.position.y <= tileNormGround.GetCellCenterWorld(status.startPos).y) 
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                && cam.transform.position.y <= tileNormGround.GetCellCenterWorld(status.startPos).y)
             { cam.transform.position += new Vector3(0, 0.01f, 0); isMoving = true; }
-            if (Input.GetKey(KeyCode.DownArrow)
-                && cam.transform.position.y >= tileNormGround.GetCellCenterWorld(status.endPos).y) 
+            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+                && cam.transform.position.y >= tileNormGround.GetCellCenterWorld(status.endPos).y)
             { cam.transform.position += new Vector3(0, -0.01f, 0); isMoving = true; }
-            if (Input.GetKey(KeyCode.LeftArrow)
-                && cam.transform.position.x >= tileNormGround.GetCellCenterWorld(status.startPos).x) 
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                && cam.transform.position.x >= tileNormGround.GetCellCenterWorld(status.startPos).x)
             { cam.transform.position += new Vector3(-0.01f, 0, 0); isMoving = true; }
-            if (Input.GetKey(KeyCode.RightArrow)
-                && cam.transform.position.x <= tileNormGround.GetCellCenterWorld(status.endPos).x) 
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                && cam.transform.position.x <= tileNormGround.GetCellCenterWorld(status.endPos).x)
             { cam.transform.position += new Vector3(0.01f, 0, 0); isMoving = true; }
             else isMoving = false;
         }

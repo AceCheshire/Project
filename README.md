@@ -363,3 +363,11 @@ Add GradeJudge system.
 #2024/03/06/02
 
 Add backGround Music;
+
+### 2024/03/07
+
+#2024/03/07/01
+
+Add EnchantCreateMode;
+
+Add guide button.

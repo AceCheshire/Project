@@ -33,7 +33,7 @@ public class FrontRendOne : MonoBehaviour
     {
         wordRenderer = gameObject.GetComponent<Tilemap>();
         wordBuffer = GameObject.Find("wordBuffer").GetComponent<Tilemap>();
-        Debug.Log("wordRenderer Try The First Rend!");
+        //Debug.Log("wordRenderer Try The First Rend!");
     }
 
     // Update is called once per frame

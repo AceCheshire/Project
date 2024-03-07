@@ -10,9 +10,12 @@ public class Falling : MonoBehaviour
     public GameObject nutObject;
     public SpriteRenderer nutRenderer;
     public Tilemap tileNormGround;
+    public Tilemap tileSyncGround;
     public Camera cam;
 
     private Vector3 nutDestination;
+    private float communicateX;
+    private float communicateY;
     private Vector3 worldOffset = new(0f, 1.2f, 0);
     private Vector3 localOffset;
     private Vector3Int birthOffset = new Vector3Int(6, 6, 0);
@@ -46,7 +49,9 @@ public class Falling : MonoBehaviour
         }
         if (isWaitingBirth == false)
         {
-
+            if (communicateY < nutDestination.y || communicateX < nutDestination.x && nutRigidbody.velocity.y <= 0
+            && !firstStage.obstacleList.Contains(tileNormGround.WorldToCell((nutObject.transform.position - worldOffset))))
+                nutRenderer.sortingOrder = 7;
             for (int i = 0; i <= tileNumber; i++)
             {
                 if (tileNormGround.WorldToCell((nutObject.transform.position - worldOffset)) == firstStage.posList[i]
@@ -71,51 +76,17 @@ public class Falling : MonoBehaviour
                         //Debug.Log("The No." + i + " tile is at " + firstStage.posList[i]);
                         nutDestination = tileNormGround.CellToWorld(firstStage.posList[i + 1]) -
                             tileNormGround.CellToWorld(firstStage.posList[i]);
-                        if (firstStage.posList[i + 1].x >= firstStage.posList[i].x)
+                        SameLineJudge(i);
+                        if (!firstStage.enchantList.Contains(firstStage.posList[i])
+                            || !firstStage.enchantList.Contains(firstStage.posList[i + 1]))
+                            Bounce(nutDestination);
+                        else if (firstStage.enchantList.Contains(firstStage.posList[i])
+                            && firstStage.enchantList.Contains(firstStage.posList[i + 1]))
                         {
-                            for (int j = firstStage.posList[i].x; j <= firstStage.posList[i + 1].x; j++)
-                            {
-                                if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
-                                {
-                                    for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
-                                    {
-                                        if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
-                                            isSameLineObstacle = true;
-                                    }
-                                }
-                                else
-                                {
-                                    for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
-                                    {
-                                        if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
-                                            isSameLineObstacle = true;
-                                    }
-                                }
-                            }
+                            if (Mathf.Abs(nutDestination.x) <= 5.2f && Mathf.Abs(nutDestination.y) <= 2.6f)
+                                EnchantBounce(nutDestination, i);
+                            else Bounce(nutDestination);
                         }
-                        else
-                        {
-                            for (int j = firstStage.posList[i + 1].x; j <= firstStage.posList[i].x; j++)
-                            {
-                                if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
-                                {
-                                    for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
-                                    {
-                                        if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
-                                            isSameLineObstacle = true;
-                                    }
-                                }
-                                else
-                                {
-                                    for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
-                                    {
-                                        if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
-                                            isSameLineObstacle = true;
-                                    }
-                                }
-                            }
-                        }
-                        Bounce(nutDestination);
                         Counting++;
                     }
                 }
@@ -132,6 +103,29 @@ public class Falling : MonoBehaviour
             isWaitingBirth = false;// Teleport to the Birth Position
         }
     }
+    public void EnchantBounce(Vector3 Destination, int i)
+    {
+        nutRigidbody.velocity = new Vector2(0, nutRigidbody.velocity.y);
+        nutObject.transform.position = tileNormGround.CellToWorld(firstStage.posList[i + 1] + new Vector3Int(2, 2, 0));
+        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(firstStage.endPos).x)
+            cam.transform.position.Set
+                (cam.transform.position.x,
+                cam.transform.position.y + Destination.y,
+                cam.transform.position.z + Destination.z);
+        else if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
+            cam.transform.position.Set
+                (cam.transform.position.x + Destination.x,
+                cam.transform.position.y,
+                cam.transform.position.z + Destination.z);
+        else
+        {
+            cam.transform.position.Set
+                (cam.transform.position.x + Destination.x,
+                cam.transform.position.y + Destination.y,
+                cam.transform.position.z + Destination.z);
+        }
+    }
+
     public void Bounce(Vector3 Destination)
     {
         float x = Destination.x;
@@ -141,7 +135,9 @@ public class Falling : MonoBehaviour
         if (Destination.y >= 0) y = Mathf.Min(Destination.y, 1.3f);
         else if (Destination.y <= 0) y = Mathf.Max(Destination.y, -1.3f);
         float z = Destination.z;
-        float length=Mathf.Sqrt(x*x+y*y+z*z);
+        float length = Mathf.Sqrt(x * x + y * y + z * z);
+        communicateX = x;
+        communicateY = y;
         //Debug.Log("x:" + x + "y:" + y + "z:" + z);
         nutRigidbody.velocity = 2f * new Vector3(x / length, y / length, z / length) + length * deltaVelocity;
         //nutRigidbody.angularVelocity = -120 * Destination.y / length;
@@ -152,6 +148,58 @@ public class Falling : MonoBehaviour
             cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(x / length, 0);
         if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
             cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(0, y / length);
+    }
+
+    private void SameLineJudge(int i)
+    {
+        if (firstStage.enchantList.Contains(firstStage.posList[i])) isSameLineObstacle = false;
+        else
+        {
+            if (firstStage.posList[i + 1].x >= firstStage.posList[i].x)
+            {
+                for (int j = firstStage.posList[i].x; j <= firstStage.posList[i + 1].x; j++)
+                {
+                    if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
+                    {
+                        for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
+                        {
+                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                                isSameLineObstacle = true;
+                        }
+                    }
+                    else
+                    {
+                        for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
+                        {
+                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                                isSameLineObstacle = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int j = firstStage.posList[i + 1].x; j <= firstStage.posList[i].x; j++)
+                {
+                    if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
+                    {
+                        for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
+                        {
+                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                                isSameLineObstacle = true;
+                        }
+                    }
+                    else
+                    {
+                        for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
+                        {
+                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                                isSameLineObstacle = true;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

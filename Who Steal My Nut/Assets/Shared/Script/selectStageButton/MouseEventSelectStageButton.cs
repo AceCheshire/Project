@@ -16,7 +16,7 @@ public class MouseEventSelectStageButton : MonoBehaviour
     {
         Audiodata = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        Debug.Log("SelectStageButton Start!");
+        //Debug.Log("SelectStageButton Start!");
     }
 
     // Update is called once per frame

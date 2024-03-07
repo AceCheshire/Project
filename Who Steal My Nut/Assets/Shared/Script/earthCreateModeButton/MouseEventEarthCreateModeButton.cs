@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MouseEventEarthCreateModeButton : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
     private bool isOver = false;// Avoid Continuous Judgement
     private Animator animator;
     public bool isPressed = false;
+    public GameEarthMode gameEarthMode;
+    public Tilemap isSetMap;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,9 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
     void Update()
     {
         isRunning = GameObject.Find("gameStatusConfig").
-            GetComponent<StageOneStatus>().isRunningMode;
+            GetComponent<StageOneStatus>().isRunningMode
+            || GameObject.Find("gameStatusConfig").
+            GetComponent<StageOneStatus>().isEnchantCreateMode;
         if (isRunning) animator.SetBool("isRunModeOn", true);
         else
         {
@@ -66,7 +71,15 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
                 animator.SetBool("isCanHover", false);
                 isOver = true;
                 isModeOn = true;
-                Debug.Log("OpenEarthMode");
+                for (int i = -20; i <= 20; i++)
+                {
+                    for (int j = -20; j <= 20; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
+                gameEarthMode.isTriggered = false;
+                //Debug.Log("OpenEarthMode");
             }
         }
         // </Open Mode Switch>
@@ -83,6 +96,13 @@ public class MouseEventEarthCreateModeButton : MonoBehaviour
                 animator.SetBool("isCanHover", false);
                 isOver = true;
                 isModeOn = false;
+                for (int i = -20; i <= 20; i++)
+                {
+                    for (int j = -20; j <= 20; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
                 Debug.Log("CloseEarthMode");
             }
         }

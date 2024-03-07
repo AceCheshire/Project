@@ -23,7 +23,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
         "\nwe do not know if you see bottles over a box out of this alert. " +
         "To start the game, you may click the \nmouth of the upper bottle. " +
         "After a short animation, \nyou will get into a scene to select stages. \n\n" +
-        "But do not worry, no matter where you go, you can click the home button to went back to this menu. \n\n" +
+        "But do not worry, no matter where you go, you can click the home earthButton to went back to this menu. \n\n" +
         "We also change the mouse in the game into an \nanimated one with different animation and \nappearence. " +
         "Once you finish some milestones in the game, you can check the achievement, " +
         "there may record your game finish rate.";
