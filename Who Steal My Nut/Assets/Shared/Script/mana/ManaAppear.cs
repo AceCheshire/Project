@@ -10,7 +10,7 @@ public class ManaAppear : MonoBehaviour
     public GameObject wordRenderer;
     public GameObject wordBuffer;
     public int totalMana = 0;
-    private int enchantMana = 300;
+    private int enchantMana = 150;
     private int earthMana = 100;
 
     private string manaWord;
@@ -22,7 +22,7 @@ public class ManaAppear : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        totalMana = status.enchantList.Count * 300 + status.posList.Count * 100;
+        totalMana = status.enchantList.Count * 150 + status.posList.Count * 100;
         if (status.isEarthCreateMode == true || status.isEnchantCreateMode == true)
         {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 30;

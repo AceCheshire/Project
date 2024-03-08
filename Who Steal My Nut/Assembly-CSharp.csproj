@@ -72,6 +72,7 @@
     <Compile Include="Assets\Plot\Script\wordStay\WordStayTwinkle.cs" />
     <Compile Include="Assets\Shared\Script\CameraMove\MoveCamera.cs" />
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
+    <Compile Include="Assets\StageOne\Script\GuidePush.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
     <Compile Include="Assets\Shared\Script\finalRightButton\RightFinal.cs" />
     <Compile Include="Assets\Shared\Script\smallWordBoardLeftButton\MouseEventLeftButton.cs" />

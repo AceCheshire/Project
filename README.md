@@ -371,3 +371,9 @@ Add backGround Music;
 Add EnchantCreateMode;
 
 Add guide button.
+
+### 2024/03/08
+
+#2024/03/08
+
+Add guide texts;

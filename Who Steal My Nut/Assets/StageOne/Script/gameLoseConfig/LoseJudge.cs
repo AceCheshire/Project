@@ -33,6 +33,7 @@ public class LoseJudge : MonoBehaviour
                 cam.GetComponent<Rigidbody2D>().angularVelocity = 0;
                 layController.OneLoseObstacleAlertOn();
                 isJudged = true;
+                stageStatus.isGameOver = true;
             }
             if (stageStatus.endPos == tileNormGround.WorldToCell(nut.transform.position)
                 && stageStatus.posList.Contains(stageStatus.endPos - new Vector3Int(1, 1, 0)))
@@ -45,6 +46,7 @@ public class LoseJudge : MonoBehaviour
                 cam.GetComponent<Rigidbody2D>().angularVelocity = 0;
                 layController.OneWinAlertOn();
                 isJudged = true;
+                stageStatus.isGameOver = true;
             }
             if (nut.transform.position.y <= -30)
             {
@@ -56,6 +58,7 @@ public class LoseJudge : MonoBehaviour
                 cam.GetComponent<Rigidbody2D>().angularVelocity = 0;
                 layController.OneLoseFallAlertOn();
                 isJudged = true;
+                stageStatus.isGameOver = true;
             }
             if(GameObject.Find("nut").GetComponent<Falling>().isOver==true
                 && stageStatus.endPos != tileNormGround.WorldToCell(nut.transform.position))
@@ -68,6 +71,7 @@ public class LoseJudge : MonoBehaviour
                 cam.GetComponent<Rigidbody2D>().angularVelocity = 0;
                 layController.OneLoseStopAlertOn();
                 isJudged = true;
+                stageStatus.isGameOver = true;
             }
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -12,7 +10,9 @@ public class SortStageOneObject : MonoBehaviour
     private int leftButtonOn = 30;
     private int wordRendererOn = 31;
     private int finalBoardOn = 29;
+    private int guideBoardOn = 29;
     private bool isFinal = false;
+    public bool isGuide = false;
 
     /*Public Status: isAlert && goalScene*/
     private bool isPreDisplay = false;
@@ -21,6 +21,7 @@ public class SortStageOneObject : MonoBehaviour
     public int goalScene = -2;
     public ManaAppear mana;
     public StageOneStatus status;
+    public Camera cam;
 
     /*Words*/
     private string homeAlertPassage ="Back to WelcomeScene?";
@@ -30,7 +31,9 @@ public class SortStageOneObject : MonoBehaviour
     private string loseFallAlertPassage = "Nut fall into the abyss...\nYou have used ";
     private string loseStopAlertPassage = "This is not the end...\nYou have used ";
     private string[] winAlertPassage = new string[32];
-    private string guideAlertPassage = "This is guide";
+    private string guideAlertPassage = "GUIDE\n\n" +
+        "Introduction About How To Play This Game\n\nYou can press \" Tab \" button to " +
+        "turn to the main \ntext or page down, and \" LeftCtrl \" button to page \nup.";
 
 
     // Start is called before the first frame update
@@ -46,15 +49,20 @@ public class SortStageOneObject : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if (isAlert == true && !isDisplay&&!isFinal)
+    {
+        if (isAlert == true && !isDisplay && !isFinal && !isGuide)
         {
             OpenAlert();
             isDisplay = true;
         }
-        if (isAlert == true && !isDisplay && isFinal)
+        if (isAlert == true && !isDisplay && isFinal && !isGuide)
         {
             OpenFinalAlert();
+            isDisplay = true;
+        }
+        if (isAlert == true && !isDisplay && !isFinal && isGuide)
+        {
+            OpenGuideAlert();
             isDisplay = true;
         }
         if (isAlert == true && !isPreDisplay)
@@ -96,11 +104,28 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
     }
 
+    public void OpenGuideAlert()
+    {
+        GameObject.Find("guideBoard").
+            GetComponent<SpriteRenderer>().sortingOrder = guideBoardOn;
+        GameObject.Find("guideBoardRightButton").
+            GetComponent<SpriteRenderer>().sortingOrder = rightButtonOn;
+        GameObject.Find("wordRenderer").
+            GetComponent<TilemapRenderer>().sortingOrder = wordRendererOn;
+        GameObject.Find("guideBoardRightButton").
+            GetComponent<Collider2D>().enabled = true;
+        GameObject.Find("wordRenderer").transform.position =
+            new Vector3(cam.transform.position.x - 1.25f, cam.transform.position.y - 0.35f, -0.5f);
+        GameObject.Find("wordRenderer").transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+    }
+
     /*For Public Reference*/
     public void OneHomeAlertOn()
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslateOne>().inputStr = homeAlertPassage;
+        OneAlertOff();
+        isGuide = false;
         isAlert = true;
         goalScene = 0;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -111,7 +136,11 @@ public class SortStageOneObject : MonoBehaviour
     {
         GameObject.Find("smallWordBoard").
             GetComponent<SpriteRenderer>().sortingOrder = -1;
+        GameObject.Find("guideBoard").
+           GetComponent<SpriteRenderer>().sortingOrder = -1;
         GameObject.Find("smallWordBoardRightButton").
+            GetComponent<SpriteRenderer>().sortingOrder = -1;
+        GameObject.Find("guideBoardRightButton").
             GetComponent<SpriteRenderer>().sortingOrder = -1;
         GameObject.Find("smallWordBoardLeftButton").
             GetComponent<SpriteRenderer>().sortingOrder = -1;
@@ -119,9 +148,15 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
         GameObject.Find("smallWordBoardLeftButton").
             GetComponent<Collider2D>().enabled = false;
+        GameObject.Find("guideBoardRightButton").
+           GetComponent<Collider2D>().enabled = false;
         GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = -1;
+        GameObject.Find("wordRenderer").transform.position =
+            new Vector3(cam.transform.position.x + 3, cam.transform.position.y - 2.35f, -0.5f);
+        GameObject.Find("wordRenderer").transform.localScale = new Vector3(1, 1, 1);
         isAlert = false;
         isPreDisplay = false;
+        isGuide = false;
     }
 
     public void OneFinalAlertOff()
@@ -147,6 +182,8 @@ public class SortStageOneObject : MonoBehaviour
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslateOne>().inputStr = selectAlertPassage;
+        OneAlertOff();
+        isGuide = false;
         isAlert = true;
         goalScene = -1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -157,7 +194,9 @@ public class SortStageOneObject : MonoBehaviour
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslateOne>().inputStr = guideAlertPassage;
+        OneAlertOff();
         isAlert = true;
+        isGuide = true;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
     }
 
@@ -166,6 +205,8 @@ public class SortStageOneObject : MonoBehaviour
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslateOne>().inputStr = repeatAlertPassage;
+        OneAlertOff();
+        isGuide = false;
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -178,7 +219,8 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<WordTranslateOne>().inputStr = loseObstacleAlertPassage
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
                 +"Repeat this stage?";
-        Debug.Log(GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().inputStr);
+        //Debug.Log(GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().inputStr);
+        OneAlertOff();
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -191,6 +233,7 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<WordTranslateOne>().inputStr = loseFallAlertPassage
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
                 + "Repeat this stage?";
+        OneAlertOff();
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -203,6 +246,7 @@ public class SortStageOneObject : MonoBehaviour
             GetComponent<WordTranslateOne>().inputStr = loseStopAlertPassage
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
                 + "Repeat this stage?";
+        OneAlertOff();
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -219,6 +263,7 @@ public class SortStageOneObject : MonoBehaviour
             winAlertPassage[3] + status.timer + " sec           -     " + "     -     \n" +
             winAlertPassage[4] + status.runTimer + " sec          -     " + "     -     \n\n" +
             winAlertPassage[5];
+        OneAlertOff();
         isAlert = true;
         isFinal = true;
         goalScene = 0;
@@ -238,17 +283,17 @@ public class SortStageOneObject : MonoBehaviour
         if (mana.totalMana <= 1500)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isA", true);
-            winAlertPassage[5] = "                     Real SpellCaster. We honor you.";
+            winAlertPassage[5] = "\n                     Real SpellCaster. We honor you.";
         }
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isB", true);
-            winAlertPassage[5] = "                     Practised Magician. Near the top.";
+            winAlertPassage[5] = "\n                     Practised Magician. Near the top.";
         }
         if (mana.totalMana > 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isC", true);
-            winAlertPassage[5] = "                     Just A Noob. You need more efforts.";
+            winAlertPassage[5] = "\n                     Just A Noob. You need more efforts.";
         }
     }
 }

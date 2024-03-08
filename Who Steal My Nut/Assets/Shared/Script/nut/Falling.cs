@@ -49,9 +49,6 @@ public class Falling : MonoBehaviour
         }
         if (isWaitingBirth == false)
         {
-            if (communicateY < nutDestination.y || communicateX < nutDestination.x && nutRigidbody.velocity.y <= 0
-            && !firstStage.obstacleList.Contains(tileNormGround.WorldToCell((nutObject.transform.position - worldOffset))))
-                nutRenderer.sortingOrder = 7;
             for (int i = 0; i <= tileNumber; i++)
             {
                 if (tileNormGround.WorldToCell((nutObject.transform.position - worldOffset)) == firstStage.posList[i]
@@ -108,21 +105,21 @@ public class Falling : MonoBehaviour
         nutRigidbody.velocity = new Vector2(0, nutRigidbody.velocity.y);
         nutObject.transform.position = tileNormGround.CellToWorld(firstStage.posList[i + 1] + new Vector3Int(2, 2, 0));
         if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(firstStage.endPos).x)
-            cam.transform.position.Set
+            cam.transform.position = new Vector3
                 (cam.transform.position.x,
                 cam.transform.position.y + Destination.y,
                 cam.transform.position.z + Destination.z);
         else if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
-            cam.transform.position.Set
+            cam.transform.position = new Vector3
                 (cam.transform.position.x + Destination.x,
                 cam.transform.position.y,
                 cam.transform.position.z + Destination.z);
         else
         {
-            cam.transform.position.Set
-                (cam.transform.position.x + Destination.x,
-                cam.transform.position.y + Destination.y,
-                cam.transform.position.z + Destination.z);
+            cam.transform.position =
+            new Vector3(cam.transform.position.x + Destination.x,
+            cam.transform.position.y + Destination.y,
+            cam.transform.position.z + Destination.z);
         }
     }
 
@@ -202,5 +199,3 @@ public class Falling : MonoBehaviour
         }
     }
 }
-
-
