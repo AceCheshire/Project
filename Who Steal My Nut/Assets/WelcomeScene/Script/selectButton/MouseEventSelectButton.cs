@@ -38,9 +38,17 @@ public class MouseEventSelectButton : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "backGroundBox" && isCollided) isCollidedTwice = true;
+        if (collision.collider.name == "backGroundBox" && isCollided)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            isCollidedTwice = true;
+        }
         // trigger isCollidedTwice
-        if (collision.collider.name == "backGroundBox") isCollided = true;// trigger isCollided
+        if (collision.collider.name == "backGroundBox" && !isCollided)
+        {
+            isCollided = true;
+            gameObject.GetComponent<AudioSource>().Play();
+        }// trigger isCollided
     }
 
     private void SlightShake()

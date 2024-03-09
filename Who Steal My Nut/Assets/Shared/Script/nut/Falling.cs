@@ -12,6 +12,7 @@ public class Falling : MonoBehaviour
     public Tilemap tileNormGround;
     public Tilemap tileSyncGround;
     public Camera cam;
+    public AudioSource sound;
 
     private Vector3 nutDestination;
     private float communicateX;
@@ -58,7 +59,7 @@ public class Falling : MonoBehaviour
                     isSameLineObstacle = false;
                     if (tileNumber == Counting)
                     {
-
+                        sound.Play();
                         nutRigidbody.velocity = new Vector3(0, 0, 0);
                         nutRigidbody.angularVelocity = 0;
                         nutRigidbody.gravityScale = 0;
@@ -76,13 +77,20 @@ public class Falling : MonoBehaviour
                         SameLineJudge(i);
                         if (!firstStage.enchantList.Contains(firstStage.posList[i])
                             || !firstStage.enchantList.Contains(firstStage.posList[i + 1]))
+                        {
+                            sound.Play();
                             Bounce(nutDestination);
+                        }
                         else if (firstStage.enchantList.Contains(firstStage.posList[i])
                             && firstStage.enchantList.Contains(firstStage.posList[i + 1]))
                         {
                             if (Mathf.Abs(nutDestination.x) <= 5.2f && Mathf.Abs(nutDestination.y) <= 2.6f)
                                 EnchantBounce(nutDestination, i);
-                            else Bounce(nutDestination);
+                            else
+                            {
+                                sound.Play();
+                                Bounce(nutDestination); 
+                            }
                         }
                         Counting++;
                     }

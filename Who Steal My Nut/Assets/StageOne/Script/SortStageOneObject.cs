@@ -22,9 +22,10 @@ public class SortStageOneObject : MonoBehaviour
     public ManaAppear mana;
     public StageOneStatus status;
     public Camera cam;
+    private int finishRate;
 
     /*Words*/
-    private string homeAlertPassage ="Back to WelcomeScene?";
+    private string homeAlertPassage = "Back to WelcomeScene?";
     private string selectAlertPassage = "Back to SelectScene?";
     private string repeatAlertPassage = "Repeat this Scene?";
     private string loseObstacleAlertPassage = "Nut crash some hard stones...\nYou have used ";
@@ -41,9 +42,18 @@ public class SortStageOneObject : MonoBehaviour
     {
         winAlertPassage[0] = "Statistics     Current     Best     World - Best     ";
         winAlertPassage[1] = "Used Mana     ";
-        winAlertPassage[2] = "Used Platform     ";
+        winAlertPassage[2] = "Used Platform    ";
         winAlertPassage[3] = "Used Time    ";
         winAlertPassage[4] = "Used Runtime ";
+        if (PlayerPrefs.GetInt("SET") != 1)
+        {
+            PlayerPrefs.SetInt("SET", 1);
+            PlayerPrefs.SetInt("Mana", 100000);
+            PlayerPrefs.SetFloat("Runtimer", 100000f);
+            PlayerPrefs.SetInt("Tilecount", 100000);
+            PlayerPrefs.SetFloat("Timer", 100000f);
+            PlayerPrefs.Save();
+        }
         //Debug.Log("LayerController Start!");
     }
 
@@ -218,9 +228,11 @@ public class SortStageOneObject : MonoBehaviour
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslateOne>().inputStr = loseObstacleAlertPassage
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
-                +"Repeat this stage?";
+                + "Repeat this stage?";
         //Debug.Log(GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().inputStr);
         OneAlertOff();
+        GameObject.Find("wordRenderer").transform.position =
+            new Vector3(cam.transform.position.x + 2.25f, cam.transform.position.y - 1.85f, -0.5f);
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -234,6 +246,8 @@ public class SortStageOneObject : MonoBehaviour
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
                 + "Repeat this stage?";
         OneAlertOff();
+        GameObject.Find("wordRenderer").transform.position =
+            new Vector3(cam.transform.position.x + 2.25f, cam.transform.position.y - 1.85f, -0.5f);
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -247,6 +261,8 @@ public class SortStageOneObject : MonoBehaviour
                 + Mathf.Floor(GameObject.Find("gameStatusConfig").GetComponent<StageOneStatus>().timer) + "s\n"
                 + "Repeat this stage?";
         OneAlertOff();
+        GameObject.Find("wordRenderer").transform.position =
+            new Vector3(cam.transform.position.x + 2.25f, cam.transform.position.y - 1.85f, -0.5f);
         isAlert = true;
         goalScene = 1;
         GameObject.Find("wordBuffer").GetComponent<WordTranslateOne>().isWaitingRend = true;
@@ -255,13 +271,39 @@ public class SortStageOneObject : MonoBehaviour
     /*For Public Reference*/
     public void OneWinAlertOn()
     {
+        if (mana.totalMana < PlayerPrefs.GetInt("Mana"))
+        {
+            PlayerPrefs.SetInt("Mana", mana.totalMana);
+            PlayerPrefs.Save();
+        }
+        if (status.posList.Count < PlayerPrefs.GetInt("Tilecount"))
+        {
+            PlayerPrefs.SetInt("Tilecount", status.posList.Count);
+            PlayerPrefs.Save();
+        }
+        if (status.timer < PlayerPrefs.GetFloat("Timer"))
+        {
+            PlayerPrefs.SetFloat("Timer", status.timer);
+            PlayerPrefs.Save();
+        }
+        if (status.runTimer < PlayerPrefs.GetFloat("Runtimer"))
+        {
+            PlayerPrefs.SetFloat("Runtimer", status.runTimer);
+            PlayerPrefs.Save();
+        }
+        if (PlayerPrefs.GetString("achieve2") != "complete")
+        {
+            finishRate = PlayerPrefs.GetInt("FinishRate");
+            PlayerPrefs.SetString("achieve2", "complete");
+            PlayerPrefs.SetInt("FinishRate", finishRate + 20);
+        }
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
-            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] +"\n"+
-            winAlertPassage[1] + mana.totalMana + "        -     " + "        -     \n" +
-            winAlertPassage[2] + status.posList.Count + "               -     " + "     -     \n" +
-            winAlertPassage[3] + status.timer + " sec           -     " + "     -     \n" +
-            winAlertPassage[4] + status.runTimer + " sec          -     " + "     -     \n\n" +
+            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + "\n" +
+            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Mana") + "     " + "        -     \n" +
+            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Tilecount") + "     " + "         -     \n" +
+            winAlertPassage[3] + status.timer + " sec   " + PlayerPrefs.GetFloat("Timer") + " sec     " + "      -\n" +
+            winAlertPassage[4] + status.runTimer + " sec   " + PlayerPrefs.GetFloat("Runtimer") + " sec     " + "     -\n\n" +
             winAlertPassage[5];
         OneAlertOff();
         isAlert = true;
@@ -283,17 +325,23 @@ public class SortStageOneObject : MonoBehaviour
         if (mana.totalMana <= 1500)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isA", true);
-            winAlertPassage[5] = "\n                     Real SpellCaster. We honor you.";
+            winAlertPassage[5] = "\n                      Real SpellCaster. We honor you.";
+            if (PlayerPrefs.GetString("achieve3") != "complete")
+            {
+                finishRate = PlayerPrefs.GetInt("FinishRate");
+                PlayerPrefs.SetString("achieve3", "complete");
+                PlayerPrefs.SetInt("FinishRate", finishRate + 60);
+            }
         }
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isB", true);
-            winAlertPassage[5] = "\n                     Practised Magician. Near the top.";
+            winAlertPassage[5] = "\n                      Practised Magician. Near the top.";
         }
         if (mana.totalMana > 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isC", true);
-            winAlertPassage[5] = "\n                     Just A Noob. You need more efforts.";
+            winAlertPassage[5] = "\n                      Just A Noob. You need more efforts.";
         }
     }
 }

@@ -377,3 +377,13 @@ Add guide button.
 #2024/03/08
 
 Add guide texts;
+
+### 2024/03/09
+
+*2024/03/09/01
+
+Add Achievement system;
+
+#2024/03/09/01
+
+Add sound for nut.

@@ -37,7 +37,7 @@ public class PlotPush : MonoBehaviour
              "That is also what Ratatoskr eat  --  nut that only grows in the Yggdrasill. " +
              "As the most \nfamous party all around this Kingdom, we do \nsuccessfully get that rare nut. " +
              "However, due to \nRetina's miscalculation, we have been captured by \nRatatoskr's space magic \" Magic Room \" ," +
-             " as well as nut we newly  get. ";
+             " as well as nut we newly get. ";
         plot[2] = "Kidd   Too terrible, I cannot stay in this plain and \nmonotonous place a minute more!\n\n" +
             "You   Theoretically, Ratatoskr's magic cannot be \nperfect and flawless. " +
             "There may be some weak \npoints so that we can set teleport magic circle there anyway. " +

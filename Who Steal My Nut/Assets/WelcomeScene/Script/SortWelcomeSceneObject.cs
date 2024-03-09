@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Tilemaps;
-using static UnityEngine.ParticleSystem;
-using UnityEngine.Timeline;
 
 public class SortWelcomeSceneObject : MonoBehaviour
 {
@@ -16,6 +10,8 @@ public class SortWelcomeSceneObject : MonoBehaviour
 
     /*Public Status: isAlert*/
     public bool isAlert = false;
+    private bool isPreDisplay = false;
+    private bool isDisplay = true;
 
     /*Words*/
     private string readmeAlertPassage = "/*You can turn pages with scrollwheel of mouse*/\n\n" +
@@ -23,7 +19,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
         "\nwe do not know if you see bottles over a box out of this alert. " +
         "To start the game, you may click the \nmouth of the upper bottle. " +
         "After a short animation, \nyou will get into a scene to select stages. \n\n" +
-        "But do not worry, no matter where you go, you can click the home earthButton to went back to this menu. \n\n" +
+        "But do not worry, no matter where you go, you can click the homeButton to went back to this menu. \n\n" +
         "We also change the mouse in the game into an \nanimated one with different animation and \nappearence. " +
         "Once you finish some milestones in the game, you can check the achievement, " +
         "there may record your game finish rate.";
@@ -38,13 +34,50 @@ public class SortWelcomeSceneObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set Achievement
+        if (PlayerPrefs.GetString("achieve1") != "complete")
+        {
+            PlayerPrefs.SetString("achieve1", "incomplete");
+        }
+        if (PlayerPrefs.GetString("achieve2") != "complete")
+        {
+            PlayerPrefs.SetString("achieve2", "incomplete");
+        }
+        if (PlayerPrefs.GetString("achieve3") != "complete")
+        {
+            PlayerPrefs.SetString("achieve3", "incomplete");
+        }
+        achievementAlertPassage = "First Tile\n\n" +
+        "  Set the first platform in the stage  --  " + PlayerPrefs.GetString("achieve1") + "\n\n" +
+        "Be A Real Thief\n\n" + "  Finish the stage"
+        + " for the first time  --  " + PlayerPrefs.GetString("achieve2") + "\n\n"
+        + "Thief Master\n\n"
+        + "  Finish the stage at A level  --  " + PlayerPrefs.GetString("achieve3") + "\n\n"
+        + "Finish Rate --  " + PlayerPrefs.GetInt("FinishRate") + "%\n\n";
         Debug.Log("LayerController Start!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        ;
+        if (isAlert == true && !isDisplay)
+        {
+            OpenAlert();
+            isDisplay = true;
+        }
+        if (isAlert == true && !isPreDisplay)
+        {
+            isDisplay = false;
+            isPreDisplay = true;
+        }
+    }
+
+    public void OpenAlert()
+    {
+        GameObject.Find("wordBoard").GetComponent<SpriteRenderer>().sortingOrder = wordBoardOn;
+        GameObject.Find("wordBoardExitButton").
+            GetComponent<SpriteRenderer>().sortingOrder = wordBoardExitButtonOn;
+        GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = wordRendererOn;
     }
 
     /*For Public Reference*/
@@ -52,10 +85,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslate>().inputStr = readmeAlertPassage;
-        GameObject.Find("wordBoard").GetComponent<SpriteRenderer>().sortingOrder = wordBoardOn;
-        GameObject.Find("wordBoardExitButton").
-            GetComponent<SpriteRenderer>().sortingOrder = wordBoardExitButtonOn;
-        GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = wordRendererOn;
+        WelcomeAlertOff();
         isAlert = true;
         GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = true;
     }
@@ -68,6 +98,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
             GetComponent<SpriteRenderer>().sortingOrder = -1;
         GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = -1;
         isAlert = false;
+        isPreDisplay = false;
     }
 
     /*For Public Reference*/
@@ -75,10 +106,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     {
         GameObject.Find("wordBuffer").
             GetComponent<WordTranslate>().inputStr = achievementAlertPassage;
-        GameObject.Find("wordBoard").GetComponent<SpriteRenderer>().sortingOrder = wordBoardOn;
-        GameObject.Find("wordBoardExitButton").
-            GetComponent<SpriteRenderer>().sortingOrder = wordBoardExitButtonOn;
-        GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = wordRendererOn;
+        WelcomeAlertOff();
         isAlert = true;
         GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = true;
     }

@@ -56,7 +56,8 @@ public class GuidePush : MonoBehaviour
         guideText[7] = "3.3 Enchanted Platform\n\nMana Cost -- 75\n" +
             "Bounce Ability -- Far / Normal\nBounce Speed -- Equal\n" +
             "Special Attribute -- If you set more than two \nenchanted platform, when nut touch the platform, " +
-            "it will instantly move to the next enchanted platform if their distance is not too far.\n\n";
+            "it will instantly move to the next enchanted platform if their distance is not too far.\n\n" +
+            "Before 4 How To Move Map\n\nTry WASD or the four Arrow Keys.\n\n";
         guideText[8] = "4 Map\n\n4.1 Start Point\n\n" +
             "you must set your first platform at  the start point.\n\n" +
             "4.2 End Point\n\n" +
@@ -69,7 +70,7 @@ public class GuidePush : MonoBehaviour
             "remember that if you set a platform after another, " +
             "the nut will give priority to the earlier set platform.\n\n";
         guideText[10] = "5.2 Failure Condition\n\n" +
-            "1) Hit Bleak Magic Crystals\n\n" +
+            "1) Hit Bleak Magic Crystals.\n\n" +
             "2) Falling Since The Next Platform Is Too Far Away.\n\n" +
             "3) Failed To Reach The End Point.\n\n5.3 Success Condition\n\n" +
             "Get To The End Point Without Hitting Or Falling.\n\n";

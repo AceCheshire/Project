@@ -17,6 +17,7 @@ public class GameEarthMode : MonoBehaviour
     public bool isTriggered = false;// Detect the first tile 
     public bool isFirstSet = true;
     private bool isPressed = false;
+    private int finishrate;
 
     private TileBase tile;
     private TileBase enchantedTile;
@@ -130,6 +131,12 @@ public class GameEarthMode : MonoBehaviour
         {
             tileNormGround.SetTile(currentCellPos, tile);
             gameStatusConfig.posList.Add(currentCellPos);
+            if (PlayerPrefs.GetString("achieve1") != "complete")
+            {
+                finishrate = PlayerPrefs.GetInt("FinishRate");
+                PlayerPrefs.SetString("achieve1", "complete");
+                PlayerPrefs.SetInt("FinishRate", finishrate + 20);
+            }
             //Debug.Log("A tile has been set at " + currentCellPos);
         }
         if (isSetMap.GetTile(currentCellPos) != null
