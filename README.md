@@ -387,3 +387,11 @@ Add Achievement system;
 #2024/03/09/01
 
 Add sound for nut.
+
+### 2024/03/17
+
+#2024/03/17/01
+
+Add new stage;
+
+Fix bug that runMode cannot normally keep closed if there is no platform.
