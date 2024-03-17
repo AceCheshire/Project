@@ -130,6 +130,7 @@ public class GameEarthMode : MonoBehaviour
             && !isPressed && (!isFirstSet || (isFirstSet && startmap.GetTile(currentCellPos) != null)))
         {
             tileNormGround.SetTile(currentCellPos, tile);
+            gameStatusConfig.canRun = true;
             gameStatusConfig.posList.Add(currentCellPos);
             if (PlayerPrefs.GetString("achieve1") != "complete")
             {
@@ -143,6 +144,7 @@ public class GameEarthMode : MonoBehaviour
             && Input.GetKey(KeyCode.Mouse1) && !gameStatusConfig.enchantList.Contains(currentCellPos))
         {
             tileNormGround.SetTile(currentCellPos, null);
+            if (gameStatusConfig.posList.Count == 1) gameStatusConfig.canRun = false;
             gameStatusConfig.posList.Remove(currentCellPos);
             //Debug.Log("A tile has been removed at " + currentCellPos);
         }

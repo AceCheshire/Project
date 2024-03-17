@@ -27,6 +27,7 @@ public class StageOneStatus : MonoBehaviour
     public Vector3Int endPos;
     public Vector3Int startPos;
     public SortStageOneObject layerController;
+    public bool canRun = false;
 
     // Start is called before the first frame update
     void Start()

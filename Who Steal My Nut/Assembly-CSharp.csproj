@@ -61,9 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Shared\Script\earthCreateModeButton\MouseEventEarthCreateModeButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\gameEarthModeConfig\GameEarthModeTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\CameraMove\MoveCameraTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\nut\FallingTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\GuidePushTwo.cs" />
     <Compile Include="Assets\Shared\Script\wordRenderer\FrontRend.cs" />
+    <Compile Include="Assets\StageTwo\Script\gameLoseConfig\LoseJudgeTwo.cs" />
     <Compile Include="Assets\Plot\Script\wordRenderer\FrontRendPlot.cs" />
     <Compile Include="Assets\Shared\Script\smallWordBoardRightButton\MouseEventRightButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\wordBuffer\WordTranslateTwoNumTwo.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOne.cs" />
     <Compile Include="Assets\Shared\Script\nut\Falling.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\StealAppear.cs" />
@@ -72,8 +78,12 @@
     <Compile Include="Assets\Plot\Script\wordStay\WordStayTwinkle.cs" />
     <Compile Include="Assets\Shared\Script\CameraMove\MoveCamera.cs" />
     <Compile Include="Assets\WelcomeScene\Script\SortWelcomeSceneObject.cs" />
+    <Compile Include="Assets\StageTwo\Script\smallWordBoardLeftButton\MouseEventLeftButtonTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\mana\ManaAppearTwo.cs" />
     <Compile Include="Assets\StageOne\Script\GuidePush.cs" />
     <Compile Include="Assets\WelcomeScene\Script\readmeButton\MouseEventReadmeButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\smallWordBoardRightButton\MouseEventRightButtonTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\earthCreateModeButton\MouseEventEarthCreateModeButtonTwo.cs" />
     <Compile Include="Assets\Shared\Script\finalRightButton\RightFinal.cs" />
     <Compile Include="Assets\Shared\Script\smallWordBoardLeftButton\MouseEventLeftButton.cs" />
     <Compile Include="Assets\SelectScene\Script\EventStageOneButton.cs" />
@@ -81,8 +91,10 @@
     <Compile Include="Assets\Shared\Script\enchantCreateModeButton\MouseEventEnchantCreateModeButton.cs" />
     <Compile Include="Assets\Shared\Script\runModeButton\MouseEventRunModeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGoundBox\BackGroundBoxAppear.cs" />
+    <Compile Include="Assets\StageTwo\Script\finalLeftButton\LeftFinalTwo.cs" />
     <Compile Include="Assets\Plot\Script\PlotPush.cs" />
     <Compile Include="Assets\StageOne\Script\SortStageOneObject.cs" />
+    <Compile Include="Assets\StageTwo\Script\wordRenderer\FrontRendTwo.cs" />
     <Compile Include="Assets\WelcomeScene\Script\achievementButton\MouseEventAchievementButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\guideSelectButton\KnockTrigger.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseHiding.cs" />
@@ -90,25 +102,37 @@
     <Compile Include="Assets\StageOne\Script\gameLoseConfig\LoseJudge.cs" />
     <Compile Include="Assets\WelcomeScene\Script\backGround\BackGroundShake.cs" />
     <Compile Include="Assets\Shared\Script\homeButton\MouseEventHomeButtonAlert.cs" />
+    <Compile Include="Assets\StageTwo\Script\runModeButton\MouseEventRunModeButtonTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\selectStageButton\MouseEventSelectStageButtonTwo.cs" />
     <Compile Include="Assets\Shared\Script\tileNorm\NormChange.cs" />
+    <Compile Include="Assets\StageTwo\Script\homeButton\MouseEventHomeButtonAlertTwo.cs" />
     <Compile Include="Assets\Shared\Script\guideButton\MouseEventGuideButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\selectButton\MouseEventSelectButton.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateFinal.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\MyAppear.cs" />
+    <Compile Include="Assets\StageTwo\Script\gameStatusConfig\StageTwoStatus.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseSync.cs" />
     <Compile Include="Assets\Shared\Script\wordBoardExitButton\MouseEventWordBoardExitButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\finalRightButton\RightFinalTwo.cs" />
+    <Compile Include="Assets\StageTwo\Script\repeatButton\MouseEventRepeatButtonTwo.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOneNumTwo.cs" />
     <Compile Include="Assets\StageOne\Script\gameStatusConfig\StageOneStatus.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\NutAppear.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\WhoAppear.cs" />
     <Compile Include="Assets\Shared\Script\repeatButton\MouseEventRepeatButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\wordRenderer\FrontRendTwoNumTwo.cs" />
+    <Compile Include="Assets\SelectScene\Script\EventStageTwoButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\SortStageTwoObject.cs" />
+    <Compile Include="Assets\StageTwo\Script\wordBuffer\WordTranslateTwo.cs" />
     <Compile Include="Assets\StageOne\Script\wordRenderer\FrontRendFinal.cs" />
     <Compile Include="Assets\Shared\Script\selectStageButton\MouseEventSelectStageButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\guideButton\MouseEventGuideButtonTwo.cs" />
     <Compile Include="Assets\Shared\Script\finalLeftButton\LeftFinal.cs" />
     <Compile Include="Assets\StageOne\Script\wordRenderer\FrontRendOne.cs" />
     <Compile Include="Assets\Shared\Script\mana\ManaAppear.cs" />
     <Compile Include="Assets\SelectScene\Script\MouseEventHomeButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\exitButton\MouseEventExitButton.cs" />
+    <Compile Include="Assets\StageTwo\Script\enchantCreateModeButton\MouseEventEnchantCreateModeButtonTwo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

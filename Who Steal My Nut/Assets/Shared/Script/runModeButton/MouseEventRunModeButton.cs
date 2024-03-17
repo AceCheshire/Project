@@ -46,7 +46,7 @@ public class MouseEventRunModeButton : MonoBehaviour
         // <Open Mode Switch>
         if (collision.name == "mouse" && isModeOn == false && isHovering)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && !gameStatusConfig.isGameOver)
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && !gameStatusConfig.isGameOver && gameStatusConfig.canRun)
             {
                 cam.transform.position = new Vector3(0, 0, -10);
                 gameStatusConfig.isEnchantCreateMode = false;
