@@ -14,7 +14,7 @@ public class LoseJudge : MonoBehaviour
     public Camera cam;
 
     /*Switch*/
-    private bool isJudged = false;
+    public bool isJudged = false; 
 
     // Update is called once per frame
     void Update()

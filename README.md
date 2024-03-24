@@ -395,3 +395,11 @@ Add sound for nut.
 Add new stage;
 
 Fix bug that runMode cannot normally keep closed if there is no platform.
+
+### 2024/03/24
+
+#2024/03/24/01
+
+Add guideWords for tutorial;
+
+Decrease the difficulty of the tutorial stage.

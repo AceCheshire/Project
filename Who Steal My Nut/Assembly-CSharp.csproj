@@ -64,6 +64,7 @@
     <Compile Include="Assets\StageTwo\Script\gameEarthModeConfig\GameEarthModeTwo.cs" />
     <Compile Include="Assets\StageTwo\Script\CameraMove\MoveCameraTwo.cs" />
     <Compile Include="Assets\StageTwo\Script\nut\FallingTwo.cs" />
+    <Compile Include="Assets\StageOne\Script\GuideCorner.cs" />
     <Compile Include="Assets\StageTwo\Script\GuidePushTwo.cs" />
     <Compile Include="Assets\Shared\Script\wordRenderer\FrontRend.cs" />
     <Compile Include="Assets\StageTwo\Script\gameLoseConfig\LoseJudgeTwo.cs" />
@@ -108,8 +109,10 @@
     <Compile Include="Assets\StageTwo\Script\homeButton\MouseEventHomeButtonAlertTwo.cs" />
     <Compile Include="Assets\Shared\Script\guideButton\MouseEventGuideButton.cs" />
     <Compile Include="Assets\WelcomeScene\Script\selectButton\MouseEventSelectButton.cs" />
+    <Compile Include="Assets\StageOne\Script\wordRenderer\FrontRendOneGuide.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateFinal.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\MyAppear.cs" />
+    <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOneGuide.cs" />
     <Compile Include="Assets\StageTwo\Script\gameStatusConfig\StageTwoStatus.cs" />
     <Compile Include="Assets\WelcomeScene\Script\mouse\MouseSync.cs" />
     <Compile Include="Assets\Shared\Script\wordBoardExitButton\MouseEventWordBoardExitButton.cs" />
