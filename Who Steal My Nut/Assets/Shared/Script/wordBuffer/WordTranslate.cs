@@ -12,13 +12,7 @@ public class WordTranslate : MonoBehaviour
     public Vector3Int windowRightTop = new Vector3Int(105, 55, 0);
     public Vector3Int windowLeftBottom = new Vector3Int(-111, -70, 0);
     public Vector3Int windowRightBottom = new Vector3Int(105, -70, 0);
-    public string inputStr =
-        "#include<stdio.h>\n"
-        +"int main()\n"
-        +"{\n"
-        +"    printf(\"Hello World!\");\n"
-        +"    return 0;\n"
-        +"}";// Content ( Continuous ) to be rended
+    public string inputStr = " ";// Content ( Continuous ) to be rended
     private char[] inputCharArray;// Content ( Discrete ) to be rended
 
     /*Grid*/
@@ -49,7 +43,7 @@ public class WordTranslate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isWaitingRend)
+        if (isWaitingRend)
         {
             Flush();// Clean Buffer
             inputCharArray = inputStr.ToCharArray();
@@ -81,7 +75,7 @@ public class WordTranslate : MonoBehaviour
         {
             nextRendPos = RendPointer(nextRendPos, letter);
             sourceLeftBottom = CharToCellPos(letter);
-            for(int i = 0; i <= 6; i++)
+            for (int i = 0; i <= 6; i++)
             {
                 for (int j = -2; j <= 5; j++)
                     if (tilemapSource.GetTile(sourceLeftBottom + new Vector3Int(i, j, 0)) != null)
@@ -99,7 +93,7 @@ public class WordTranslate : MonoBehaviour
         int blankRate = 0;
         bool isModify = false;
         Vector3Int space = new Vector3Int(0, 0, 0);
-        if (letter == '\n') 
+        if (letter == '\n')
             return new Vector3Int(windowLeftTop.x, lastRendPos.y - 15, lastRendPos.z);
         // Special situation: \n
         if (letter == ' ') space = new Vector3Int(2, 0, 0);

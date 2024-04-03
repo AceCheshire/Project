@@ -24,12 +24,12 @@ public class SortWelcomeSceneObject : MonoBehaviour
         "Once you finish some milestones in the game, you can check the achievement, " +
         "there may record your game finish rate.";
     private string achievementAlertPassage = "First Tile\n\n" +
-        "  Set the first tile in the stage  --  incomplete\n\n"+
-        "Be A Real Thief\n\n"+"  Finish the stage"
-        +" for the first time  --  incomplete\n\n"
-        +"Thief Master\n\n"
-        +"  Finish the stage at A level  --  incomplete\n\n"
-        +"Finish Rate --  0%\n\n";
+        "  Set the first tile in the stage  --  incomplete\n\n" +
+        "Be A Real Thief\n\n" + "  Finish the stage"
+        + " for the first time  --  incomplete\n\n"
+        + "Thief Master\n\n"
+        + "  Finish the stage at A level  --  incomplete\n\n"
+        + "Finish Rate --  0%\n\n";
 
     // Start is called before the first frame update
     void Start()
