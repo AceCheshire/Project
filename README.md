@@ -403,3 +403,32 @@ Fix bug that runMode cannot normally keep closed if there is no platform.
 Add guideWords for tutorial;
 
 Decrease the difficulty of the tutorial stage.
+
+### 2024/04/03
+
+*2024/04/03/01
+
+Add name System.
+
+### 2024/04/07
+
+&2024/04/07/01
+
+Add scripts for two enchant platform.
+
+### 2024/04/08
+
+&2024/04/08/01
+
+Add new stages.
+
+#2024/04/08/01
+
+Add pictures for Plot.
+
+Improve plots.
+
+
+
+
+

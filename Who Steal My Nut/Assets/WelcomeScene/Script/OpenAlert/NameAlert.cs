@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 public class NameAlert : MonoBehaviour
 {
     public AnimationCurve showCurve;
@@ -14,6 +15,7 @@ public class NameAlert : MonoBehaviour
     public bool shiftStatus = false;
     public string playerName;
     private float time = 0;
+
     IEnumerator ShowAlert(GameObject gameObject)
     {
         float timer = 0;
@@ -24,6 +26,7 @@ public class NameAlert : MonoBehaviour
             yield return null;
         }
     }
+
     IEnumerator HideAlert(GameObject gameObject)
     {
         float timer = 0;
@@ -34,10 +37,12 @@ public class NameAlert : MonoBehaviour
             yield return null;
         }
     }
+
     void Start()
     {
         if (!PlayerPrefs.HasKey("playername"))
         {
+            GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = 31;
             StartCoroutine(ShowAlert(alert));
             alertStatus = true;
         }
@@ -66,7 +71,7 @@ public class NameAlert : MonoBehaviour
             {
                 inputStatus = false;
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
                 shiftStatus = true;
             }
@@ -171,15 +176,15 @@ public class NameAlert : MonoBehaviour
                 else if (shiftStatus && Input.GetKeyUp(KeyCode.RightBracket)) playerName += "}";
                 else if (!shiftStatus && Input.GetKeyUp(KeyCode.RightBracket)) playerName += "]";
                 else if (Input.GetKeyUp(KeyCode.Space)) playerName += " ";
-                else if (Input.GetKeyUp(KeyCode.Backspace)) playerName = playerName.Substring(0, playerName.Length - 1);
-                //input word
+                else if (Input.GetKeyUp(KeyCode.Backspace) && playerName.Length != 0)
+                    playerName = playerName.Substring(0, playerName.Length - 1);
+                //Input Word
                 time -= Time.deltaTime;
                 if (time < 0)
                 {
                     time = 0.2f;
                     GameObject.Find("wordBuffer").GetComponent<WordTranslate>().inputStr = playerName;
                     GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = true;
-                    GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = 31;
                     GameObject.Find("wordRenderer").GetComponent<Transform>().position = new Vector3(1, -2, 1);
                 }
             }

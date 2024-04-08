@@ -325,7 +325,8 @@ public class SortStageTwoObject : MonoBehaviour
         if (mana.totalMana <= 1500)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isA", true);
-            winAlertPassage[5] = "\n                      Real SpellCaster. We honor you.";
+            winAlertPassage[5] = "\n                      " + PlayerPrefs.GetString("playername") + ", "+
+                "\n                      Real SpellCaster. We honor you.";
             if (PlayerPrefs.GetString("achieve3") != "complete")
             {
                 finishRate = PlayerPrefs.GetInt("FinishRate");
@@ -336,12 +337,14 @@ public class SortStageTwoObject : MonoBehaviour
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isB", true);
-            winAlertPassage[5] = "\n                      Practised Magician. Near the top.";
+            winAlertPassage[5] = "\n                      " + PlayerPrefs.GetString("playername") + ", " +
+                "\n                      Practised Magician. Near the top.";
         }
         if (mana.totalMana > 2000)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isC", true);
-            winAlertPassage[5] = "\n                      Just A Noob. You need more efforts.";
+            winAlertPassage[5] = "\n                      " + PlayerPrefs.GetString("playername") + ", " +
+                "\n                      Just A Noob. You need more efforts.";
         }
     }
 }
