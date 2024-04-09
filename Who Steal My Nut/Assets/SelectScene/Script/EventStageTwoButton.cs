@@ -44,7 +44,7 @@ public class EventStageTwoButton : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                SceneManager.LoadScene("StageTwo");
+                SceneManager.LoadScene("Stage Two");
                 animator.SetBool("isHovering", false);
                 animationStatus = false;
             }

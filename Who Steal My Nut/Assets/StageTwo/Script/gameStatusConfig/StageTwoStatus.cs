@@ -7,8 +7,14 @@ public class StageTwoStatus : MonoBehaviour
     /*Lock & Unlock*/
     public bool isEarthCreateMode = false;
     public bool isEnchantCreateMode = false;
+    public bool hasShield = false;
+    public bool isSyncCreateMode = false;
+    public bool isLinkCreateMode = false;
+    public bool isXyzCreateMode = false;
     public bool isRunningMode = false;
     public bool isGameOver = false;
+    
+
     
     /*Timer*/
     public float timer = 0f;
@@ -24,10 +30,13 @@ public class StageTwoStatus : MonoBehaviour
     public List<Vector3Int> posList;
     public List<Vector3Int> obstacleList;
     public List<Vector3Int> enchantList;
+    public List<Vector3Int> shieldList;
+    public List<Vector3Int> boomerList;
     public Vector3Int endPos;
     public Vector3Int startPos;
     public SortStageTwoObject layerController;
     public bool canRun = false;
+
 
     // Start is called before the first frame update
     void Start()

@@ -9,7 +9,8 @@ public class StageOneStatus : MonoBehaviour
     public bool isEnchantCreateMode = false;
     public bool isRunningMode = false;
     public bool isGameOver = false;
-    
+    public bool isCanEnchantCreateMode = false;
+
     /*Timer*/
     public float timer = 0f;
     public float runTimer = 0f;

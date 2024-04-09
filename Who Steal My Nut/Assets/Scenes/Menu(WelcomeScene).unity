@@ -625,8 +625,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.99993765
-      value: -0.00011998264
+      time: 1.0027778
+      value: -0.0031446782
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -1223,18 +1223,6 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
       propertyPath: m_Name
       value: backGround
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626916397498700004, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6890667386373995058, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
-    - target: {fileID: 3626916397498700004, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626916397498700004, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f36c72c5c8fab6c40b6b6ce85b8fc410, type: 3}
       propertyPath: m_LocalScale.x

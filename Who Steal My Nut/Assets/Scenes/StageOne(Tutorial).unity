@@ -4514,6 +4514,7 @@ MonoBehaviour:
   isEnchantCreateMode: 0
   isRunningMode: 0
   isGameOver: 0
+  isCanEnchantCreateMode: 0
   timer: 0
   runTimer: 0
   NutRigidbody: {fileID: 1673671224}
@@ -6251,6 +6252,7 @@ MonoBehaviour:
   wordBuffer: {fileID: 2028757344}
   normGround: {fileID: 980430978}
   judger: {fileID: 1174599529}
+  enchantButton: {fileID: 1697767837}
 --- !u!1 &1093808553
 GameObject:
   m_ObjectHideFlags: 0
@@ -10208,6 +10210,11 @@ CircleCollider2D:
 --- !u!4 &1697767836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 9e28f9389b4716b4aa56fa9f2c97c334, type: 3}
+  m_PrefabInstance: {fileID: 1616991977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1697767837 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: 9e28f9389b4716b4aa56fa9f2c97c334, type: 3}
   m_PrefabInstance: {fileID: 1616991977}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1701448483

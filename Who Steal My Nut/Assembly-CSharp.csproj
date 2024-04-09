@@ -76,6 +76,7 @@
     <Compile Include="Assets\Shared\Script\nut\Falling.cs" />
     <Compile Include="Assets\WelcomeScene\Script\wordTitle\StealAppear.cs" />
     <Compile Include="Assets\StageOne\Script\wordRenderer\FrontRendOneNumTwo.cs" />
+    <Compile Include="Assets\SelectScene\Script\EventStageThreeButton.cs" />
     <Compile Include="Assets\StageOne\Script\gameEarthModeConfig\GameEarthMode.cs" />
     <Compile Include="Assets\Plot\Script\wordStay\WordStayTwinkle.cs" />
     <Compile Include="Assets\Shared\Script\CameraMove\MoveCamera.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Assets\StageTwo\Script\gameStatusConfig\StageTwoStatus.cs" />
     <Compile Include="Assets\Shared\Script\wordBoardExitButton\MouseEventWordBoardExitButton.cs" />
     <Compile Include="Assets\StageTwo\Script\finalRightButton\RightFinalTwo.cs" />
+    <Compile Include="Assets\SelectScene\Script\EventStageFourButton.cs" />
     <Compile Include="Assets\StageTwo\Script\repeatButton\MouseEventRepeatButtonTwo.cs" />
     <Compile Include="Assets\StageOne\Script\wordBuffer\WordTranslateOneNumTwo.cs" />
     <Compile Include="Assets\StageOne\Script\gameStatusConfig\StageOneStatus.cs" />

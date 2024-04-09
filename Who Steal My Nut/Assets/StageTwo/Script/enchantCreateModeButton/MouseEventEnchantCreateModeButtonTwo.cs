@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,10 +8,12 @@ public class MouseEventEnchantCreateModeButtonTwo : MonoBehaviour
     private bool isHovering = false;
     private bool isModeOn = false;
     private bool isOver = false;// Avoid Continuous Judgement
-    private Animator animator;
+    public Animator animator;
     public bool isPressed = false;
     public GameEarthModeTwo gameEarthMode;
     public Tilemap isSetMap;
+    public StageTwoStatus secondStage;
+    public GameEarthModeTwo earth;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +25,8 @@ public class MouseEventEnchantCreateModeButtonTwo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isRunning = GameObject.Find("gameStatusConfig").
-            GetComponent<StageTwoStatus>().isRunningMode
-            || GameObject.Find("gameStatusConfig").
-            GetComponent<StageTwoStatus>().isEarthCreateMode;
+        isRunning = secondStage.isRunningMode
+            || secondStage.isEarthCreateMode;
         if (isRunning) animator.SetBool("isRunModeOn", true);
         else
         {
@@ -58,22 +56,86 @@ public class MouseEventEnchantCreateModeButtonTwo : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // <Open Mode Switch Sync>
-        if (collision.name == "mouse" && isModeOn == false && !isRunning)
+        // <Open Mode Switch >
+        if (collision.name == "mouse" && !isRunning)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering&& secondStage.isXyzCreateMode)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEnchantCreateMode = true;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEarthCreateMode = false;
-                animator.SetBool("isSyncModeOn", true);
+                secondStage.isEnchantCreateMode = true;
+                //secondStage.isSyncCreateMode = true;
+                secondStage.isLinkCreateMode = true;
+                secondStage.isXyzCreateMode = false;
+                secondStage.isEarthCreateMode = false;
+
+                animator.SetBool("isSyncModeOn", false);
+                animator.SetBool("isXyzModeOn", false);
+                animator.SetBool("isLinkModeOn", true);
                 animator.SetBool("isCanHover", false);
+
+                earth.enchantedTile = earth.sourcemap.GetTile(new Vector3Int(-10, -3, 0));
+
                 isOver = true;
                 isModeOn = true;
-                for (int i = -20; i <= 20; i++)
+                for (int i = -50; i <= 50; i++)
                 {
-                    for (int j = -20; j <= 20; j++)
+                    for (int j = -50; j <= 50; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
+                gameEarthMode.isTriggered = false;
+                //Debug.Log("OpenEnchantMode Link");
+            }
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering && secondStage.isSyncCreateMode)
+            {
+                secondStage.isEnchantCreateMode = true;
+                secondStage.isSyncCreateMode = false;
+                //secondStage.isLinkCreateMode = true;
+                secondStage.isXyzCreateMode = true;
+                secondStage.isEarthCreateMode = false;
+
+                animator.SetBool("isSyncModeOn", false);
+                animator.SetBool("isLinkModeOn", false);
+                animator.SetBool("isXyzModeOn", true);
+                animator.SetBool("isCanHover", false);
+
+                earth.enchantedTile = earth.sourcemap.GetTile(new Vector3Int(-11, -4, 0));
+
+                isOver = true;
+                isModeOn = true;
+                for (int i = -50; i <= 50; i++)
+                {
+                    for (int j = -50; j <= 50; j++)
+                    {
+                        isSetMap.SetTile(new(i, j, 0), null);
+                    }
+                }
+                gameEarthMode.isTriggered = false;
+                //Debug.Log("OpenEnchantMode Xyz");
+            }
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering 
+                && !secondStage.isSyncCreateMode
+                && !secondStage.isXyzCreateMode
+                && !secondStage.isLinkCreateMode)
+            {
+                secondStage.isEnchantCreateMode = true;
+                secondStage.isSyncCreateMode = true;
+                //secondStage.isLinkCreateMode = true;
+                //secondStage.isXyzCreateMode = true;
+                secondStage.isEarthCreateMode = false;
+
+                animator.SetBool("isSyncModeOn", true);
+                //animator.SetBool("isLinkModeOn", true);
+                //animator.SetBool("isXyzModeOn", true);
+                animator.SetBool("isCanHover", false);
+
+                earth.enchantedTile = earth.sourcemap.GetTile(new Vector3Int(-9, -2, 0));
+
+                isOver = true;
+                isModeOn = true;
+                for (int i = -50; i <= 50; i++)
+                {
+                    for (int j = -50; j <= 50; j++)
                     {
                         isSetMap.SetTile(new(i, j, 0), null);
                     }
@@ -82,23 +144,28 @@ public class MouseEventEnchantCreateModeButtonTwo : MonoBehaviour
                 //Debug.Log("OpenEnchantMode Sync");
             }
         }
-        // </Open Mode Switch Sync>
+        // </Open Mode Switch>
         // <Close Mode Switch>
         if (collision.name == "mouse" && isModeOn == true && !isRunning)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering && secondStage.isLinkCreateMode)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEarthCreateMode = false;
+                secondStage.isEnchantCreateMode = false;
+                secondStage.isSyncCreateMode = false;
+                secondStage.isLinkCreateMode = false;
+                secondStage.isXyzCreateMode = false;
+                secondStage.isEarthCreateMode = false;
+
                 animator.SetBool("isSyncModeOn", false);
+                animator.SetBool("isLinkModeOn", false);
+                animator.SetBool("isXyzModeOn", false);
                 animator.SetBool("isCanHover", false);
+
                 isOver = true;
                 isModeOn = false;
-                for (int i = -20; i <= 20; i++)
+                for (int i = -50; i <= 50; i++)
                 {
-                    for (int j = -20; j <= 20; j++)
+                    for (int j = -50; j <= 50; j++)
                     {
                         isSetMap.SetTile(new(i, j, 0), null);
                     }

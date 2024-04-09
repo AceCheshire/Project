@@ -13,6 +13,7 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
     private Animator animator;
     public bool isPressed = false;
     public GameEarthModeTwo gameEarthMode;
+    public StageTwoStatus secondStage;
     public Tilemap isSetMap;
 
     // Start is called before the first frame update
@@ -25,10 +26,8 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isRunning = GameObject.Find("gameStatusConfig").
-            GetComponent<StageTwoStatus>().isRunningMode
-            || GameObject.Find("gameStatusConfig").
-            GetComponent<StageTwoStatus>().isEnchantCreateMode;
+        isRunning = secondStage.isRunningMode
+            || secondStage.isEnchantCreateMode;
         if (isRunning) animator.SetBool("isRunModeOn", true);
         else
         {
@@ -63,10 +62,8 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEarthCreateMode = true;
+                secondStage.isEnchantCreateMode = false;
+                secondStage.isEarthCreateMode = true;
                 animator.SetBool("isModeOn", true);
                 animator.SetBool("isCanHover", false);
                 isOver = true;
@@ -79,7 +76,7 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
                     }
                 }
                 gameEarthMode.isTriggered = false;
-                //Debug.Log("OpenEarthMode");
+                Debug.Log("OpenEarthMode");
             }
         }
         // </Open Mode Switch>
@@ -88,10 +85,8 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageTwoStatus>().isEarthCreateMode = false;
+                secondStage.isEnchantCreateMode = false;
+                secondStage.isEarthCreateMode = false;
                 animator.SetBool("isModeOn", false);
                 animator.SetBool("isCanHover", false);
                 isOver = true;

@@ -7,6 +7,8 @@ public class GameEarthModeTwo : MonoBehaviour
     public MouseEventEarthCreateModeButtonTwo earthButton;
     public MouseEventEnchantCreateModeButtonTwo enchantButton;
     public MouseEventRunModeButtonTwo runModeButton;
+    //public MouseShieldEarthCreateModeButtonTwo shieldButton;
+    //public MouseBoomerEnchantCreateModeButtonTwo boomerButton;
     public MoveCameraTwo camMove;
     public Tilemap startmap;
     public Tilemap sourcemap;
@@ -14,19 +16,21 @@ public class GameEarthModeTwo : MonoBehaviour
     public Tilemap isSetMap;
     public Tilemap tileNormGround;
     public Tilemap tileSyncGround;
+    public Tilemap tileLinkGround;
+    public Tilemap tileXyzGround;
     public bool isTriggered = false;// Detect the first tile 
     public bool isFirstSet = true;
     private bool isPressed = false;
     private int finishrate;
 
     private TileBase tile;
-    private TileBase enchantedTile;
+    public TileBase enchantedTile;
 
     public Vector3 mousePos;
     public Vector3 worldPos;
     public Vector3Int currentCellPos;
     private Vector3Int lastCellPos = new Vector3Int();
-    public StageTwoStatus gameStatusConfig;
+    public StageTwoStatus secondStage;
 
     // Start is called before the first frame update
     void Start()
@@ -39,17 +43,18 @@ public class GameEarthModeTwo : MonoBehaviour
     void Update()
     {
         isPressed = earthButton.isPressed || enchantButton.isPressed || runModeButton.isPressed;
-        if (gameStatusConfig.isEarthCreateMode)
+        if (secondStage.isEarthCreateMode)
         {
             ResetTile();
             SetTile();
         }
-        if (gameStatusConfig.isEnchantCreateMode)
+        if (secondStage.isEnchantCreateMode)
         {
             ResetEnchantTile();
             SetEnchantTile();
         }
-        if (gameStatusConfig.posList.Count == 0) isFirstSet = true;
+        
+        if (secondStage.posList.Count == 0) isFirstSet = true;
         else { isFirstSet = false; }
     }
 
@@ -71,9 +76,9 @@ public class GameEarthModeTwo : MonoBehaviour
         if (currentCellPos != lastCellPos)
         {
             //Debug.Log(currentCellPos);
-            for (int i = -20; i <= 20; i++)
+            for (int i = -50; i <= 50; i++)
             {
-                for (int j = -20; j <= 20; j++)
+                for (int j = -50; j <= 50; j++)
                 {
                     isSetMap.SetTile(new(i, j, 0), null);
                 }
@@ -125,27 +130,27 @@ public class GameEarthModeTwo : MonoBehaviour
     public void SetTile()
     {
         if (isSetMap.GetTile(currentCellPos) != null
-            && Input.GetKey(KeyCode.Mouse0) && !gameStatusConfig.posList.Contains(currentCellPos)
-            && !gameStatusConfig.obstacleList.Contains(currentCellPos)
+            && Input.GetKey(KeyCode.Mouse0) && !secondStage.posList.Contains(currentCellPos)
+            && !secondStage.obstacleList.Contains(currentCellPos)
             && !isPressed && (!isFirstSet || (isFirstSet && startmap.GetTile(currentCellPos) != null)))
         {
             tileNormGround.SetTile(currentCellPos, tile);
-            gameStatusConfig.canRun = true;
-            gameStatusConfig.posList.Add(currentCellPos);
+            secondStage.canRun = true;
+            secondStage.posList.Add(currentCellPos);
             if (PlayerPrefs.GetString("achieve1") != "complete")
             {
                 finishrate = PlayerPrefs.GetInt("FinishRate");
                 PlayerPrefs.SetString("achieve1", "complete");
                 PlayerPrefs.SetInt("FinishRate", finishrate + 20);
             }
-            //Debug.Log("A tile has been set at " + currentCellPos);
+            Debug.Log("A tile has been set at " + currentCellPos);
         }
         if (isSetMap.GetTile(currentCellPos) != null
-            && Input.GetKey(KeyCode.Mouse1) && !gameStatusConfig.enchantList.Contains(currentCellPos))
+            && Input.GetKey(KeyCode.Mouse1) && !secondStage.enchantList.Contains(currentCellPos))
         {
             tileNormGround.SetTile(currentCellPos, null);
-            if (gameStatusConfig.posList.Count == 1) gameStatusConfig.canRun = false;
-            gameStatusConfig.posList.Remove(currentCellPos);
+            if (secondStage.posList.Count == 1) secondStage.canRun = false;
+            secondStage.posList.Remove(currentCellPos);
             //Debug.Log("A tile has been removed at " + currentCellPos);
         }
     }
@@ -153,18 +158,48 @@ public class GameEarthModeTwo : MonoBehaviour
     public void SetEnchantTile()
     {
         if (isSetMap.GetTile(currentCellPos) != null
-            && Input.GetKey(KeyCode.Mouse0) && gameStatusConfig.posList.Contains(currentCellPos)
-            && !gameStatusConfig.enchantList.Contains(currentCellPos) && !isPressed)
+            && Input.GetKey(KeyCode.Mouse0) && secondStage.posList.Contains(currentCellPos)
+            && !secondStage.enchantList.Contains(currentCellPos)
+            && !secondStage.boomerList.Contains(currentCellPos) &&
+            !secondStage.shieldList.Contains(currentCellPos) && !isPressed)
         {
-            tileSyncGround.SetTile(currentCellPos, enchantedTile);
-            gameStatusConfig.enchantList.Add(currentCellPos);
+            if (secondStage.isSyncCreateMode == true)
+            {
+                tileSyncGround.SetTile(currentCellPos, enchantedTile);
+                secondStage.enchantList.Add(currentCellPos);
+            }
+            else if (secondStage.isLinkCreateMode == true)
+            {
+                tileLinkGround.SetTile(currentCellPos, enchantedTile);
+                secondStage.boomerList.Add(currentCellPos);
+            }
+            else if (secondStage.isXyzCreateMode == true)
+            {
+                tileXyzGround.SetTile(currentCellPos, enchantedTile);
+                secondStage.shieldList.Add(currentCellPos);
+            }
+
             //Debug.Log("A tile has been set at " + currentCellPos);
         }
         if (isSetMap.GetTile(currentCellPos) != null
             && Input.GetKey(KeyCode.Mouse1))
         {
-            tileSyncGround.SetTile(currentCellPos, null);
-            gameStatusConfig.enchantList.Remove(currentCellPos);
+            if (secondStage.isSyncCreateMode == true)
+            {
+                tileSyncGround.SetTile(currentCellPos, null);
+                secondStage.enchantList.Remove(currentCellPos);
+            }
+            else if (secondStage.isLinkCreateMode == true)
+            {
+                tileLinkGround.SetTile(currentCellPos, null);
+                secondStage.boomerList.Remove(currentCellPos);
+            }
+            else if (secondStage.isXyzCreateMode == true)
+            {
+                tileXyzGround.SetTile(currentCellPos, null);
+                secondStage.shieldList.Remove(currentCellPos);
+            }
+
             //Debug.Log("A tile has been removed at " + currentCellPos);
         }
     }

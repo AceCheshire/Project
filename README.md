@@ -428,6 +428,14 @@ Add pictures for Plot.
 
 Improve plots.
 
+### 2024/04/09
+
+#2024/04/09/01
+
+Fix some bugs.
+
+Add animator for enchant.
+
 
 
 

@@ -1,16 +1,17 @@
-using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class FallingTwo : MonoBehaviour
 {
-    public StageTwoStatus firstStage;
+    public StageTwoStatus secondStage;
     public Rigidbody2D nutRigidbody;
     public GameObject nutObject;
     public SpriteRenderer nutRenderer;
     public Tilemap tileNormGround;
     public Tilemap tileSyncGround;
+    public Tilemap tileLinkGround;
+    public Tilemap tileXyzGround;
+    public Tilemap tileObastacleGround;
     public Camera cam;
     public AudioSource sound;
 
@@ -39,20 +40,20 @@ public class FallingTwo : MonoBehaviour
         //Debug.Log("tileNumber=" + tileNumber);
         //Debug.Log(firstStage.isRunningMode);
         //Debug.Log("isWating:" + isWaitingBirth);
-        if (firstStage.isRunningMode == true)
+        if (secondStage.isRunningMode == true)
         {
             /*for(int i=0;i< firstStage.posList.Count; i++)
             {
                 Debug.Log("The No." + i + " tile is at " + firstStage.posList[i]);
             }*/
             FirstDown();
-            tileNumber = firstStage.posList.Count - 1;
+            tileNumber = secondStage.posList.Count - 1;
         }
         if (isWaitingBirth == false)
         {
             for (int i = 0; i <= tileNumber; i++)
             {
-                if (tileNormGround.WorldToCell((nutObject.transform.position - worldOffset)) == firstStage.posList[i]
+                if (tileNormGround.WorldToCell((nutObject.transform.position - worldOffset)) == secondStage.posList[i]
                     && i == Counting
                     && nutRigidbody.velocity.y <= 0)
                 {
@@ -72,17 +73,13 @@ public class FallingTwo : MonoBehaviour
                         //Debug.Log("Collision with " + Counting + " tile");
                         //Debug.Log("The Nut is at"+ nutObject.transform.position);
                         //Debug.Log("The No." + i + " tile is at " + firstStage.posList[i]);
-                        nutDestination = tileNormGround.CellToWorld(firstStage.posList[i + 1]) -
-                            tileNormGround.CellToWorld(firstStage.posList[i]);
+                        nutDestination = tileNormGround.CellToWorld(secondStage.posList[i + 1]) -
+                            tileNormGround.CellToWorld(secondStage.posList[i]);
+
                         SameLineJudge(i);
-                        if (!firstStage.enchantList.Contains(firstStage.posList[i])
-                            || !firstStage.enchantList.Contains(firstStage.posList[i + 1]))
-                        {
-                            sound.Play();
-                            Bounce(nutDestination);
-                        }
-                        else if (firstStage.enchantList.Contains(firstStage.posList[i])
-                            && firstStage.enchantList.Contains(firstStage.posList[i + 1]))
+
+                        if (secondStage.enchantList.Contains(secondStage.posList[i])
+                            && secondStage.enchantList.Contains(secondStage.posList[i + 1]))
                         {
                             if (Mathf.Abs(nutDestination.x) <= 5.2f && Mathf.Abs(nutDestination.y) <= 2.6f)
                                 EnchantBounce(nutDestination, i);
@@ -91,6 +88,32 @@ public class FallingTwo : MonoBehaviour
                                 sound.Play();
                                 Bounce(nutDestination); 
                             }
+                        }
+                        else if (secondStage.shieldList.Contains(secondStage.posList[i]))
+                        {
+                            secondStage.hasShield = true;
+                            sound.Play();
+                            Bounce(nutDestination);
+                        }
+                        else if (secondStage.boomerList.Contains(secondStage.posList[i])) {
+                            for(int x = -1; x <= 1; x++) {
+                                for(int y = -1; y <= 1; y++)
+                                {
+                                    Vector3Int order = secondStage.posList[i] + new Vector3Int(x, y, 0);
+                                    if (tileObastacleGround.GetTile(order) != null)
+                                    {
+                                        tileObastacleGround.SetTile(order, null);
+                                        secondStage.obstacleList.Remove(order);
+                                    }
+                                }
+                            }
+                            sound.Play();
+                            Bounce(nutDestination);
+                        }
+                        else
+                        {
+                            sound.Play();
+                            Bounce(nutDestination);
                         }
                         Counting++;
                     }
@@ -102,7 +125,7 @@ public class FallingTwo : MonoBehaviour
     {
         if (isWaitingBirth == true)
         {
-            nutObject.transform.position = tileNormGround.GetCellCenterWorld(firstStage.posList[0] + birthOffset);
+            nutObject.transform.position = tileNormGround.GetCellCenterWorld(secondStage.posList[0] + birthOffset);
             nutRigidbody.gravityScale = 1;
             nutRenderer.enabled = true;
             isWaitingBirth = false;// Teleport to the Birth Position
@@ -111,13 +134,13 @@ public class FallingTwo : MonoBehaviour
     public void EnchantBounce(Vector3 Destination, int i)
     {
         nutRigidbody.velocity = new Vector2(0, nutRigidbody.velocity.y);
-        nutObject.transform.position = tileNormGround.CellToWorld(firstStage.posList[i + 1] + new Vector3Int(2, 2, 0));
-        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(firstStage.endPos).x)
+        nutObject.transform.position = tileNormGround.CellToWorld(secondStage.posList[i + 1] + new Vector3Int(2, 2, 0));
+        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(secondStage.endPos).x)
             cam.transform.position = new Vector3
                 (cam.transform.position.x,
                 cam.transform.position.y + Destination.y,
                 cam.transform.position.z + Destination.z);
-        else if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
+        else if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(secondStage.endPos).y)
             cam.transform.position = new Vector3
                 (cam.transform.position.x + Destination.x,
                 cam.transform.position.y,
@@ -149,34 +172,34 @@ public class FallingTwo : MonoBehaviour
         //localOffset = new Vector3(0.85f * x / length, 0.85f * y / length, 0.85f * z / length);
         //Debug.Log(nutRigidbody.velocity);
         cam.GetComponent<Rigidbody2D>().velocity = 2f * new Vector2(x / length, y / length);
-        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(firstStage.endPos).x)
+        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(secondStage.endPos).x)
             cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(x / length, 0);
-        if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(firstStage.endPos).y)
+        if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(secondStage.endPos).y)
             cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(0, y / length);
     }
 
     private void SameLineJudge(int i)
     {
-        if (firstStage.enchantList.Contains(firstStage.posList[i])) isSameLineObstacle = false;
+        if (secondStage.enchantList.Contains(secondStage.posList[i])) isSameLineObstacle = false;
         else
         {
-            if (firstStage.posList[i + 1].x >= firstStage.posList[i].x)
+            if (secondStage.posList[i + 1].x >= secondStage.posList[i].x)
             {
-                for (int j = firstStage.posList[i].x; j <= firstStage.posList[i + 1].x; j++)
+                for (int j = secondStage.posList[i].x; j <= secondStage.posList[i + 1].x; j++)
                 {
-                    if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
+                    if (secondStage.posList[i + 1].y >= secondStage.posList[i].y)
                     {
-                        for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
+                        for (int k = secondStage.posList[i].y; k <= secondStage.posList[i + 1].y; k++)
                         {
-                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                            if (secondStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
                                 isSameLineObstacle = true;
                         }
                     }
                     else
                     {
-                        for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
+                        for (int k = secondStage.posList[i + 1].y; k <= secondStage.posList[i].y; k++)
                         {
-                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                            if (secondStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
                                 isSameLineObstacle = true;
                         }
                     }
@@ -184,21 +207,21 @@ public class FallingTwo : MonoBehaviour
             }
             else
             {
-                for (int j = firstStage.posList[i + 1].x; j <= firstStage.posList[i].x; j++)
+                for (int j = secondStage.posList[i + 1].x; j <= secondStage.posList[i].x; j++)
                 {
-                    if (firstStage.posList[i + 1].y >= firstStage.posList[i].y)
+                    if (secondStage.posList[i + 1].y >= secondStage.posList[i].y)
                     {
-                        for (int k = firstStage.posList[i].y; k <= firstStage.posList[i + 1].y; k++)
+                        for (int k = secondStage.posList[i].y; k <= secondStage.posList[i + 1].y; k++)
                         {
-                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                            if (secondStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
                                 isSameLineObstacle = true;
                         }
                     }
                     else
                     {
-                        for (int k = firstStage.posList[i + 1].y; k <= firstStage.posList[i].y; k++)
+                        for (int k = secondStage.posList[i + 1].y; k <= secondStage.posList[i].y; k++)
                         {
-                            if (firstStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
+                            if (secondStage.obstacleList.Contains(new Vector3Int(j, k, 0)))
                                 isSameLineObstacle = true;
                         }
                     }

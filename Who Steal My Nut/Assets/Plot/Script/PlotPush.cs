@@ -133,7 +133,7 @@ public class PlotPush : MonoBehaviour
         {
             if (timer > 0.2f && timer < 0.5f)
             {
-                GameObject.Find("Retina").transform.position = new(0, -6.7f - 0.3f * Mathf.PingPong((timer - 0.2f) / 0.3f, 1), 0);
+                GameObject.Find("Retina").transform.position = new(0, -6.75f - 0.25f * Mathf.PingPong((timer - 0.2f) / 0.3f, 1), 0);
                 GameObject.Find("Kidd").transform.position = new(0, -6.82f - 0.18f * Mathf.PingPong((timer - 0.2f) / 0.3f, 1), 0);
             }
             wordRenderer.GetComponent<TilemapRenderer>().material.color = new Color
@@ -141,7 +141,7 @@ public class PlotPush : MonoBehaviour
         }
         if (timer < 0.2f)
         {
-            GameObject.Find("Retina").transform.position = new(0, -7 + 0.3f * Mathf.PingPong(timer / 0.2f, 1), 0);
+            GameObject.Find("Retina").transform.position = new(0, -7 + 0.25f * Mathf.PingPong(timer / 0.2f, 1), 0);
             GameObject.Find("Kidd").transform.position = new(0, -7 + 0.18f * Mathf.PingPong(timer / 0.2f, 1), 0);
             wordRenderer.GetComponent<TilemapRenderer>().material.color = new Color
                 (rValue, gValue, bValue, 0);// Keep Alpha = 0

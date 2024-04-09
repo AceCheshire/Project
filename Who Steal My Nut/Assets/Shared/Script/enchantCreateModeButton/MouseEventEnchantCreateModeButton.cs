@@ -58,55 +58,59 @@ public class MouseEventEnchantCreateModeButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // <Open Mode Switch Sync>
-        if (collision.name == "mouse" && isModeOn == false && !isRunning)
+        if (GameObject.Find("gameStatusConfig").
+    GetComponent<StageOneStatus>().isCanEnchantCreateMode)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
+            // <Open Mode Switch Sync>
+            if (collision.name == "mouse" && isModeOn == false && !isRunning)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEnchantCreateMode = true;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEarthCreateMode = false;
-                animator.SetBool("isSyncModeOn", true);
-                animator.SetBool("isCanHover", false);
-                isOver = true;
-                isModeOn = true;
-                for (int i = -20; i <= 20; i++)
+                if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
                 {
-                    for (int j = -20; j <= 20; j++)
+                    GameObject.Find("gameStatusConfig").
+                        GetComponent<StageOneStatus>().isEnchantCreateMode = true;
+                    GameObject.Find("gameStatusConfig").
+                        GetComponent<StageOneStatus>().isEarthCreateMode = false;
+                    animator.SetBool("isSyncModeOn", true);
+                    animator.SetBool("isCanHover", false);
+                    isOver = true;
+                    isModeOn = true;
+                    for (int i = -20; i <= 20; i++)
                     {
-                        isSetMap.SetTile(new(i, j, 0), null);
+                        for (int j = -20; j <= 20; j++)
+                        {
+                            isSetMap.SetTile(new(i, j, 0), null);
+                        }
                     }
+                    gameEarthMode.isTriggered = false;
+                    //Debug.Log("OpenEnchantMode Sync");
                 }
-                gameEarthMode.isTriggered = false;
-                //Debug.Log("OpenEnchantMode Sync");
             }
-        }
-        // </Open Mode Switch Sync>
-        // <Close Mode Switch>
-        if (collision.name == "mouse" && isModeOn == true && !isRunning)
-        {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
+            // </Open Mode Switch Sync>
+            // <Close Mode Switch>
+            if (collision.name == "mouse" && isModeOn == true && !isRunning)
             {
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEnchantCreateMode = false;
-                GameObject.Find("gameStatusConfig").
-                    GetComponent<StageOneStatus>().isEarthCreateMode = false;
-                animator.SetBool("isSyncModeOn", false);
-                animator.SetBool("isCanHover", false);
-                isOver = true;
-                isModeOn = false;
-                for (int i = -20; i <= 20; i++)
+                if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
                 {
-                    for (int j = -20; j <= 20; j++)
+                    GameObject.Find("gameStatusConfig").
+                        GetComponent<StageOneStatus>().isEnchantCreateMode = false;
+                    GameObject.Find("gameStatusConfig").
+                        GetComponent<StageOneStatus>().isEarthCreateMode = false;
+                    animator.SetBool("isSyncModeOn", false);
+                    animator.SetBool("isCanHover", false);
+                    isOver = true;
+                    isModeOn = false;
+                    for (int i = -20; i <= 20; i++)
                     {
-                        isSetMap.SetTile(new(i, j, 0), null);
+                        for (int j = -20; j <= 20; j++)
+                        {
+                            isSetMap.SetTile(new(i, j, 0), null);
+                        }
                     }
+                    //Debug.Log("CloseEnchantMode Sync");
                 }
-                //Debug.Log("CloseEnchantMode Sync");
             }
+            // </Close Mode Switch>
         }
-        // </Close Mode Switch>
     }
 
     private void OnTriggerExit2D(Collider2D collision)
