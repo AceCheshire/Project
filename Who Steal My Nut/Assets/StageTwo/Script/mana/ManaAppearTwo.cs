@@ -22,7 +22,14 @@ public class ManaAppearTwo : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        totalMana = status.enchantList.Count * 150 + status.posList.Count * 100;
+        if (GameObject.Find("enchantCreateModeButton").GetComponent<Animator>().GetBool("isSyncModeOn"))
+            enchantMana = 150;
+        if (GameObject.Find("enchantCreateModeButton").GetComponent<Animator>().GetBool("isXyzModeOn"))
+            enchantMana = 125;
+        if (GameObject.Find("enchantCreateModeButton").GetComponent<Animator>().GetBool("isLinkModeOn"))
+            enchantMana = 175;
+        totalMana = status.enchantList.Count * 150 + status.posList.Count * 100 +
+            status.shieldList.Count * 125 + status.boomerList.Count * 175;
         if (status.isEarthCreateMode == true || status.isEnchantCreateMode == true)
         {
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 30;

@@ -53,10 +53,10 @@ public class GuidePushTwo : MonoBehaviour
         guideText[6] = "3.2 How to Cancel Enchant\n\n" +
             "when you can preview your enchanted platform, \nclick your right mouse button, " +
             "and you can figure \nout your newly deleted enchanted platform.\n\n";
-        guideText[7] = "3.3 Enchanted Platform\n\nMana Cost -- 75\n" +
-            "Bounce Ability -- Far / Normal\nBounce Speed -- Equal\n" +
-            "Special Attribute -- If you set more than two \nenchanted platform, when nut touch the platform, " +
-            "it will instantly move to the next enchanted platform if their distance is not too far.\n\n" +
+        guideText[7] = "3.3 Enchanted Platform\n\nMana Cost -- 150 / 125 / 175\n" +
+            "Bounce Ability -- Far / Normal / Normal\nBounce Speed -- Quick / Equal / Equal\n" +
+            "Special Attribute -- Teleport between two white \nplatforms / Add a shield for your nut / " +
+            "Destroy \nsurrounding obstacles\n\n" +
             "Before 4 How To Move Map\n\nTry WASD or the four Arrow Keys.\n\n";
         guideText[8] = "4 Map\n\n4.1 Start Point\n\n" +
             "you must set your first platform at  the start point.\n\n" +

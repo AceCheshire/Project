@@ -24,7 +24,7 @@ public class GuideCorner : MonoBehaviour
         guideWords[3] = "Set more platforms until the last platform touches the end point which is shining";
         guideWords[4] = "Now try to close earth - create mode by click the button again";
         guideWords[5] = "Click the Run Mode Button to push nut down";
-        guideWords[6] = "Game Over! Click the Repeat Button to try again!";
+        guideWords[6] = "Game Over! You have unlocked Enchant Create Mode in following stages!";
         guideWords[7] = "Using Enchant Create Mode in this stage is not allowed";
     }
 

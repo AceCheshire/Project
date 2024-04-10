@@ -12,6 +12,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     public bool isAlert = false;
     private bool isPreDisplay = false;
     private bool isDisplay = true;
+    public NameAlert nameAlert;
 
     /*Words*/
     private string readmeAlertPassage = "/*You can turn pages with scrollwheel of mouse*/\n\n" +
@@ -60,12 +61,12 @@ public class SortWelcomeSceneObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAlert == true && !isDisplay)
+        if (isAlert == true && !isDisplay && !nameAlert.alertStatus)
         {
             OpenAlert();
             isDisplay = true;
         }
-        if (isAlert == true && !isPreDisplay)
+        if (isAlert == true && !isPreDisplay && !nameAlert.alertStatus)
         {
             isDisplay = false;
             isPreDisplay = true;

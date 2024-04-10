@@ -76,8 +76,6 @@ public class FallingTwo : MonoBehaviour
                         nutDestination = tileNormGround.CellToWorld(secondStage.posList[i + 1]) -
                             tileNormGround.CellToWorld(secondStage.posList[i]);
 
-                        SameLineJudge(i);
-
                         if (secondStage.enchantList.Contains(secondStage.posList[i])
                             && secondStage.enchantList.Contains(secondStage.posList[i + 1]))
                         {
@@ -97,7 +95,7 @@ public class FallingTwo : MonoBehaviour
                         }
                         else if (secondStage.boomerList.Contains(secondStage.posList[i])) {
                             for(int x = -1; x <= 1; x++) {
-                                for(int y = -1; y <= 1; y++)
+                                for(int y = -2; y <= 0; y++)
                                 {
                                     Vector3Int order = secondStage.posList[i] + new Vector3Int(x, y, 0);
                                     if (tileObastacleGround.GetTile(order) != null)
@@ -115,6 +113,7 @@ public class FallingTwo : MonoBehaviour
                             sound.Play();
                             Bounce(nutDestination);
                         }
+                        SameLineJudge(i);
                         Counting++;
                     }
                 }

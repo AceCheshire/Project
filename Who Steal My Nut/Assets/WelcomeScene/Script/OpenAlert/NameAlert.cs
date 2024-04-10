@@ -15,6 +15,9 @@ public class NameAlert : MonoBehaviour
     public bool shiftStatus = false;
     public string playerName;
     private float time = 0;
+    private float tipTime = 0;
+    private bool inputTwinkle = false;
+    private string tipString = "DECIDE WHAT WE CALL YOU !\nEnter your name (Tab + name + Enter)\n";
 
     IEnumerator ShowAlert(GameObject gameObject)
     {
@@ -30,7 +33,7 @@ public class NameAlert : MonoBehaviour
     IEnumerator HideAlert(GameObject gameObject)
     {
         float timer = 0;
-        while (timer <= 1)
+        while (timer <= 1.1f)
         {
             gameObject.transform.localScale = 2 * Vector3.one * hideCurve.Evaluate(timer);
             timer += Time.deltaTime * animationspeed;
@@ -45,7 +48,9 @@ public class NameAlert : MonoBehaviour
             GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = 31;
             StartCoroutine(ShowAlert(alert));
             alertStatus = true;
+            GameObject.Find("WelcomeSceneSortingOrderConfig").GetComponent<SortWelcomeSceneObject>().isAlert = true;
         }
+        tipTime = 1.1f;
     }
 
     private void Update()
@@ -58,8 +63,20 @@ public class NameAlert : MonoBehaviour
             GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = false;
             GameObject.Find("wordRenderer").GetComponent<TilemapRenderer>().sortingOrder = -1;
             GameObject.Find("wordRenderer").GetComponent<Transform>().position = new Vector3(0, 0, 0);
+            GameObject.Find("WelcomeSceneSortingOrderConfig").GetComponent<SortWelcomeSceneObject>().isAlert = false;
             PlayerPrefs.SetString("playername", playerName);
             PlayerPrefs.Save();
+        }
+        if (alertStatus && !inputStatus)
+        {
+            tipTime -= Time.deltaTime;
+            if (tipTime < 0)
+            {
+                tipTime = 10000f;
+                GameObject.Find("wordBuffer").GetComponent<WordTranslate>().inputStr = tipString;
+                GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = true;
+                GameObject.Find("wordRenderer").GetComponent<Transform>().position = new Vector3(0.6f, -0.2f, 0);
+            }
         }
         if (alertStatus)
         {
@@ -182,10 +199,14 @@ public class NameAlert : MonoBehaviour
                 time -= Time.deltaTime;
                 if (time < 0)
                 {
-                    time = 0.2f;
-                    GameObject.Find("wordBuffer").GetComponent<WordTranslate>().inputStr = playerName;
+                    time = 0.5f;
+                    inputTwinkle = !inputTwinkle;
+                    if (inputTwinkle)
+                        GameObject.Find("wordBuffer").GetComponent<WordTranslate>().inputStr = tipString + playerName + "l";
+                    if (!inputTwinkle)
+                        GameObject.Find("wordBuffer").GetComponent<WordTranslate>().inputStr = tipString + playerName;
                     GameObject.Find("wordBuffer").GetComponent<WordTranslate>().isWaitingRend = true;
-                    GameObject.Find("wordRenderer").GetComponent<Transform>().position = new Vector3(1, -2, 1);
+                    GameObject.Find("wordRenderer").GetComponent<Transform>().position = new Vector3(0.6f, -0.2f, 0);
                 }
             }
         }

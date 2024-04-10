@@ -307,7 +307,7 @@ public class SortStageTwoObject : MonoBehaviour
         OneAlertOff();
         isAlert = true;
         isFinal = true;
-        goalScene = 0;
+        goalScene = -1;
         GameObject.Find("wordBufferFinal").GetComponent<WordTranslateFinal>().isWaitingRend = true;
     }
 
