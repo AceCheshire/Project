@@ -45,13 +45,12 @@ public class SortStageTwoObject : MonoBehaviour
         winAlertPassage[2] = "Used Platform    ";
         winAlertPassage[3] = "Used Time    ";
         winAlertPassage[4] = "Used Runtime ";
-        if (PlayerPrefs.GetInt("SET") != 1)
+        if (!PlayerPrefs.HasKey("Stage2Mana"))
         {
-            PlayerPrefs.SetInt("SET", 1);
-            PlayerPrefs.SetInt("Mana", 100000);
-            PlayerPrefs.SetFloat("Runtimer", 100000f);
-            PlayerPrefs.SetInt("Tilecount", 100000);
-            PlayerPrefs.SetFloat("Timer", 100000f);
+            PlayerPrefs.SetInt("Stage2Mana", 100000);
+            PlayerPrefs.SetFloat("Stage2Runtimer", 100000f);
+            PlayerPrefs.SetInt("Stage2Tilecount", 100000);
+            PlayerPrefs.SetFloat("Stage2Timer", 100000f);
             PlayerPrefs.Save();
         }
         //Debug.Log("LayerController Start!");
@@ -271,24 +270,24 @@ public class SortStageTwoObject : MonoBehaviour
     /*For Public Reference*/
     public void OneWinAlertOn()
     {
-        if (mana.totalMana < PlayerPrefs.GetInt("Mana"))
+        if (mana.totalMana < PlayerPrefs.GetInt("Stage2Mana"))
         {
-            PlayerPrefs.SetInt("Mana", mana.totalMana);
+            PlayerPrefs.SetInt("Stage2Mana", mana.totalMana);
             PlayerPrefs.Save();
         }
-        if (status.posList.Count < PlayerPrefs.GetInt("Tilecount"))
+        if (status.posList.Count < PlayerPrefs.GetInt("Stage2Tilecount"))
         {
-            PlayerPrefs.SetInt("Tilecount", status.posList.Count);
+            PlayerPrefs.SetInt("Stage2Tilecount", status.posList.Count);
             PlayerPrefs.Save();
         }
-        if (status.timer < PlayerPrefs.GetFloat("Timer"))
+        if (status.timer < PlayerPrefs.GetFloat("Stage2Timer"))
         {
-            PlayerPrefs.SetFloat("Timer", status.timer);
+            PlayerPrefs.SetFloat("Stage2Timer", status.timer);
             PlayerPrefs.Save();
         }
-        if (status.runTimer < PlayerPrefs.GetFloat("Runtimer"))
+        if (status.runTimer < PlayerPrefs.GetFloat("Stage2Runtimer"))
         {
-            PlayerPrefs.SetFloat("Runtimer", status.runTimer);
+            PlayerPrefs.SetFloat("Stage2Runtimer", status.runTimer);
             PlayerPrefs.Save();
         }
         if (PlayerPrefs.GetString("achieve2") != "complete")
@@ -300,10 +299,10 @@ public class SortStageTwoObject : MonoBehaviour
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
             GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + "\n" +
-            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Mana") + "     " + "        -     \n" +
-            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Tilecount") + "     " + "         -     \n" +
-            winAlertPassage[3] + status.timer + " sec   " + PlayerPrefs.GetFloat("Timer") + " sec     " + "      -\n" +
-            winAlertPassage[4] + status.runTimer + " sec   " + PlayerPrefs.GetFloat("Runtimer") + " sec     " + "     -\n\n" +
+            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Stage2Mana") + "     " + "        -     \n" +
+            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Stage2Tilecount") + "     " + "         -     \n" +
+            winAlertPassage[3] + status.timer + " sec   " + PlayerPrefs.GetFloat("Stage2Timer") + " sec     " + "      -\n" +
+            winAlertPassage[4] + status.runTimer + " sec   " + PlayerPrefs.GetFloat("Stage2Runtimer") + " sec     " + "     -\n\n" +
             winAlertPassage[5];
         OneAlertOff();
         isAlert = true;
@@ -325,7 +324,7 @@ public class SortStageTwoObject : MonoBehaviour
         if (mana.totalMana <= 1500)
         {
             GameObject.Find("finalBoard").GetComponent<Animator>().SetBool("isA", true);
-            winAlertPassage[5] = "\n                      " + PlayerPrefs.GetString("playername") + ", "+
+            winAlertPassage[5] = "\n                      " + PlayerPrefs.GetString("playername") + ", " +
                 "\n                      Real SpellCaster. We honor you.";
             if (PlayerPrefs.GetString("achieve3") != "complete")
             {
