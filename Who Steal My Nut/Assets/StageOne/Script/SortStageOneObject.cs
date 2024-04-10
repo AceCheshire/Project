@@ -1,10 +1,35 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-
+using UnityEngine.Networking;
+using System;
+using System.Collections;
+using System.Data.Common;
+using System.Collections.Generic;
+using System.Net;
+using Unity.Mathematics;
+[System.Serializable]
+public class Score
+{
+    public bool success;
+    public Data data;
+}
+[System.Serializable]
+public class Data
+{
+    public string name;
+    public int worldmana;
+    public int worldplatform;
+    public float worldtime;
+    public float worldruntime;
+}
 public class SortStageOneObject : MonoBehaviour
 {
     /*Default Setting*/
+    UnityWebRequest webRequest;
+    private string downloadUrl = "";
+    private string uploadUrl = "";
+    private string playername = "";
     private int smallWordBoardOn = 29;
     private int rightButtonOn = 30;
     private int leftButtonOn = 30;
@@ -22,7 +47,10 @@ public class SortStageOneObject : MonoBehaviour
     public ManaAppear mana;
     public StageOneStatus status;
     public Camera cam;
+    public Score topScore;
     private int finishRate;
+    private float time;
+    private float runtime;
 
     /*Words*/
     private string homeAlertPassage = "Back to WelcomeScene?";
@@ -36,24 +64,27 @@ public class SortStageOneObject : MonoBehaviour
         "Introduction About How To Play This Game\n\nYou can press \" Tab \" button to " +
         "turn to the main \ntext or page down, and \" LeftCtrl \" button to page \nup.";
 
-
     // Start is called before the first frame update
     void Start()
     {
+        downloadUrl = "http://62.234.211.190:51638/top1";
         winAlertPassage[0] = "Statistics     Current     Best     World - Best     ";
         winAlertPassage[1] = "Used Mana     ";
         winAlertPassage[2] = "Used Platform    ";
         winAlertPassage[3] = "Used Time    ";
         winAlertPassage[4] = "Used Runtime ";
-        if (PlayerPrefs.GetInt("SET") != 1)
+        if (!PlayerPrefs.HasKey("Stage1Mana"))
         {
-            PlayerPrefs.SetInt("SET", 1);
-            PlayerPrefs.SetInt("Mana", 100000);
-            PlayerPrefs.SetFloat("Runtimer", 100000f);
-            PlayerPrefs.SetInt("Tilecount", 100000);
-            PlayerPrefs.SetFloat("Timer", 100000f);
+            PlayerPrefs.SetInt("Stage1Mana", 100000);
+            PlayerPrefs.SetFloat("Stage1Runtimer", 100000f);
+            PlayerPrefs.SetInt("Stage1Tilecount", 100000);
+            PlayerPrefs.SetFloat("Stage1Timer", 100000f);
             PlayerPrefs.Save();
         }
+        playername = PlayerPrefs.GetString("playername");
+        //pull data from web
+        StartCoroutine(Down(downloadUrl));
+        //pull data
         //Debug.Log("LayerController Start!");
     }
 
@@ -81,7 +112,37 @@ public class SortStageOneObject : MonoBehaviour
             isPreDisplay = true;
         }
     }
-
+    IEnumerator Down(string downloadingUrl)
+    {
+        webRequest = UnityWebRequest.Get(downloadingUrl);
+        webRequest.timeout = 30;
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.Log("Download Error:" + webRequest.error);
+        }
+        else
+        {
+            Debug.Log("Download content:" + webRequest.downloadHandler.text);
+            topScore = JsonUtility.FromJson<Score>(webRequest.downloadHandler.text);
+            Debug.Log("Download content:" + topScore.data.worldmana + " ");
+        }
+    }
+    IEnumerator Up(string name, int wmana, int wplat, float wtime, float wrun)
+    {
+        uploadUrl = "http://62.234.211.190:51638/upload/data={\"name\":" + "\"" + name + "\"," + "\"worldmana\":" + wmana + "," + "\"worldplatform\":" + wplat + "," + "\"worldtime\":" + wtime + "," + "\"worldruntime\":" + wrun + "}";
+        webRequest = UnityWebRequest.Get(uploadUrl);
+        webRequest.timeout = 30;
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.Log("upload Error:" + webRequest.error);
+        }
+        else
+        {
+            Debug.Log("upload success:" + uploadUrl);
+        }
+    }
     public void OpenAlert()
     {
         GameObject.Find("smallWordBoard").
@@ -271,26 +332,42 @@ public class SortStageOneObject : MonoBehaviour
     /*For Public Reference*/
     public void OneWinAlertOn()
     {
-        if (mana.totalMana < PlayerPrefs.GetInt("Mana"))
+        time = MathF.Round(status.timer, 2);
+        runtime = MathF.Round(status.runTimer, 2);
+        //send to web
+        StartCoroutine(Up(playername, mana.totalMana, status.posList.Count, time, runtime));
+        //send to web
+        //local judge
+        if (mana.totalMana < PlayerPrefs.GetInt("Stage1Mana"))
         {
-            PlayerPrefs.SetInt("Mana", mana.totalMana);
+            PlayerPrefs.SetInt("Stage1Mana", mana.totalMana);
             PlayerPrefs.Save();
         }
-        if (status.posList.Count < PlayerPrefs.GetInt("Tilecount"))
+        if (status.posList.Count < PlayerPrefs.GetInt("Stage1Tilecount"))
         {
-            PlayerPrefs.SetInt("Tilecount", status.posList.Count);
+            PlayerPrefs.SetInt("Stage1Tilecount", status.posList.Count);
             PlayerPrefs.Save();
         }
-        if (status.timer < PlayerPrefs.GetFloat("Timer"))
+        if (time < PlayerPrefs.GetFloat("Stage1Timer"))
         {
-            PlayerPrefs.SetFloat("Timer", status.timer);
+            PlayerPrefs.SetFloat("Stage1Timer", time);
             PlayerPrefs.Save();
         }
-        if (status.runTimer < PlayerPrefs.GetFloat("Runtimer"))
+        if (runtime < PlayerPrefs.GetFloat("Stage1Runtimer"))
         {
-            PlayerPrefs.SetFloat("Runtimer", status.runTimer);
+            PlayerPrefs.SetFloat("Stage1Runtimer", runtime);
             PlayerPrefs.Save();
         }
+        //local judge
+        //world judge
+        if (PlayerPrefs.GetInt("Stage1Mana") < topScore.data.worldmana && PlayerPrefs.GetInt("Stage1Tilecount") < topScore.data.worldplatform && PlayerPrefs.GetFloat("Stage1Timer") < topScore.data.worldtime && PlayerPrefs.GetFloat("Stage1Runtimer") < topScore.data.worldruntime)
+        {
+            topScore.data.worldmana = PlayerPrefs.GetInt("Stage1Mana");
+            topScore.data.worldplatform = PlayerPrefs.GetInt("Stage1Tilecount");
+            topScore.data.worldruntime = PlayerPrefs.GetFloat("Stage1Runtimer");
+            topScore.data.worldtime = PlayerPrefs.GetFloat("Stage1Timer");
+        }
+        //world judge
         if (PlayerPrefs.GetString("achieve2") != "complete")
         {
             finishRate = PlayerPrefs.GetInt("FinishRate");
@@ -300,10 +377,10 @@ public class SortStageOneObject : MonoBehaviour
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
             GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + "\n" +
-            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Mana") + "     " + "        -     \n" +
-            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Tilecount") + "     " + "         -     \n" +
-            winAlertPassage[3] + status.timer + " sec   " + PlayerPrefs.GetFloat("Timer") + " sec     " + "      -\n" +
-            winAlertPassage[4] + status.runTimer + " sec   " + PlayerPrefs.GetFloat("Runtimer") + " sec     " + "     -\n\n" +
+            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Stage1Mana") + "                 " + topScore.data.worldmana + "     \n" +
+            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Stage1Tilecount") + "               " + topScore.data.worldplatform + "              \n" +
+            winAlertPassage[3] + time + " sec   " + PlayerPrefs.GetFloat("Stage1Timer") + " sec       " + topScore.data.worldtime + "  sec    " + "\n" +
+            winAlertPassage[4] + runtime + " sec   " + PlayerPrefs.GetFloat("Stage1Runtimer") + " sec       " + topScore.data.worldruntime + " sec   \n\n" +
             winAlertPassage[5];
         OneAlertOff();
         isAlert = true;
