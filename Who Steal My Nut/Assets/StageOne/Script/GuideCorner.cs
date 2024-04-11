@@ -14,6 +14,8 @@ public class GuideCorner : MonoBehaviour
     private float delayer = 0f;
     private bool isPushed = false;
     public Animator enchantButton;
+    public Animator earthButton;
+    public Animator runButton;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class GuideCorner : MonoBehaviour
         guideWords[5] = "Click the Run Mode Button to push nut down";
         guideWords[6] = "Game Over! You have unlocked Enchant Create Mode in following stages!";
         guideWords[7] = "Using Enchant Create Mode in this stage is not allowed";
+        guideWords[8] = "Earth Create Mode";
+        guideWords[9] = "Run Mode";
     }
 
     // Update is called once per frame
@@ -40,6 +44,18 @@ public class GuideCorner : MonoBehaviour
         if (enchantButton.GetBool("isHovering") && !isPushed)
         {
             wordBuffer.inputStr = guideWords[7];
+            isPushed = true;
+            wordBuffer.isWaitingRend = true;
+        }
+        else if (earthButton.GetBool("isHovering") && !isPushed)
+        {
+            wordBuffer.inputStr = guideWords[8];
+            isPushed = true;
+            wordBuffer.isWaitingRend = true;
+        }
+        else if (runButton.GetBool("isHovering") && !isPushed)
+        {
+            wordBuffer.inputStr = guideWords[9];
             isPushed = true;
             wordBuffer.isWaitingRend = true;
         }

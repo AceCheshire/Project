@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class FallingTwo : MonoBehaviour
 {
@@ -24,8 +25,11 @@ public class FallingTwo : MonoBehaviour
     private Vector3 localOffset;
     private Vector3Int birthOffset = new Vector3Int(6, 6, 0);
     private Vector3 deltaVelocity = new(0, 2.4f, 0);
-    private int Counting=0;
+    private int Counting = 0;
     public int tileNumber;
+    private float rValue;
+    private float gValue;
+    private float bValue;
 
     public bool isWaitingBirth = true;
     public bool isOver = false;
@@ -35,9 +39,17 @@ public class FallingTwo : MonoBehaviour
     {
         nutRigidbody.gravityScale = 0;
         nutRenderer.enabled = false;
+        rValue = gameObject.GetComponent<SpriteRenderer>().material.color.r;
+        gValue = gameObject.GetComponent<SpriteRenderer>().material.color.g;
+        bValue = gameObject.GetComponent<SpriteRenderer>().material.color.b;
     }
+
     public void Update()
     {
+        if (secondStage.hasShield) gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+            (rValue - 0.75f, gValue - 0.5f, bValue - 0.25f, 1);
+        else gameObject.GetComponent<SpriteRenderer>().material.color = new Color
+            (rValue, gValue, bValue, 1);
         //Debug.Log("Counting=" + Counting);
         //Debug.Log("tileNumber=" + tileNumber);
         //Debug.Log(firstStage.isRunningMode);
@@ -86,7 +98,7 @@ public class FallingTwo : MonoBehaviour
                             else
                             {
                                 sound.Play();
-                                Bounce(nutDestination); 
+                                Bounce(nutDestination);
                             }
                         }
                         else if (secondStage.shieldList.Contains(secondStage.posList[i]))
@@ -95,9 +107,11 @@ public class FallingTwo : MonoBehaviour
                             sound.Play();
                             Bounce(nutDestination);
                         }
-                        else if (secondStage.boomerList.Contains(secondStage.posList[i])) {
-                            for(int x = -1; x <= 1; x++) {
-                                for(int y = -2; y <= 0; y++)
+                        else if (secondStage.boomerList.Contains(secondStage.posList[i]))
+                        {
+                            for (int x = -1; x <= 1; x++)
+                            {
+                                for (int y = -2; y <= 0; y++)
                                 {
                                     Vector3Int order = secondStage.posList[i] + new Vector3Int(x, y, 0);
                                     if (tileObastacleGround.GetTile(order) != null)
@@ -213,7 +227,7 @@ public class FallingTwo : MonoBehaviour
         }
     }
 
-    private void CameraSync(float x,float y,float length)    
+    private void CameraSync(float x, float y, float length)
     {
         float frontierX = 0f;
         float frontierY = 0f;

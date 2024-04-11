@@ -60,7 +60,7 @@ public class MouseEventEarthCreateModeButtonTwo : MonoBehaviour
         // <Open Mode Switch>
         if (collision.name == "mouse" && isModeOn == false && !isRunning)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering)
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering && animator.GetBool("isHovering"))
             {
                 secondStage.isEnchantCreateMode = false;
                 secondStage.isEarthCreateMode = true;

@@ -113,7 +113,7 @@ public class MouseEventEnchantCreateModeButtonTwo : MonoBehaviour
                 gameEarthMode.isTriggered = false;
                 //Debug.Log("OpenEnchantMode Xyz");
             }
-            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering 
+            if (Input.GetKey(KeyCode.Mouse0) && !isOver && isHovering && animator.GetBool("isHovering")
                 && !secondStage.isSyncCreateMode
                 && !secondStage.isXyzCreateMode
                 && !secondStage.isLinkCreateMode)

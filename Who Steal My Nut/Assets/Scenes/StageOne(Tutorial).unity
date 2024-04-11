@@ -4055,8 +4055,8 @@ Transform:
   m_GameObject: {fileID: 195342677}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -115, y: -120, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -90, y: -130, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2099595324}
@@ -6261,6 +6261,8 @@ MonoBehaviour:
   normGround: {fileID: 980430978}
   judger: {fileID: 1174599529}
   enchantButton: {fileID: 1697767837}
+  earthButton: {fileID: 643789474}
+  runButton: {fileID: 1620407112}
 --- !u!1 &1093808553
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,6 +9805,11 @@ MonoBehaviour:
 --- !u!4 &1620407111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: d3d229912bb0c46469c1211fdab48178, type: 3}
+  m_PrefabInstance: {fileID: 1055916551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1620407112 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: d3d229912bb0c46469c1211fdab48178, type: 3}
   m_PrefabInstance: {fileID: 1055916551}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1673671220 stripped

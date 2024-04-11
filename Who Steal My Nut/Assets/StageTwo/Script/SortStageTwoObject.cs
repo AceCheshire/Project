@@ -28,7 +28,7 @@ public class SortStageTwoObject : MonoBehaviour
     private string homeAlertPassage = "Back to WelcomeScene?";
     private string selectAlertPassage = "Back to SelectScene?";
     private string repeatAlertPassage = "Repeat this Scene?";
-    private string loseObstacleAlertPassage = "Nut crash some hard stones...\nYou have used ";
+    private string loseObstacleAlertPassage = "Nut will crash hard stones...\nYou have used ";
     private string loseFallAlertPassage = "Nut fall into the abyss...\nYou have used ";
     private string loseStopAlertPassage = "This is not the end...\nYou have used ";
     private string[] winAlertPassage = new string[32];

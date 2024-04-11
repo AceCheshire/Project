@@ -74,9 +74,9 @@ public class MouseEventEnchantCreateModeButton : MonoBehaviour
                     animator.SetBool("isCanHover", false);
                     isOver = true;
                     isModeOn = true;
-                    for (int i = -20; i <= 20; i++)
+                    for (int i = -30; i <= 30; i++)
                     {
-                        for (int j = -20; j <= 20; j++)
+                        for (int j = -30; j <= 30; j++)
                         {
                             isSetMap.SetTile(new(i, j, 0), null);
                         }
@@ -99,9 +99,9 @@ public class MouseEventEnchantCreateModeButton : MonoBehaviour
                     animator.SetBool("isCanHover", false);
                     isOver = true;
                     isModeOn = false;
-                    for (int i = -20; i <= 20; i++)
+                    for (int i = -30; i <= 30; i++)
                     {
-                        for (int j = -20; j <= 20; j++)
+                        for (int j = -30; j <= 30; j++)
                         {
                             isSetMap.SetTile(new(i, j, 0), null);
                         }

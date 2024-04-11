@@ -27,6 +27,9 @@ public class StageTwoStatus : MonoBehaviour
     public SpriteRenderer NutRenderer;
     public Tilemap tileNormGround;
     public Tilemap tileObastacleGround;
+    private Tilemap syncGround;
+    public Tilemap xyzGround;
+    public Tilemap linkGround;
     public List<Vector3Int> posList;
     public List<Vector3Int> obstacleList;
     public List<Vector3Int> enchantList;
@@ -41,13 +44,33 @@ public class StageTwoStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = -10; i <= 10; i++)
+        syncGround = GameObject.Find("tileSyncGround").GetComponent<Tilemap>();
+        xyzGround = GameObject.Find("tileXyzGround").GetComponent<Tilemap>();
+        linkGround = GameObject.Find("tileLinkGround").GetComponent<Tilemap>();
+        for (int i = 50; i >= -50; i--)
         {
-            for (int j = -10; j <= 10; j++)
+            for (int j = 50; j >= -50; j--)
             {
                 if (tileObastacleGround.GetTile(new Vector3Int(i, j, 0)) != null)
                 {
                     obstacleList.Add(new Vector3Int(i, j, 0));
+                }
+                if (tileNormGround.GetTile(new Vector3Int(i, j, 0)) != null)
+                {
+                    posList.Add(new Vector3Int(i, j, 0));
+                    canRun = true;
+                }
+                if (syncGround.GetTile(new Vector3Int(i, j, 0)) != null)
+                {
+                    enchantList.Add(new Vector3Int(i, j, 0));
+                }
+                if (xyzGround.GetTile(new Vector3Int(i, j, 0)) != null)
+                {
+                    shieldList.Add(new Vector3Int(i, j, 0));
+                }
+                if (linkGround.GetTile(new Vector3Int(i, j, 0)) != null)
+                {
+                    boomerList.Add(new Vector3Int(i, j, 0));
                 }
             }
         }
