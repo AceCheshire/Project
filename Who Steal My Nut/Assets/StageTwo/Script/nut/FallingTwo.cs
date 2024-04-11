@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class FallingTwo : MonoBehaviour
 {
@@ -120,6 +122,7 @@ public class FallingTwo : MonoBehaviour
             }
         }
     }
+
     public void FirstDown()
     {
         if (isWaitingBirth == true)
@@ -130,27 +133,12 @@ public class FallingTwo : MonoBehaviour
             isWaitingBirth = false;// Teleport to the Birth Position
         }
     }
+
     public void EnchantBounce(Vector3 Destination, int i)
     {
         nutRigidbody.velocity = new Vector2(0, nutRigidbody.velocity.y);
         nutObject.transform.position = tileNormGround.CellToWorld(secondStage.posList[i + 1] + new Vector3Int(2, 2, 0));
-        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(secondStage.endPos).x)
-            cam.transform.position = new Vector3
-                (cam.transform.position.x,
-                cam.transform.position.y + Destination.y,
-                cam.transform.position.z + Destination.z);
-        else if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(secondStage.endPos).y)
-            cam.transform.position = new Vector3
-                (cam.transform.position.x + Destination.x,
-                cam.transform.position.y,
-                cam.transform.position.z + Destination.z);
-        else
-        {
-            cam.transform.position =
-            new Vector3(cam.transform.position.x + Destination.x,
-            cam.transform.position.y + Destination.y,
-            cam.transform.position.z + Destination.z);
-        }
+        EnchantCameraSync(Destination);
     }
 
     public void Bounce(Vector3 Destination)
@@ -170,11 +158,7 @@ public class FallingTwo : MonoBehaviour
         //nutRigidbody.angularVelocity = -120 * Destination.y / length;
         //localOffset = new Vector3(0.85f * x / length, 0.85f * y / length, 0.85f * z / length);
         //Debug.Log(nutRigidbody.velocity);
-        cam.GetComponent<Rigidbody2D>().velocity = 2f * new Vector2(x / length, y / length);
-        if (cam.transform.position.x >= tileNormGround.GetCellCenterWorld(secondStage.endPos).x)
-            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(x / length, 0);
-        if (cam.transform.position.y <= tileNormGround.GetCellCenterWorld(secondStage.endPos).y)
-            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(0, y / length);
+        CameraSync(x, y, length);
     }
 
     private void SameLineJudge(int i)
@@ -226,6 +210,72 @@ public class FallingTwo : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void CameraSync(float x,float y,float length)    
+    {
+        float frontierX = 0f;
+        float frontierY = 0f;
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x + 10;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y - 5;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y - 5;
+        }
+
+        cam.GetComponent<Rigidbody2D>().velocity = 2f * new Vector2(x / length, y / length);
+        if (cam.transform.position.x >= frontierX)
+            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(x / length, 0);
+        if (cam.transform.position.y <= frontierY)
+            cam.GetComponent<Rigidbody2D>().velocity -= 2f * new Vector2(0, y / length);
+    }
+
+    private void EnchantCameraSync(Vector3 Destination)
+    {
+        float frontierX = 0f;
+        float frontierY = 0f;
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x + 10;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y - 5;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            frontierX = tileNormGround.GetCellCenterWorld(secondStage.endPos).x;
+            frontierY = tileNormGround.GetCellCenterWorld(secondStage.endPos).y - 5;
+        }
+
+        if (cam.transform.position.x >= frontierX)
+            cam.transform.position = new Vector3
+                (cam.transform.position.x,
+                cam.transform.position.y + Destination.y,
+                cam.transform.position.z + Destination.z);
+        else if (cam.transform.position.y <= frontierY)
+            cam.transform.position = new Vector3
+                (cam.transform.position.x + Destination.x,
+                cam.transform.position.y,
+                cam.transform.position.z + Destination.z);
+        else
+        {
+            cam.transform.position =
+            new Vector3(cam.transform.position.x + Destination.x,
+            cam.transform.position.y + Destination.y,
+            cam.transform.position.z + Destination.z);
         }
     }
 }
