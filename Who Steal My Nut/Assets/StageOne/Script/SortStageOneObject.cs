@@ -67,7 +67,7 @@ public class SortStageOneObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        downloadUrl = "http://62.234.211.190:51638/top1";
+        downloadUrl = "http://62.234.211.190:51638/top/Stage1";
         winAlertPassage[0] = "Statistics     Current     Best     World - Best     ";
         winAlertPassage[1] = "Used Mana     ";
         winAlertPassage[2] = "Used Platform    ";
@@ -130,7 +130,7 @@ public class SortStageOneObject : MonoBehaviour
     }
     IEnumerator Up(string name, int wmana, int wplat, float wtime, float wrun)
     {
-        uploadUrl = "http://62.234.211.190:51638/upload/data={\"name\":" + "\"" + name + "\"," + "\"worldmana\":" + wmana + "," + "\"worldplatform\":" + wplat + "," + "\"worldtime\":" + wtime + "," + "\"worldruntime\":" + wrun + "}";
+        uploadUrl = "http://62.234.211.190:51638/upload/Stage1/data={\"name\":" + "\"" + name + "\"," + "\"worldmana1\":" + wmana + "," + "\"worldplatform1\":" + wplat + "," + "\"worldtime1\":" + wtime + "," + "\"worldruntime1\":" + wrun + "}";
         webRequest = UnityWebRequest.Get(uploadUrl);
         webRequest.timeout = 30;
         yield return webRequest.SendWebRequest();
@@ -362,10 +362,12 @@ public class SortStageOneObject : MonoBehaviour
         //world judge
         if (PlayerPrefs.GetInt("Stage1Mana") < topScore.data.worldmana && PlayerPrefs.GetInt("Stage1Tilecount") < topScore.data.worldplatform && PlayerPrefs.GetFloat("Stage1Timer") < topScore.data.worldtime && PlayerPrefs.GetFloat("Stage1Runtimer") < topScore.data.worldruntime)
         {
+            topScore.data.name = playername;
             topScore.data.worldmana = PlayerPrefs.GetInt("Stage1Mana");
             topScore.data.worldplatform = PlayerPrefs.GetInt("Stage1Tilecount");
             topScore.data.worldruntime = PlayerPrefs.GetFloat("Stage1Runtimer");
             topScore.data.worldtime = PlayerPrefs.GetFloat("Stage1Timer");
+            PlayerPrefs.SetString("achieve5", "complete");
         }
         //world judge
         if (PlayerPrefs.GetString("achieve2") != "complete")
@@ -376,7 +378,7 @@ public class SortStageOneObject : MonoBehaviour
         }
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
-            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + "\n" +
+            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + topScore.data.name + "\n" +
             winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Stage1Mana") + "                 " + topScore.data.worldmana + "     \n" +
             winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Stage1Tilecount") + "               " + topScore.data.worldplatform + "              \n" +
             winAlertPassage[3] + time + " sec   " + PlayerPrefs.GetFloat("Stage1Timer") + " sec       " + topScore.data.worldtime + "  sec    " + "\n" +
@@ -408,7 +410,7 @@ public class SortStageOneObject : MonoBehaviour
             {
                 finishRate = PlayerPrefs.GetInt("FinishRate");
                 PlayerPrefs.SetString("achieve3", "complete");
-                PlayerPrefs.SetInt("FinishRate", finishRate + 60);
+                PlayerPrefs.SetInt("FinishRate", finishRate + 30);
             }
         }
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)

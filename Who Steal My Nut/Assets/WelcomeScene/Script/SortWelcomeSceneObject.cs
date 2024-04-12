@@ -7,6 +7,7 @@ public class SortWelcomeSceneObject : MonoBehaviour
     private int wordBoardOn = 30;
     private int wordBoardExitButtonOn = 31;
     private int wordRendererOn = 31;
+    private int finishrate;
 
     /*Public Status: isAlert*/
     public bool isAlert = false;
@@ -48,12 +49,34 @@ public class SortWelcomeSceneObject : MonoBehaviour
         {
             PlayerPrefs.SetString("achieve3", "incomplete");
         }
+        if (PlayerPrefs.GetString("achieve4") != "complete")
+        {
+            PlayerPrefs.SetString("achieve4", "incomplete");
+        }
+        if (PlayerPrefs.GetString("achieve5") != "complete")
+        {
+            PlayerPrefs.SetString("achieve5", "incomplete");
+        }
+        if (PlayerPrefs.GetString("achieve2") == "complete" &&
+            PlayerPrefs.GetString("Stage2") == "complete" && 
+            PlayerPrefs.GetString("Stage3") == "complete" && 
+            PlayerPrefs.GetString("Stage4") == "complete" &&
+            PlayerPrefs.GetString("achieve4") != "complete")
+        {
+            finishrate = PlayerPrefs.GetInt("FinishRate");
+            PlayerPrefs.SetString("achieve4", "complete");
+            PlayerPrefs.SetInt("FinishRate", finishrate + 30);
+        }
         achievementAlertPassage = "First Tile\n\n" +
         "  Set the first platform in the stage  --  " + PlayerPrefs.GetString("achieve1") + "\n\n" +
         "Be A Real Thief\n\n" + "  Finish the stage"
         + " for the first time  --  " + PlayerPrefs.GetString("achieve2") + "\n\n"
         + "Thief Master\n\n"
         + "  Finish the stage at A level  --  " + PlayerPrefs.GetString("achieve3") + "\n\n"
+        + "Experienced Master\n\n" 
+        + "  Finish all the stages  --  " + PlayerPrefs.GetString("achieve4") + "\n\n"
+        + "Become the best SpellCaster in the world\n\n" +
+        "  Get a world - best record  --  " + PlayerPrefs.GetString("achieve5") + "\n\n"
         + "Finish Rate --  " + PlayerPrefs.GetInt("FinishRate") + "%\n\n";
         Debug.Log("LayerController Start!");
     }
