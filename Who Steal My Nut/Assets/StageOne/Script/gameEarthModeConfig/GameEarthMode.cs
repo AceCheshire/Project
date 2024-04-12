@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -136,7 +137,7 @@ public class GameEarthMode : MonoBehaviour
             {
                 finishrate = PlayerPrefs.GetInt("FinishRate");
                 PlayerPrefs.SetString("achieve1", "complete");
-                PlayerPrefs.SetInt("FinishRate", finishrate + 20);
+                PlayerPrefs.SetInt("FinishRate", finishrate + 10);
             }
             //Debug.Log("A tile has been set at " + currentCellPos);
         }

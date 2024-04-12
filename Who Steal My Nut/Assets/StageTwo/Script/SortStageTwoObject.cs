@@ -1,10 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.Networking;
+using System;
+using System.Collections;
+using System.Data.Common;
+using System.Collections.Generic;
+using System.Net;
+using Unity.Mathematics;
 
 public class SortStageTwoObject : MonoBehaviour
 {
     /*Default Setting*/
+    UnityWebRequest webRequest;
+    private string downloadUrl = "";
+    private string uploadUrl = "";
+    private string playername = "";
+    private string stagename = "";
     private int smallWordBoardOn = 29;
     private int rightButtonOn = 30;
     private int leftButtonOn = 30;
@@ -15,6 +27,7 @@ public class SortStageTwoObject : MonoBehaviour
     public bool isGuide = false;
 
     /*Public Status: isAlert && goalScene*/
+    public Score topScore;
     private bool isPreDisplay = false;
     private bool isDisplay = true;
     public bool isAlert = false;
@@ -23,6 +36,8 @@ public class SortStageTwoObject : MonoBehaviour
     public StageTwoStatus status;
     public Camera cam;
     private int finishRate;
+    private float time;
+    private float runtime;
 
     /*Words*/
     private string homeAlertPassage = "Back to WelcomeScene?";
@@ -40,19 +55,28 @@ public class SortStageTwoObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        { stagename = "Stage2"; downloadUrl = "http://62.234.211.190:51638/top/" + stagename; }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        { stagename = "Stage3"; downloadUrl = "http://62.234.211.190:51638/top/" + stagename; }
+        else if (SceneManager.GetActiveScene().buildIndex == 6)
+        { stagename = "Stage4"; downloadUrl = "http://62.234.211.190:51638/top/" + stagename; }
         winAlertPassage[0] = "Statistics     Current     Best     World - Best     ";
         winAlertPassage[1] = "Used Mana     ";
         winAlertPassage[2] = "Used Platform    ";
         winAlertPassage[3] = "Used Time    ";
         winAlertPassage[4] = "Used Runtime ";
-        if (!PlayerPrefs.HasKey("Stage2Mana"))
+        if (!PlayerPrefs.HasKey(stagename + "Mana"))
         {
-            PlayerPrefs.SetInt("Stage2Mana", 100000);
-            PlayerPrefs.SetFloat("Stage2Runtimer", 100000f);
-            PlayerPrefs.SetInt("Stage2Tilecount", 100000);
-            PlayerPrefs.SetFloat("Stage2Timer", 100000f);
+            PlayerPrefs.SetInt(stagename + "Mana", 100000);
+            PlayerPrefs.SetFloat(stagename + "Runtimer", 100000f);
+            PlayerPrefs.SetInt(stagename + "Tilecount", 100000);
+            PlayerPrefs.SetFloat(stagename + "Timer", 100000f);
             PlayerPrefs.Save();
         }
+        if (!PlayerPrefs.HasKey(stagename)) PlayerPrefs.SetString(stagename, "incomplete");
+        playername = PlayerPrefs.GetString("playername");
+        StartCoroutine(Down(downloadUrl));
         //Debug.Log("LayerController Start!");
     }
 
@@ -80,7 +104,37 @@ public class SortStageTwoObject : MonoBehaviour
             isPreDisplay = true;
         }
     }
-
+    IEnumerator Down(string downloadingUrl)
+    {
+        webRequest = UnityWebRequest.Get(downloadingUrl);
+        webRequest.timeout = 30;
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.Log("Download Error:" + webRequest.error);
+        }
+        else
+        {
+            Debug.Log("Download content:" + webRequest.downloadHandler.text);
+            topScore = JsonUtility.FromJson<Score>(webRequest.downloadHandler.text);
+            Debug.Log("Download content:" + topScore.data.worldmana + " ");
+        }
+    }
+    IEnumerator Up(string name, int wmana, int wplat, float wtime, float wrun)
+    {
+        uploadUrl = "http://62.234.211.190:51638/upload/" + stagename + "/data={\"name\":" + "\"" + name + "\"," + "\"worldmana1\":" + wmana + "," + "\"worldplatform1\":" + wplat + "," + "\"worldtime1\":" + wtime + "," + "\"worldruntime1\":" + wrun + "}";
+        webRequest = UnityWebRequest.Get(uploadUrl);
+        webRequest.timeout = 30;
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.Log("upload Error:" + webRequest.error);
+        }
+        else
+        {
+            Debug.Log("upload success:" + uploadUrl);
+        }
+    }
     public void OpenAlert()
     {
         GameObject.Find("smallWordBoard").
@@ -270,40 +324,53 @@ public class SortStageTwoObject : MonoBehaviour
     /*For Public Reference*/
     public void OneWinAlertOn()
     {
-        if (mana.totalMana < PlayerPrefs.GetInt("Stage2Mana"))
+        time = MathF.Round(status.timer, 2);
+        runtime = MathF.Round(status.runTimer, 2);
+        //send to web
+        StartCoroutine(Up(playername, mana.totalMana, status.posList.Count, time, runtime));
+        //send to web
+        //local judge
+        if (mana.totalMana < PlayerPrefs.GetInt(stagename + "Mana"))
         {
-            PlayerPrefs.SetInt("Stage2Mana", mana.totalMana);
+            PlayerPrefs.SetInt(stagename + "Mana", mana.totalMana);
             PlayerPrefs.Save();
         }
-        if (status.posList.Count < PlayerPrefs.GetInt("Stage2Tilecount"))
+        if (status.posList.Count < PlayerPrefs.GetInt(stagename + "Tilecount"))
         {
-            PlayerPrefs.SetInt("Stage2Tilecount", status.posList.Count);
+            PlayerPrefs.SetInt(stagename + "Tilecount", status.posList.Count);
             PlayerPrefs.Save();
         }
-        if (status.timer < PlayerPrefs.GetFloat("Stage2Timer"))
+        if (time < PlayerPrefs.GetFloat(stagename + "Timer"))
         {
-            PlayerPrefs.SetFloat("Stage2Timer", status.timer);
+            PlayerPrefs.SetFloat(stagename + "Timer", time);
             PlayerPrefs.Save();
         }
-        if (status.runTimer < PlayerPrefs.GetFloat("Stage2Runtimer"))
+        if (runtime < PlayerPrefs.GetFloat(stagename + "Runtimer"))
         {
-            PlayerPrefs.SetFloat("Stage2Runtimer", status.runTimer);
+            PlayerPrefs.SetFloat(stagename + "Runtimer", runtime);
             PlayerPrefs.Save();
         }
-        if (PlayerPrefs.GetString("achieve2") != "complete")
+        //local judge
+        //world judge
+        if (PlayerPrefs.GetInt(stagename + "Mana") < topScore.data.worldmana && PlayerPrefs.GetInt(stagename + "Tilecount") < topScore.data.worldplatform && PlayerPrefs.GetFloat(stagename + "Timer") < topScore.data.worldtime && PlayerPrefs.GetFloat(stagename + "Runtimer") < topScore.data.worldruntime)
         {
-            finishRate = PlayerPrefs.GetInt("FinishRate");
-            PlayerPrefs.SetString("achieve2", "complete");
-            PlayerPrefs.SetInt("FinishRate", finishRate + 20);
+            topScore.data.name = playername;
+            topScore.data.worldmana = PlayerPrefs.GetInt(stagename + "Mana");
+            topScore.data.worldplatform = PlayerPrefs.GetInt(stagename + "Tilecount");
+            topScore.data.worldruntime = PlayerPrefs.GetFloat(stagename + "Runtimer");
+            topScore.data.worldtime = PlayerPrefs.GetFloat(stagename + "Timer");
+            PlayerPrefs.SetString("achieve5", "complete");
         }
+        //world judge
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
-            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + "\n" +
-            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt("Stage2Mana") + "     " + "        -     \n" +
-            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt("Stage2Tilecount") + "     " + "         -     \n" +
-            winAlertPassage[3] + status.timer + " sec   " + PlayerPrefs.GetFloat("Stage2Timer") + " sec     " + "      -\n" +
-            winAlertPassage[4] + status.runTimer + " sec   " + PlayerPrefs.GetFloat("Stage2Runtimer") + " sec     " + "     -\n\n" +
+            GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + topScore.data.name + "\n" +
+            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt(stagename + "Mana") + "                 " + topScore.data.worldmana + "     \n" +
+            winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt(stagename + "Tilecount") + "               " + topScore.data.worldplatform + "              \n" +
+            winAlertPassage[3] + time + " sec   " + PlayerPrefs.GetFloat(stagename + "Timer") + " sec       " + topScore.data.worldtime + "  sec    " + "\n" +
+            winAlertPassage[4] + runtime + " sec   " + PlayerPrefs.GetFloat(stagename + "Runtimer") + " sec       " + topScore.data.worldruntime + " sec   \n\n" +
             winAlertPassage[5];
+        PlayerPrefs.SetString(stagename, "complete");
         OneAlertOff();
         isAlert = true;
         isFinal = true;
@@ -330,7 +397,7 @@ public class SortStageTwoObject : MonoBehaviour
             {
                 finishRate = PlayerPrefs.GetInt("FinishRate");
                 PlayerPrefs.SetString("achieve3", "complete");
-                PlayerPrefs.SetInt("FinishRate", finishRate + 60);
+                PlayerPrefs.SetInt("FinishRate", finishRate + 30);
             }
         }
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)
