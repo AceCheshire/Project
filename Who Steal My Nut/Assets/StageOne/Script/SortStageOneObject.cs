@@ -130,7 +130,7 @@ public class SortStageOneObject : MonoBehaviour
     }
     IEnumerator Up(string name, int wmana, int wplat, float wtime, float wrun)
     {
-        uploadUrl = "http://62.234.211.190:51638/upload/Stage1/data={\"name\":" + "\"" + name + "\"," + "\"worldmana1\":" + wmana + "," + "\"worldplatform1\":" + wplat + "," + "\"worldtime1\":" + wtime + "," + "\"worldruntime1\":" + wrun + "}";
+        uploadUrl = "http://62.234.211.190:51638/upload/Stage1/data={\"name\":" + "\"" + name + "\"," + "\"worldmana\":" + wmana + "," + "\"worldplatform\":" + wplat + "," + "\"worldtime\":" + wtime + "," + "\"worldruntime\":" + wrun + "}";
         webRequest = UnityWebRequest.Get(uploadUrl);
         webRequest.timeout = 30;
         yield return webRequest.SendWebRequest();
