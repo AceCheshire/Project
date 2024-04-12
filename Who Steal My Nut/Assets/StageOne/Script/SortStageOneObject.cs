@@ -374,7 +374,7 @@ public class SortStageOneObject : MonoBehaviour
         {
             finishRate = PlayerPrefs.GetInt("FinishRate");
             PlayerPrefs.SetString("achieve2", "complete");
-            PlayerPrefs.SetInt("FinishRate", finishRate + 10);
+            PlayerPrefs.SetInt("FinishRate", finishRate + 20);
         }
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
@@ -410,7 +410,7 @@ public class SortStageOneObject : MonoBehaviour
             {
                 finishRate = PlayerPrefs.GetInt("FinishRate");
                 PlayerPrefs.SetString("achieve3", "complete");
-                PlayerPrefs.SetInt("FinishRate", finishRate + 60);
+                PlayerPrefs.SetInt("FinishRate", finishRate + 30);
             }
         }
         if (mana.totalMana > 1500 && mana.totalMana <= 2000)

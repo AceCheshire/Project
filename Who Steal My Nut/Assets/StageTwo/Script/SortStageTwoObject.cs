@@ -61,7 +61,7 @@ public class SortStageTwoObject : MonoBehaviour
         { stagename = "Stage3"; downloadUrl = "http://62.234.211.190:51638/top/" + stagename; }
         else if (SceneManager.GetActiveScene().buildIndex == 6)
         { stagename = "Stage4"; downloadUrl = "http://62.234.211.190:51638/top/" + stagename; }
-        winAlertPassage[0] = "Statistics     Current     Best     World - Best     ";
+        winAlertPassage[0] = "Statistics     Current    Best   World - Best ";
         winAlertPassage[1] = "Used Mana     ";
         winAlertPassage[2] = "Used Platform    ";
         winAlertPassage[3] = "Used Time    ";
@@ -354,7 +354,8 @@ public class SortStageTwoObject : MonoBehaviour
         //world judge
         if (PlayerPrefs.GetInt(stagename + "Mana") < topScore.data.worldmana && PlayerPrefs.GetInt(stagename + "Tilecount") < topScore.data.worldplatform && PlayerPrefs.GetFloat(stagename + "Timer") < topScore.data.worldtime && PlayerPrefs.GetFloat(stagename + "Runtimer") < topScore.data.worldruntime)
         {
-            topScore.data.name = playername;
+            if (playername.Length >= 16) topScore.data.name = playername.Substring(0, 15);
+            else topScore.data.name = playername;
             topScore.data.worldmana = PlayerPrefs.GetInt(stagename + "Mana");
             topScore.data.worldplatform = PlayerPrefs.GetInt(stagename + "Tilecount");
             topScore.data.worldruntime = PlayerPrefs.GetFloat(stagename + "Runtimer");
@@ -365,10 +366,10 @@ public class SortStageTwoObject : MonoBehaviour
         JudgeGrade();
         GameObject.Find("wordBufferFinal").
             GetComponent<WordTranslateFinal>().inputStr = winAlertPassage[0] + topScore.data.name + "\n" +
-            winAlertPassage[1] + mana.totalMana + "     " + PlayerPrefs.GetInt(stagename + "Mana") + "                 " + topScore.data.worldmana + "     \n" +
+            winAlertPassage[1] + mana.totalMana + "      " + PlayerPrefs.GetInt(stagename + "Mana") + "                " + topScore.data.worldmana + "\n" +
             winAlertPassage[2] + status.posList.Count + "      " + PlayerPrefs.GetInt(stagename + "Tilecount") + "               " + topScore.data.worldplatform + "              \n" +
-            winAlertPassage[3] + time + " sec   " + PlayerPrefs.GetFloat(stagename + "Timer") + " sec       " + topScore.data.worldtime + "  sec    " + "\n" +
-            winAlertPassage[4] + runtime + " sec   " + PlayerPrefs.GetFloat(stagename + "Runtimer") + " sec       " + topScore.data.worldruntime + " sec   \n\n" +
+            winAlertPassage[3] + time + " sec   " + PlayerPrefs.GetFloat(stagename + "Timer") + " sec       " + topScore.data.worldtime + "  sec" + "\n" +
+            winAlertPassage[4] + runtime + " sec   " + PlayerPrefs.GetFloat(stagename + "Runtimer") + " sec       " + topScore.data.worldruntime + " sec\n\n" +
             winAlertPassage[5];
         PlayerPrefs.SetString(stagename, "complete");
         OneAlertOff();

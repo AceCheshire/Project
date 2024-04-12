@@ -57,7 +57,11 @@ public class SortWelcomeSceneObject : MonoBehaviour
         {
             PlayerPrefs.SetString("achieve5", "incomplete");
         }
-        if (PlayerPrefs.GetString("achieve2") == "complete" && PlayerPrefs.GetString("Stage2") == "complete" && PlayerPrefs.GetString("Stage3") == "complete" && PlayerPrefs.GetString("Stage4") == "complete")
+        if (PlayerPrefs.GetString("achieve2") == "complete" &&
+            PlayerPrefs.GetString("Stage2") == "complete" && 
+            PlayerPrefs.GetString("Stage3") == "complete" && 
+            PlayerPrefs.GetString("Stage4") == "complete" &&
+            PlayerPrefs.GetString("achieve4") != "complete")
         {
             finishrate = PlayerPrefs.GetInt("FinishRate");
             PlayerPrefs.SetString("achieve4", "complete");
@@ -69,8 +73,10 @@ public class SortWelcomeSceneObject : MonoBehaviour
         + " for the first time  --  " + PlayerPrefs.GetString("achieve2") + "\n\n"
         + "Thief Master\n\n"
         + "  Finish the stage at A level  --  " + PlayerPrefs.GetString("achieve3") + "\n\n"
-        + "Finish all the stage  --  " + PlayerPrefs.GetString("achieve4") + "\n\n"
-        + "Become the best SpellCaster in the world -- " + PlayerPrefs.GetString("achieve5") + "\n\n"
+        + "Experienced Master\n\n" 
+        + "  Finish all the stages  --  " + PlayerPrefs.GetString("achieve4") + "\n\n"
+        + "Become the best SpellCaster in the world\n\n" +
+        "  Get a world - best record  --  " + PlayerPrefs.GetString("achieve5") + "\n\n"
         + "Finish Rate --  " + PlayerPrefs.GetInt("FinishRate") + "%\n\n";
         Debug.Log("LayerController Start!");
     }
