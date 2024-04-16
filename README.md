@@ -1,6 +1,14 @@
 
 ## Statistics          ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AceCheshire/Project?logoColor=violet&label=Commit%20Activity)     ![Github Created At](https://img.shields.io/github/created-at/AceCheshire/Project)     ![GitHub Release Date](https://img.shields.io/github/release-date/AceCheshire/Project)
 
+## Design
+
+![Design Profile](https://github.com/AceCheshire/Project/blob/main/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E8%AF%B4%E6%98%8E%E4%B9%A6.md)
+
+## How To Use
+
+![Use Profile](https://github.com/AceCheshire/Project/blob/main/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6.md)
+
 ## Development Log
 
 **Tips:** 
