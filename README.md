@@ -3,15 +3,17 @@
 
 ## Development Log
 
+**Tips: # - @AceCheshire   * - @splendid-atom   & - @Sleepiggyy
+
 ### 2024/02/11
 
-#2024/02/11/02
+2024/02/11/02 #
 
 This push interrupted several important files
 
 Sad
 
-#2024/02/11/03
+2024/02/11/03 #
 
 This push is to make up for the interruption.
 
@@ -19,19 +21,19 @@ However, there is still an alphaBet sprite sheet to make up.
 
 Once we have alphaBet, we can develop a tilemap - based way to present words;
 
-#2024/02/11/04
+2024/02/11/04 #
 
 New backGround has launched.
 
 ### 2024/02/12
 
-#2024/02/12/01
+2024/02/12/01 #
 
 Seperate backGround and backGroundBox.
 
 Slow down the speed of BackGroundShake.
 
-#2024/02/12/02
+2024/02/12/02 #
 
 Add achievementButton;
 
@@ -41,7 +43,7 @@ Prefab tilemaps;
 
 Add several tiles;
 
-#2024/02/12/03
+2024/02/12/03 #
 
 Add title in the WelcomeScene;
 
@@ -51,17 +53,17 @@ Change some object sprites so as to fit the overall bloom.
 
 ### 2024/02/13
 
-#2024/02/13/01
+2024/02/13/01 #
 
 Change ProjectSetting from full screen to windowed.
 
-*2024/02/13/01
+2024/02/13/01 *
 
 Add a new scene and the button to change scene.
 
 ### 2024/02/14
 
-#2024/02/14/01
+2024/02/14/01 #
 
 Add a new scene and two modeButtons.
 
@@ -73,7 +75,7 @@ Change the speed of WordTitleShake.
 
 The backGround story has not been finished yet. 
 
-#2024/02/14/02
+2024/02/14/02 #
 
 Add backGroundBox family.
 
@@ -91,7 +93,7 @@ Now only when nut ( selectButton ) collides the bottom will scene change.
 
 Modify the intervals of the three buttons.
 
-#2024/02/14/03
+2024/02/14/03 #
 
 Change SplashImage.
 
@@ -99,7 +101,7 @@ Now nut need to collide twice to change scene.
 
 ### 2024/02/15
 
-#2024/02/15/01
+2024/02/15/01 #
 
 Tile Update: 
 
@@ -119,7 +121,7 @@ Rend every cell per frame with different tiles, which are diffrent frames of the
 
 ### 2024/02/16
 
-#2024/02/16/01
+2024/02/16/01 #
 
 Add WordTranslate system.
 
@@ -127,11 +129,11 @@ However, it hasn't been finished yet.
 
 Wow, my push also failed.
 
-#2024/02/16/02
+2024/02/16/02 #
 
 Fix the bug that used to force objects move up and down so as to make them fluent.
 
-#2024/02/16/03
+2024/02/16/03 #
 
 Important Update:
 
@@ -233,13 +235,13 @@ To make similar WordTranslate function in different scene, we need to have the f
 
 Besides, now we need to click the glass bin to select scene.
 
-*2024/02/16/01
+2024/02/16/01 *
 
 Add stageOneButton in SelectScene.
 
 ### 2024/02/17
 
-#2024/02/17/01
+2024/02/17/01 #
 
 Add basic attributes for StageOne.
 
@@ -249,13 +251,13 @@ Add annotations for NormChange.cs.
 
 Add some words to readmeAlert and achievementAlert
 
-*2024/02/17/01
+2024/02/17/01 *
 
 Add AudioData for buttons.
 
 ### 2024/02/20
 
-#2024/02/20/01
+2024/02/20/01 #
 
 Write ( not Add ) two buttons to switch to EnchantMode and RunningMode.
 
@@ -269,7 +271,7 @@ Now we need to solve all the bugs to let game run.
 
 ### 2024/02/23
 
-#2024/02/23/01
+2024/02/23/01 #
 
 Add backGroundStageOne, but it is only a temporary background;
 
@@ -279,13 +281,13 @@ Change words in alerts to be able to be paged up or down by mouse scrollwheel;
 
 ### 2024/02/25
 
-#2024/02/25/01
+2024/02/25/01 #
 
 Fix bug that tiles cannot be correctly set.
 
 ### 2024/02/26
 
-#2024/02/26/01
+2024/02/26/01 #
 
 Add repeatButton and selectStageButton.
 
@@ -295,13 +297,13 @@ Add wordTranslate system to StageOne and prepare to add alerts.
 
 ### 2024/02/27
 
-#2024/02/27/01
+2024/02/27/01 #
 
 Add alerts.
 
 ### 2024/02/29
 
-#2024/02/29/01
+2024/02/29/01 #
 
 Add new scene "Plot";
 
@@ -311,7 +313,7 @@ Add example plots for Plot.
 
 ### 2024/03/01
 
-&2024/03/01/01
+2024/03/01/01 &
 
 Try to add nut's falling.
 
@@ -319,13 +321,13 @@ Try to add nut's bouncing.
 
 ### 2024/03/02
 
-#2024/03/02/01
+2024/03/02/01 #
 
 Fix some bugs after merge.
 
 ### 2024/03/03
 
-#2024/03/03/01
+2024/03/03/01 #
 
 Add LoseJudege;
 
@@ -333,13 +335,13 @@ Add obstacles;
 
 ### 2024/03/04
 
-#2024/03/04/01
+2024/03/04/01 #
 
 Add Plot;
 
 ### 2024/03/05
 
-#2024/03/05/01
+2024/03/05/01 #
 
 Fix bug of EarthCreateModeButton.
 
@@ -359,17 +361,17 @@ You can only set the first tile on the startPoint.
 
 ### 2024/03/06
 
-#2024/03/06/01
+2024/03/06/01 #
 
 Add GradeJudge system.
 
-#2024/03/06/02
+2024/03/06/02 #
 
 Add backGround Music;
 
 ### 2024/03/07
 
-#2024/03/07/01
+2024/03/07/01 #
 
 Add EnchantCreateMode;
 
@@ -377,23 +379,23 @@ Add guide button.
 
 ### 2024/03/08
 
-#2024/03/08
+2024/03/08 #
 
 Add guide texts;
 
 ### 2024/03/09
 
-*2024/03/09/01
+2024/03/09/01 *
 
 Add Achievement system;
 
-#2024/03/09/01
+2024/03/09/01 #
 
 Add sound for nut.
 
 ### 2024/03/17
 
-#2024/03/17/01
+2024/03/17/01 #
 
 Add new stage;
 
@@ -401,7 +403,7 @@ Fix bug that runMode cannot normally keep closed if there is no platform.
 
 ### 2024/03/24
 
-#2024/03/24/01
+2024/03/24/01 #
 
 Add guideWords for tutorial;
 
@@ -409,23 +411,23 @@ Decrease the difficulty of the tutorial stage.
 
 ### 2024/04/03
 
-*2024/04/03/01
+2024/04/03/01 *
 
 Add name System.
 
 ### 2024/04/07
 
-&2024/04/07/01
+2024/04/07/01 &
 
 Add scripts for two enchant platform.
 
 ### 2024/04/08
 
-&2024/04/08/01
+2024/04/08/01 &
 
 Add new stages.
 
-#2024/04/08/01
+2024/04/08/01 #
 
 Add pictures for Plot.
 
@@ -433,7 +435,7 @@ Improve plots.
 
 ### 2024/04/09
 
-#2024/04/09/01
+2024/04/09/01 #
 
 Fix some bugs.
 
