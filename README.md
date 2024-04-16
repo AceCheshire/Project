@@ -3,7 +3,7 @@
 
 ## Development Log
 
-**Tips: # - @AceCheshire   * - @splendid-atom   & - @Sleepiggyy
+**Tips: # - @AceCheshire   * - @splendid-atom   & - @Sleepiggyy**
 
 ### 2024/02/11
 
