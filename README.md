@@ -3,13 +3,13 @@
 
 ## Development Log
 
-**Tips: 
+**Tips:** 
 
- #  -  [AceCheshire](https://github.com/AceCheshire "AceCheshire")
+ **#  -  [AceCheshire](https://github.com/AceCheshire "AceCheshire")**
 
- *  -  [splendid-atom](https://github.com/splendid-atom "splendid-atom")
+ **\*  -  [splendid-atom](https://github.com/splendid-atom "splendid-atom")**
      
- &  -  [Sleepiggyy](https://github.com/Sleepiggyy "Sleepiggyy")**
+ **&  -  [Sleepiggyy](https://github.com/Sleepiggyy "Sleepiggyy")**
     
 ### 2024/02/11
 
