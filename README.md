@@ -1,3 +1,5 @@
+![GitHub commit activity](https://img.shields.io/github/commit-activity/:interval/:user/:repo)
+
 ## Development Log
 
 ### 2024/02/11
