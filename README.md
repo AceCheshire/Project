@@ -1,4 +1,4 @@
-![GitHub commit activity](https://img.shields.io/github/commit-activity/:interval/:user/:repo)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AceCheshire/Project?style=flat-square&logoColor=violet&label=Commit%20Activity)
 
 ## Development Log
 
