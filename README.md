@@ -3,7 +3,7 @@
 
 ## Development Log
 
-**Tips: # - @AceCheshire   * - @splendid-atom   & - @Sleepiggyy**
+**Tips: # - [AceCheshire](https://github.com/AceCheshire "AceCheshire")   * - [splendid-atom](https://github.com/splendid-atom "splendid-atom")   & - [Sleepiggyy](https://github.com/Sleepiggyy "Sleepiggyy")**
 
 ### 2024/02/11
 
