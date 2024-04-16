@@ -1,5 +1,5 @@
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AceCheshire/Project?logoColor=violet&label=Commit%20Activity)     ![Github Created At](https://img.shields.io/github/created-at/AceCheshire/Project)     ![GitHub Release Date](https://img.shields.io/github/release-date/AceCheshire/Project)
+## Statistics![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AceCheshire/Project?logoColor=violet&label=Commit%20Activity)     ![Github Created At](https://img.shields.io/github/created-at/AceCheshire/Project)     ![GitHub Release Date](https://img.shields.io/github/release-date/AceCheshire/Project)
 
 ## Development Log
 
